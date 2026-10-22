@@ -1,0 +1,25 @@
+VOCES NUEVAS DEL JUEGO · La casita de los 3 amigos
+==================================================
+Guárdalas en la carpeta voces/ con estos nombres exactos (.mp3).
+Mientras no existan, el juego usa la voz del navegador para estas frases.
+
+ESCENA 1 · Compartir
+  pio-pregunta-tronco.mp3     Pío:  ¿Le ayudamos entre todos, o dejamos que lo intente él solo?
+  pio-pregunta-tronco-2.mp3   Pío:  ¿Le ayudamos entre todos?
+  coco-dificil.mp3            Coco: Uf... solo es muy difícil.
+  pio-mano.mp3                Pío:  ¡Uy, pesa mucho! ¿Y si le echamos una mano?
+
+ESCENA 2 · Intentarlo otra vez
+  coco-pregunta-tejado.mp3    Coco: Pío se ha caído. ¿Qué hacemos por él?
+  coco-abrazo.mp3             Coco: ¡Un abrazo, amigo!
+  pio-gracias-coco.mp3        Pío:  ¡Gracias, Coco! ¡Ahora sí puedo!
+  coco-nunca-rindes.mp3       Coco: ¡Bravo, Pío! ¡Nunca te rindes!
+
+ESCENA 3 · Pedir ayuda
+  pio-pregunta-eri.mp3        Pío:  Eri tiene vergüenza. ¿Cómo le animamos?
+  coco-esperamos.mp3          Coco: Tranquilo, Eri. Te esperamos.
+  pio-bravo-eri.mp3           Pío:  ¡Bravo, Eri! ¡Tú puedes!
+  eri-me-atrevo.mp3           Eri:  Gracias... ya me atrevo.
+
+FINAL
+  coco-final-juego.mp3        Coco: ¡Gracias por jugar con nosotros!

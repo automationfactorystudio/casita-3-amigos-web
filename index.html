@@ -3,17 +3,22 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>La casita de los 3 amigos · Cuento en 3D de plastilina | Universo Tigalma</title>
-<meta name="description" content="Un cuento corto e interactivo en 3D, estilo plastilina, para niños de 3 a 8 años: Coco, Pío y Eri aprenden a compartir, a perseverar y a pedir ayuda. De Universo Tigalma.">
+<title>La casita de los 3 amigos · Juego-cuento en 3D de plastilina | Universo Tigalma</title>
+<meta name="description" content="Un juego-cuento en 3D, estilo plastilina, para niños de 3 a 8 años: ayuda a Coco, Pío y Eri a construir su casita tomando pequeñas decisiones. Aprenden a compartir, a intentarlo otra vez y a pedir ayuda. De Universo Tigalma.">
 <meta name="theme-color" content="#BFE6F5">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Casita 3 amigos">
 <meta name="author" content="Universo Tigalma">
 
 <!-- Open Graph -->
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_ES">
 <meta property="og:site_name" content="Universo Tigalma">
-<meta property="og:title" content="La casita de los 3 amigos · Un cuento en 3D de plastilina">
-<meta property="og:description" content="Coco, Pío y Eri construyen una casita y aprenden a ayudarse unos a otros. Desliza y vive el cuento.">
+<meta property="og:title" content="La casita de los 3 amigos · Un juego-cuento en 3D de plastilina">
+<meta property="og:description" content="Ayuda a Coco, Pío y Eri a construir su casita: tú decides cómo ayudarles. Un juego-cuento amable para niños de 3 a 8 años.">
 <meta property="og:url" content="https://casita.autostudio26.com/">
 <meta property="og:image" content="https://casita.autostudio26.com/og-imagen.jpg">
 <meta property="og:image:type" content="image/jpeg">
@@ -23,8 +28,8 @@
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="La casita de los 3 amigos · Un cuento en 3D de plastilina">
-<meta name="twitter:description" content="Un cuento sobre ayudarnos unos a otros, para niños de 3 a 8 años.">
+<meta name="twitter:title" content="La casita de los 3 amigos · Un juego-cuento en 3D de plastilina">
+<meta name="twitter:description" content="Un juego-cuento sobre ayudarnos unos a otros, para niños de 3 a 8 años.">
 <meta name="twitter:image" content="https://casita.autostudio26.com/og-imagen.jpg">
 <link rel="canonical" href="https://casita.autostudio26.com/">
 
@@ -94,6 +99,9 @@
     background:#fff; border-right:3px solid var(--c, var(--navy)); border-bottom:3px solid var(--c, var(--navy));
     transform:translateX(-50%) rotate(45deg); border-bottom-right-radius:6px;
   }
+  .bubble-in.side-r::after{left:-12px;bottom:auto;top:calc(50% - 10px);transform:rotate(45deg);border:0;border-left:3px solid var(--c, var(--navy));border-bottom:3px solid var(--c, var(--navy));border-radius:0 0 0 6px}
+  .bubble-in.side-l::after{left:auto;right:-12px;bottom:auto;top:calc(50% - 10px);transform:rotate(45deg);border:0;border-right:3px solid var(--c, var(--navy));border-top:3px solid var(--c, var(--navy));border-radius:0 6px 0 0}
+  .bubble-in.below::after{bottom:auto;top:-13px;transform:translateX(-50%) rotate(225deg)}
   .bubble-name{display:block;font-size:.78rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--c, var(--navy));filter:brightness(.7)}
 
   /* ---------- Navegación ---------- */
@@ -128,6 +136,16 @@
   .btn-yt:active{box-shadow:0 2px 0 #8E211A}
   .btn-soft{background:var(--butter);color:var(--ink);box-shadow:0 5px 0 #E2B94C,0 10px 18px rgba(30,35,80,.15)}
   .btn-soft:active{box-shadow:0 2px 0 #E2B94C}
+  .btn[hidden]{display:none}
+  .btn-install{background:#CFEFE3;color:var(--ink);box-shadow:0 5px 0 #8CCDB8,0 10px 18px rgba(30,35,80,.15)}
+  .btn-install:active{box-shadow:0 2px 0 #8CCDB8}
+  .btn-install svg{width:22px;height:22px}
+  .ios-tip{position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(30,35,80,.45)}
+  .ios-tip[hidden]{display:none}
+  .ios-tip div{max-width:380px;background:#FFFBF2;border:3px solid var(--navy);border-radius:22px;padding:22px 22px 18px;text-align:center;font-weight:800;color:var(--ink);line-height:1.45;box-shadow:0 14px 40px rgba(30,35,80,.35)}
+  .ios-tip b{display:block;font-size:1.15rem;margin-bottom:8px}
+  .ios-tip ol b{font-size:inherit}
+  .ios-tip ol{text-align:left;margin:8px 0 14px;padding-left:22px;font-weight:700}
   .btn-small{font-size:.98rem;padding:11px 18px 10px}
 
   /* ---------- Secciones / actos ---------- */
@@ -173,19 +191,6 @@
   }
   .moral svg{width:30px;height:30px;flex:none}
 
-  /* Botones de personajes del hero */
-  .friends{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 4px}
-  .friends-label{font-weight:800;font-size:.98rem;margin:16px 0 0;color:#3A3F73}
-  .chip{
-    display:inline-flex;align-items:center;gap:8px;cursor:pointer;
-    font-family:'Baloo 2','Nunito',sans-serif;font-weight:800;font-size:1rem;color:var(--ink);
-    background:#fff;border:2px solid rgba(30,35,80,.12);border-radius:999px;padding:8px 14px 7px;
-    box-shadow:0 3px 0 rgba(30,35,80,.1);transition:transform .15s;
-  }
-  .chip:hover{transform:translateY(-2px)}
-  .chip:active{transform:translateY(2px)}
-  .chip i{width:16px;height:16px;border-radius:50%;display:block;background:var(--c);box-shadow:inset -2px -2px 0 rgba(0,0,0,.15)}
-
   /* Indicador de scroll */
   .scroll-hint{display:flex;align-items:center;gap:12px;margin-top:18px;font-weight:800;color:#3A3F73}
   .mouse{width:26px;height:40px;border:3px solid var(--navy);border-radius:16px;position:relative;flex:none}
@@ -226,25 +231,32 @@
   .snd[aria-pressed="true"] .ic-off{display:none}
   .snd.nudge::after{content:"";position:absolute;inset:-6px;border-radius:999px;border:3px solid var(--coral);animation:ring 1.8s ease-out infinite;pointer-events:none}
   @keyframes ring{0%{transform:scale(.92);opacity:.9}100%{transform:scale(1.22);opacity:0}}
-  .hero-sound{margin-top:14px}
+  .snd-arrow{width:24px;height:24px;flex:none;color:var(--coral);animation:arrowPoint 1.1s ease-in-out infinite}
+  .snd[aria-pressed="true"] .snd-arrow{display:none}
+  @keyframes arrowPoint{0%,100%{transform:translateX(-3px)}50%{transform:translateX(4px)}}
   .no3d .snd{display:none}
 
-  /* ---------- Aviso "Pulsa aquí" sobre los botones de saludo ---------- */
-  .friends-wrap{position:relative}
-  .tip{
-    position:absolute; left:0; bottom:calc(100% + 12px); z-index:3;
-    background:var(--coral); color:#fff; border-radius:16px; padding:9px 14px 8px;
-    font-family:'Baloo 2','Nunito',sans-serif; font-weight:800; font-size:1rem; line-height:1.15; white-space:nowrap;
-    text-shadow:0 1px 2px rgba(120,30,20,.55);
-    box-shadow:0 5px 0 #D9604F, 0 10px 18px rgba(217,96,79,.35); pointer-events:none;
-    animation:tipBlink 1.4s ease-in-out infinite;
+  /* ---------- Portada: "Comienza el cuento" ---------- */
+  .start-hint{
+    display:flex; align-items:center; gap:10px; margin:18px 0 12px;
+    font-family:'Baloo 2','Nunito',sans-serif; font-weight:800; font-size:1.12rem; line-height:1.15; color:#3A3F73;
   }
-  .tip::after{content:"";position:absolute;left:34px;bottom:-8px;width:16px;height:16px;background:var(--coral);transform:rotate(45deg);border-radius:3px}
-  .tip[hidden]{display:none}
-  .card:has(.tip:not([hidden])) .friends-label{visibility:hidden}   /* el aviso ocupa su sitio; sigue disponible para lectores de pantalla */
-  @keyframes tipBlink{0%,100%{opacity:1;transform:translateY(0)}50%{opacity:.35;transform:translateY(-3px)}}
-  @media (prefers-reduced-motion: reduce){.tip{animation:none}}
-  .no3d .tip{display:none}
+  .start-hint .arrow{color:var(--coral);font-size:1.3rem}
+  .btn-start{
+    font-size:1.4rem; padding:18px 32px 17px; background:var(--coral); color:#fff;
+    box-shadow:0 6px 0 #D9604F, 0 12px 22px rgba(217,96,79,.35);
+    text-shadow:0 1px 2px rgba(120,30,20,.5);
+    animation:startPulse 1.8s ease-in-out infinite;
+  }
+  .btn-start:active{box-shadow:0 2px 0 #D9604F}
+  .btn-start:disabled{animation:none;opacity:.7;cursor:default;transform:none}
+  .btn-start svg{width:26px;height:26px}
+  @keyframes startPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.045)}}
+  .hero .card{transition:opacity .6s ease, transform .6s ease}
+  .hero .card.away{opacity:0;transform:translateY(24px);pointer-events:none}
+  .cta .card{transition:opacity .7s ease, transform .7s ease}
+  .cta .card.away{opacity:0;transform:translateY(40px);pointer-events:none}
+  @media (prefers-reduced-motion: reduce){.btn-start{animation:none}}
 
   /* ---------- Botón "Sigue bajando" ---------- */
   .next{
@@ -284,6 +296,113 @@
   #loader p{margin:0;font-family:'Baloo 2','Nunito',sans-serif;font-weight:800;font-size:1.35rem;color:var(--ink)}
   #loader small{display:block;margin-top:6px;font-weight:700;color:#3A3F73;font-size:1rem}
 
+  /* ---------- Actos 1-3: sin tarjetas grandes, solo una indicación pequeña ---------- */
+  html:not(.no3d) .act.scene,
+  html:not(.no3d) .act.scene.right{align-items:flex-end;justify-content:center;padding-bottom:calc(10px + env(safe-area-inset-bottom))}
+  html:not(.no3d) .act.scene .card{
+    position:sticky; top:auto; bottom:calc(18px + env(safe-area-inset-bottom));
+    width:auto; max-width:none; padding:0; border:0; border-radius:0;
+    background:none; box-shadow:none; -webkit-backdrop-filter:none; backdrop-filter:none;
+    pointer-events:none;
+  }
+  /* el texto sigue ahí para lectores de pantalla, pero no se ve */
+  html:not(.no3d) .act.scene .card > :not(.next){
+    position:absolute; width:1px; height:1px; margin:-1px; padding:0; border:0;
+    overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap;
+  }
+  html:not(.no3d) .act.scene .next{
+    pointer-events:auto; margin:0; width:auto; font-size:1rem; padding:8px 18px 8px 8px;
+  }
+  html:not(.no3d) .act.scene .next-arrow{width:30px;height:30px}
+
+  /* ---------- Tarjeta final: la enseñanza ---------- */
+  .lessons{list-style:none;margin:14px 0 4px;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:10px;text-align:left}
+  .lessons li{
+    display:flex;gap:10px;align-items:flex-start;
+    background:#fff;border:2px solid rgba(30,35,80,.08);border-radius:18px;padding:10px 12px;
+    font-weight:800;font-size:1.02rem;line-height:1.25;
+  }
+  .lessons svg{width:30px;height:30px;flex:none}
+  .lessons b{display:block;font-family:'Baloo 2','Nunito',sans-serif;font-size:1.08rem;color:var(--teal-dark);line-height:1.1;margin-bottom:2px}
+  .cta .more{margin:16px 0 0;font-weight:800;color:#3A3F73}
+  .lessons .mine{display:block;margin-top:4px;font-weight:700;font-size:.88rem;color:#B5473A}
+  .lessons .mine:empty{display:none}
+
+  /* ---------- Modo juego: una sola pantalla, sin desplazamiento ---------- */
+  html.game:not(.no3d), html.game:not(.no3d) body{overflow:hidden;height:100%;overscroll-behavior:none}
+  html.game:not(.no3d) main .act{display:none}
+  html.game:not(.no3d) main .act.on.hero,
+  html.game:not(.no3d) main .act.on.cta{
+    display:flex; position:fixed; inset:0; z-index:5; min-height:0; align-items:flex-start; justify-content:flex-start;
+    overflow-y:auto; padding:calc(var(--nav-h) + 6vh) clamp(16px,5vw,80px) 4vh;
+  }
+  html.game:not(.no3d) main .act.on.cta{justify-content:center}
+  html.game:not(.no3d) main .act.on .card{position:relative;top:auto;bottom:auto}
+  html.game:not(.no3d) main .act.on.cta .card{margin:auto auto 0}
+  html.game:not(.no3d) footer{display:none}
+
+  /* ---------- Marcador de estrellas ---------- */
+  .stars{
+    display:flex; gap:4px; padding:3px 6px; list-style:none; margin:0 auto;
+    background:rgba(255,255,255,.7); border:2px solid #fff; border-radius:999px;
+    box-shadow:0 3px 0 rgba(30,35,80,.08);
+  }
+  .stars[hidden]{display:none}
+  .star{display:flex;align-items:center;gap:6px;padding:2px 10px 2px 2px;border-radius:999px;font-family:'Baloo 2','Nunito',sans-serif;font-weight:800;font-size:.9rem;color:#8A8FB0;white-space:nowrap}
+  .star .st{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:#ECE9F3;box-shadow:inset 0 -3px 0 rgba(0,0,0,.06)}
+  .star svg{width:20px;height:20px;opacity:.35;filter:grayscale(1)}
+  .star.got{color:var(--ink)}
+  .star.got .st{background:var(--butter);box-shadow:inset 0 -3px 0 #E2B94C, 0 0 0 3px #fff}
+  .star.got svg{opacity:1;filter:none}
+
+  /* ---------- Panel de decisiones ---------- */
+  .play{position:fixed;z-index:18;left:0;right:0;bottom:0;display:flex;justify-content:center;padding:0 12px calc(14px + env(safe-area-inset-bottom));pointer-events:none}
+  .play[hidden]{display:none}
+  .play-card{
+    position:relative; pointer-events:auto; width:100%; max-width:720px;
+    background:var(--card); -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px);
+    border:3px solid #fff; border-radius:28px; padding:14px 18px 18px;
+    box-shadow:0 10px 0 rgba(30,35,80,.07), 0 22px 44px rgba(30,35,80,.2);
+  }
+  .play-head{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:8px}
+  .play-who{display:inline-flex;align-items:center;gap:8px;font-family:'Baloo 2','Nunito',sans-serif;font-weight:800;font-size:.9rem;letter-spacing:.06em;text-transform:uppercase;color:var(--teal-dark)}
+  .play-who[hidden]{display:none}
+  .play-who i{width:14px;height:14px;border-radius:50%;background:var(--c);box-shadow:inset -2px -2px 0 rgba(0,0,0,.15)}
+  .play-replay{
+    margin-left:auto; display:grid; place-items:center; width:42px; height:42px; flex:none; cursor:pointer;
+    border-radius:50%; border:2px solid rgba(30,35,80,.12); background:#fff; color:var(--navy);
+    box-shadow:0 3px 0 rgba(30,35,80,.12); -webkit-tap-highlight-color:transparent;
+  }
+  .play-replay[hidden]{display:none}
+  .play-replay svg{width:22px;height:22px}
+  .play-replay:active{transform:translateY(2px)}
+  .play-q{font-family:'Baloo 2','Nunito',sans-serif;font-weight:800;font-size:clamp(1.25rem,2.1vw,1.5rem);line-height:1.15;margin:4px 0 12px;color:var(--ink)}
+  .play-opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}
+  .play-opts.one{grid-template-columns:minmax(0,340px);justify-content:center}
+  .opt{
+    display:flex; align-items:center; gap:12px; min-height:74px; padding:10px 16px 10px 10px; cursor:pointer;
+    border:0; border-radius:22px; text-align:left; color:var(--ink);
+    font-family:'Baloo 2','Nunito',sans-serif; font-weight:800; font-size:1.12rem; line-height:1.15;
+    background:var(--bg); box-shadow:0 5px 0 var(--sh), 0 10px 18px rgba(30,35,80,.14);
+    transition:transform .15s; -webkit-tap-highlight-color:transparent;
+  }
+  .opt:hover{transform:translateY(-2px)}
+  .opt:active{transform:translateY(3px);box-shadow:0 2px 0 var(--sh)}
+  .opt:focus-visible{box-shadow:var(--focus)}
+  .opt-a{--bg:#FFE08A;--sh:#E2B94C}
+  .opt-b{--bg:#BDEBD9;--sh:#7FCBAE}
+  .opt-c{--bg:#FFD3CC;--sh:#E89A8E}
+  .play-card.has-badge{padding-top:58px}
+  .badge{position:absolute;left:50%;top:-60px;width:112px;height:112px;margin-left:-56px;filter:drop-shadow(0 7px 0 rgba(30,35,80,.14)) drop-shadow(0 12px 14px rgba(30,35,80,.2));pointer-events:none}
+  .badge svg{width:100%;height:100%;display:block;overflow:visible}
+  .badge-fly{position:fixed;z-index:60;pointer-events:none;margin:0;filter:drop-shadow(0 6px 8px rgba(30,35,80,.25))}
+  .badge-fly svg{width:100%;height:100%;display:block;overflow:visible}
+  .play-opts.one .opt{animation:startPulse 1.8s ease-in-out infinite}
+  .opt-go{--bg:var(--coral);--sh:#D9604F;color:#fff;justify-content:center;text-shadow:0 1px 2px rgba(120,30,20,.5)}
+  .opt-ic{width:54px;height:54px;border-radius:50%;background:#fff;display:grid;place-items:center;flex:none;box-shadow:inset 0 -3px 0 rgba(0,0,0,.06)}
+  .opt-ic svg{width:36px;height:36px}
+  .no3d .play, .no3d .stars{display:none!important}
+
   /* Sin 3D (fallo de WebGL o de carga) */
   .no3d-note{display:none}
   .no3d .no3d-note{display:block;font-size:.95rem;font-weight:700;color:#3A3F73;margin-top:10px}
@@ -298,9 +417,8 @@
     .brand{font-size:1.05rem}
     .brand img{width:40px;height:40px}
     .brand small{display:none}
-    .nav .long{display:none}
-    .nav .sound-label{display:none}
-    .nav .snd{padding:9px 10px}
+    .nav .snd{padding:9px 12px 8px;font-size:.95rem;gap:6px}
+    .snd-arrow{width:20px;height:20px}
     .nav-actions{gap:8px}
     .act,.act.right,.act.hero{
       min-height:125svh; align-items:flex-end; justify-content:stretch;
@@ -317,19 +435,47 @@
     .card p{font-size:1.02rem;line-height:1.45;margin-bottom:8px}
     .moral{font-size:1.02rem;padding:10px 12px;margin-top:10px}
     .moral svg{width:24px;height:24px}
-    .friends-label{margin-top:8px}
-    .friends{margin:8px 0 2px}
-    .scroll-hint{margin-top:10px}
-    .tip{bottom:calc(100% + 4px);font-size:.95rem;padding:7px 12px 6px}
+    .start-hint{margin:12px 0 10px;font-size:1.02rem}
+    .btn-start{width:100%;font-size:1.25rem;padding:16px 22px 15px}
+    .lessons{grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+    .lessons li{flex-direction:column;gap:4px;padding:8px 10px;font-size:.84rem;line-height:1.2}
+    .lessons svg{width:24px;height:24px}
+    .lessons b{font-size:.98rem}
+    .cta .more{font-size:.95rem;margin-top:12px}
+    .cta .btns{gap:10px;margin-top:14px}
     .next{margin-top:10px;font-size:1.04rem;width:100%;justify-content:center;padding:10px 18px 9px 10px}
     .mouse{display:none}
     .act.cta{align-items:flex-end;min-height:118svh}
     .btn-yt{font-size:1.12rem;padding:16px 22px 15px;width:100%}
-    .cta .btns .btn-soft{width:100%}
+    .cta .btns .btn-soft, .cta .btns .btn-install{width:100%}
+  }
+  @media (max-width: 1100px){ .star em{display:none} .star{padding:1px} }
+  @media (max-width: 820px){
+    html.game:not(.no3d) main .act.on.hero,
+    html.game:not(.no3d) main .act.on.cta{padding:calc(var(--nav-h) + 8px) 12px calc(14px + env(safe-area-inset-bottom))}
+    html.game:not(.no3d) main .act.on.hero .card{margin-top:auto}
+    .star em{display:none}
+    .star{padding:1px}
+    .star .st{width:28px;height:28px}
+    .stars{gap:2px;padding:2px 4px}
+    .nav{gap:6px}
+    .nav .snd{padding:8px 10px 7px;font-size:.88rem;gap:5px}
+    .snd-arrow{width:18px;height:18px}
+    .play{padding:0 8px calc(8px + env(safe-area-inset-bottom))}
+    .play-card{padding:10px 12px 12px;border-radius:24px}
+    .play-q{font-size:1.14rem;margin:2px 0 10px}
+    .play-opts{grid-template-columns:1fr;gap:9px}
+    .play-opts.one{grid-template-columns:1fr}
+    .opt{min-height:60px;font-size:1.04rem;padding:7px 14px 7px 8px}
+    .opt-ic{width:46px;height:46px}
+    .opt-ic svg{width:30px;height:30px}
+    .play-replay{width:38px;height:38px}
+  }
+  @media (max-width: 460px){
+    .brand span{display:none}
   }
   @media (max-width: 380px){
     .card p{font-size:.98rem}
-    .friends .chip{font-size:.92rem;padding:7px 11px 6px}
   }
 
   /* ---------- Movimiento reducido ---------- */
@@ -362,22 +508,36 @@
 <div id="bubbles" aria-hidden="true"></div>
 <div id="live" class="sr-only" aria-live="polite"></div>
 
+<!-- Panel de decisiones -->
+<div class="play" id="play" hidden>
+  <div class="play-card" role="group" aria-labelledby="play-q">
+    <div class="play-head">
+      <span class="play-who"><i></i><b></b></span>
+      <button class="play-replay" type="button" aria-label="Escuchar otra vez la pregunta"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 9h3l5-4v14l-5-4H4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></button>
+    </div>
+    <p class="play-q" id="play-q" aria-live="polite"></p>
+    <div class="play-opts"></div>
+  </div>
+</div>
+
 <!-- Navegación -->
 <header class="nav">
   <a class="brand" href="#inicio" aria-label="Universo Tigalma, ir al inicio">
     <img src="logo-tigalma.png" alt="Logo de Universo Tigalma: un círculo de acuarela con sol, lunas y un brote" width="46" height="46" onerror="this.style.display='none'">
     <span>Universo Tigalma<small>Cuentos para crecer con calma</small></span>
   </a>
+<ul class="stars" id="stars" hidden aria-label="Estrellas del juego">
+  <li class="star" data-name="Compartir" aria-label="Compartir: pendiente"><span class="st"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="#2E8B57" d="M16 29c-1-7 0-13 5-18 3-3 7-4 9-4 0 5-2 10-6 13-2 2-5 3-7 3"/><path fill="#6FCF97" d="M15 28C9 27 4 22 4 15c5 0 11 3 12 11"/></svg></span><em>Compartir</em></li>
+  <li class="star" data-name="Intentarlo otra vez" aria-label="Intentarlo otra vez: pendiente"><span class="st"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="#4A90D9" d="M16 3c4 6 8 10 8 15a8 8 0 0 1-16 0c0-5 4-9 8-15z"/></svg></span><em>Intentarlo</em></li>
+  <li class="star" data-name="Pedir ayuda" aria-label="Pedir ayuda: pendiente"><span class="st"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="none" stroke="#FF8A7A" stroke-width="3" d="M4 24a12 12 0 0 1 24 0"/><path fill="none" stroke="#F2B53A" stroke-width="3" d="M8 24a8 8 0 0 1 16 0"/><path fill="none" stroke="#4FB3A9" stroke-width="3" d="M12 24a4 4 0 0 1 8 0"/></svg></span><em>Pedir ayuda</em></li>
+</ul>
   <div class="nav-actions">
   <button class="snd nudge" type="button" data-sound aria-pressed="false" aria-label="Activar el sonido: música y voces de los personajes">
+    <span class="sound-label">Activa el sonido</span>
+    <svg class="snd-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h15M12 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
     <svg class="ic-off" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 9h3l5-4v14l-5-4H4z"/><path d="M16 9l5 6M21 9l-5 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
     <svg class="ic-on" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 9h3l5-4v14l-5-4H4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
-    <span class="sound-label">Sonido</span>
   </button>
-  <a class="btn btn-small" href="https://www.youtube.com/channel/UCmmC34AnTmV1wHIxVvXbuiQ" target="_blank" rel="noopener" aria-label="Escuchar cuentos de Universo Tigalma en YouTube (se abre en una pestaña nueva)">
-    <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 3a9 9 0 0 0-9 9v5a3 3 0 0 0 3 3h1a1 1 0 0 0 1-1v-5a1 1 0 0 0-1-1H5v-1a7 7 0 0 1 14 0v1h-2a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h1a3 3 0 0 0 3-3v-5a9 9 0 0 0-9-9z"/></svg>
-    Escuchar<span class="long">&nbsp;cuentos</span>
-  </a>
   </div>
 </header>
 
@@ -397,76 +557,75 @@
   <!-- HERO -->
   <section class="act hero" id="inicio" data-act="0" aria-labelledby="t-hero">
     <div class="card">
-      <p class="kicker"><span class="dot" aria-hidden="true"></span>Cuento en 3D · de 3 a 8 años</p>
+      <p class="kicker"><span class="dot" aria-hidden="true"></span>Juego-cuento en 3D · de 3 a 8 años</p>
       <h1 id="t-hero">La casita de los <span class="accent">3 amigos</span></h1>
-      <p class="lead">Un cuento sobre ayudarnos unos a otros</p>
-      <p class="friends-label" id="friends-label">Toca a los amigos para saludarles:</p>
-      <div class="friends-wrap">
-      <div class="tip" id="tip-saludo" aria-hidden="true">¡Pulsa aquí para que te saludemos!</div>
-      <div class="friends" role="group" aria-labelledby="friends-label">
-        <button class="chip" type="button" data-char="coco" aria-label="Saludar a Coco, el conejito"><i style="--c:#F7E3C4"></i>Coco</button>
-        <button class="chip" type="button" data-char="pio" aria-label="Saludar a Pío, el pollito"><i style="--c:#FFD84D"></i>Pío</button>
-        <button class="chip" type="button" data-char="eri" aria-label="Saludar a Eri, el erizo"><i style="--c:#9A6540"></i>Eri</button>
-      </div>
-      </div>
-      <button class="snd hero-sound" type="button" data-sound aria-pressed="false" aria-label="Activar el sonido: música y voces de los personajes">
-        <svg class="ic-off" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 9h3l5-4v14l-5-4H4z"/><path d="M16 9l5 6M21 9l-5 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
-    <svg class="ic-on" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 9h3l5-4v14l-5-4H4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
-        <span class="sound-text">Activar música y voces</span>
+      <p class="lead">Ayuda a Coco, Pío y Eri a construir su casita. ¡Tú decides cómo ayudarles!</p>
+      <p class="start-hint"><span class="arrow" aria-hidden="true">↓</span>Pulsa para empezar a jugar</p>
+      <button class="btn btn-start" type="button" id="start" aria-label="Empezar a jugar: los tres amigos te saludan y empieza la historia">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>
+        ¡Empezar a jugar!
       </button>
-      <div class="scroll-hint" aria-hidden="true"><span class="mouse"></span><span>Desliza hacia abajo <span class="arrow">↓</span></span></div>
-      <button class="next" type="button" data-next="1" aria-label="Ir a la primera escena del cuento"><span class="next-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="M12 4v15M5 12l7 7 7-7"/></svg></span>¡Empieza el cuento!</button>
       <p class="no3d-note">La escena 3D no ha podido cargarse en este dispositivo, pero puedes leer el cuento igualmente.</p>
     </div>
   </section>
 
   <!-- ACTO 1 -->
-  <section class="act" data-act="1" aria-labelledby="t-a1">
+  <section class="act scene" data-act="1" aria-labelledby="t-a1">
     <div class="card">
       <p class="kicker"><span class="dot" aria-hidden="true"></span>Acto 1 de 3</p>
       <h2 id="t-a1">Compartir</h2>
       <p>Coco quiere construir una casita para los tres amigos, pero los troncos pesan muchísimo y él solo no puede. Entonces llega Pío: <q>¡Te presto mis ramitas!</q> Juntos, las paredes suben y suben.</p>
       <p class="moral"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="#2E8B57" d="M16 29c-1-7 0-13 5-18 3-3 7-4 9-4 0 5-2 10-6 13-2 2-5 3-7 3"/><path fill="#6FCF97" d="M15 28C9 27 4 22 4 15c5 0 11 3 12 11"/></svg>Compartiendo, todo es más fácil.</p>
-      <button class="next" type="button" data-next="2" aria-label="Ir a la siguiente escena: Perseverar"><span class="next-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="M12 4v15M5 12l7 7 7-7"/></svg></span>Sigue bajando: ¡llega la lluvia!</button>
+      <button class="next" type="button" data-next="2" aria-label="Ir a la siguiente escena: Perseverar"><span class="next-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="M12 4v15M5 12l7 7 7-7"/></svg></span>Sigue bajando</button>
     </div>
   </section>
 
   <!-- ACTO 2 -->
-  <section class="act right" data-act="2" aria-labelledby="t-a2">
+  <section class="act scene right" data-act="2" aria-labelledby="t-a2">
     <div class="card">
       <p class="kicker"><span class="dot" aria-hidden="true"></span>Acto 2 de 3</p>
       <h2 id="t-a2">Perseverar</h2>
       <p>De repente… ¡plic, plic, ploc! Empieza a llover. Pío sube a poner el tejado, pero se resbala y ¡pum!, se cae. Se sacude las plumas y lo vuelve a intentar. Una vez, y otra, y otra.</p>
       <p class="moral"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="#4A90D9" d="M16 3c4 6 8 10 8 15a8 8 0 0 1-16 0c0-5 4-9 8-15z"/><path fill="#fff" opacity=".7" d="M12 18a4 4 0 0 0 3 4" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>Si te caes, te levantas y lo intentas otra vez.</p>
-      <button class="next" type="button" data-next="3" aria-label="Ir a la siguiente escena: Pedir ayuda"><span class="next-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="M12 4v15M5 12l7 7 7-7"/></svg></span>Sigue bajando: la idea de Eri</button>
+      <button class="next" type="button" data-next="3" aria-label="Ir a la siguiente escena: Pedir ayuda"><span class="next-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="M12 4v15M5 12l7 7 7-7"/></svg></span>Sigue bajando</button>
     </div>
   </section>
 
   <!-- ACTO 3 -->
-  <section class="act" data-act="3" aria-labelledby="t-a3">
+  <section class="act scene" data-act="3" aria-labelledby="t-a3">
     <div class="card">
       <p class="kicker"><span class="dot" aria-hidden="true"></span>Acto 3 de 3</p>
       <h2 id="t-a3">Pedir ayuda</h2>
       <p>Escondido tras un arbusto, Eri tiene una idea genial: ¡un tejado de hojas grandes! Pero le da vergüenza hablar. Coco y Pío le dicen: <q>Cuéntanos, te escuchamos.</q> Con la idea de Eri, la casita queda perfecta. ¡Sale el sol y un arcoíris!</p>
       <p class="moral"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="none" stroke="#FF8A7A" stroke-width="3" d="M4 24a12 12 0 0 1 24 0"/><path fill="none" stroke="#F2B53A" stroke-width="3" d="M8 24a8 8 0 0 1 16 0"/><path fill="none" stroke="#4FB3A9" stroke-width="3" d="M12 24a4 4 0 0 1 8 0"/></svg>Pedir ayuda y escuchar también es de valientes.</p>
-      <button class="next" type="button" data-next="4" aria-label="Ir al final del cuento"><span class="next-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="M12 4v15M5 12l7 7 7-7"/></svg></span>Sigue bajando: ¡a celebrar!</button>
+      <button class="next" type="button" data-next="4" aria-label="Ir al final del cuento"><span class="next-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="M12 4v15M5 12l7 7 7-7"/></svg></span>Sigue bajando</button>
     </div>
   </section>
 
   <!-- CTA FINAL -->
   <section class="act cta" data-act="4" aria-labelledby="t-cta">
     <div class="card">
-      <p class="kicker"><span class="dot" aria-hidden="true"></span>¿Te ha gustado el cuento?</p>
-      <h2 id="t-cta">Escucha los cuentos de @UniversoTigalma</h2>
-      <p>Cuentos para crecer con calma, emoción y mucho cariño. Para escuchar en familia, antes de dormir o en cualquier momento.</p>
+      <p class="kicker"><span class="dot" aria-hidden="true"></span>¡Casita terminada! Has ganado las 3 estrellas</p>
+      <h2 id="t-cta">Juntos, todo es más fácil</h2>
+      <ul class="lessons">
+        <li><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="#2E8B57" d="M16 29c-1-7 0-13 5-18 3-3 7-4 9-4 0 5-2 10-6 13-2 2-5 3-7 3"/><path fill="#6FCF97" d="M15 28C9 27 4 22 4 15c5 0 11 3 12 11"/></svg><span><b>Compartir</b>Compartiendo, todo es más fácil.<small class="mine" data-mine="a1"></small></span></li>
+        <li><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="#4A90D9" d="M16 3c4 6 8 10 8 15a8 8 0 0 1-16 0c0-5 4-9 8-15z"/><path fill="none" opacity=".7" d="M12 18a4 4 0 0 0 3 4" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg><span><b>Intentarlo otra vez</b>Si te caes, te levantas y lo vuelves a intentar.<small class="mine" data-mine="a2"></small></span></li>
+        <li><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="none" stroke="#FF8A7A" stroke-width="3" d="M4 24a12 12 0 0 1 24 0"/><path fill="none" stroke="#F2B53A" stroke-width="3" d="M8 24a8 8 0 0 1 16 0"/><path fill="none" stroke="#4FB3A9" stroke-width="3" d="M12 24a4 4 0 0 1 8 0"/></svg><span><b>Pedir ayuda</b>Pedir ayuda también es de valientes.<small class="mine" data-mine="a3"></small></span></li>
+        <li><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="#F6A7A0" d="M16 28C6 21 3 15 3 10.5A6.5 6.5 0 0 1 16 8a6.5 6.5 0 0 1 13 2.5C29 15 26 21 16 28z"/></svg><span><b>Escuchar</b>Escuchar con cariño hace sentir bien a un amigo.</span></li>
+      </ul>
+      <p class="more">¿Te ha gustado? Escucha más cuentos de @UniversoTigalma, para disfrutar en familia.</p>
       <div class="btns">
         <a class="btn btn-yt" href="https://www.youtube.com/channel/UCmmC34AnTmV1wHIxVvXbuiQ" target="_blank" rel="noopener" aria-label="Ver los cuentos de Universo Tigalma en YouTube (se abre en una pestaña nueva)">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12 31 31 0 0 0 1 16.8a3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8zM9.7 15V9l5.8 3-5.8 3z"/></svg>
           Ver cuentos en YouTube
         </a>
-        <button class="btn btn-soft" type="button" id="restart" aria-label="Volver a empezar el cuento desde el principio">
+        <button class="btn btn-install" type="button" id="install" hidden aria-label="Instalar el juego en tu dispositivo">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 3v10.2l3.6-3.6L17 11l-5 5-5-5 1.4-1.4 3.6 3.6V3h2zM5 18h14v2H5z"/></svg>
+          Instalar el juego
+        </button>
+        <button class="btn btn-soft" type="button" id="restart" aria-label="Jugar otra vez desde el principio">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 5V2L7 6l5 4V7a5 5 0 1 1-5 5H5a7 7 0 1 0 7-7z"/></svg>
-          Volver a empezar
+          Jugar otra vez
         </button>
       </div>
     </div>
@@ -494,8 +653,18 @@
       if (sec) sec.scrollIntoView({ behavior: 'smooth' });
     });
   });
+  // "Comienza el cuento": con 3D lo gestiona la escena; sin 3D baja directamente al primer acto
+  document.getElementById('start').addEventListener('click', function(){
+    if (!document.documentElement.classList.contains('no3d') && window.__tigalmaStart) { window.__tigalmaStart(); return; }
+    var sec = document.querySelectorAll('[data-act]')[1];
+    if (sec) sec.scrollIntoView({ behavior: 'smooth' });
+  });
   // "Volver a empezar" funciona aunque falle el 3D
   document.getElementById('restart').addEventListener('click', function(){
+    if (document.documentElement.classList.contains('game') && !document.documentElement.classList.contains('no3d')) {
+      setTimeout(function(){ var b = document.getElementById('start'); if (b) b.focus({ preventScroll: true }); }, 700);
+      return;
+    }
     var rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     window.scrollTo({ top: 0, behavior: rm ? 'auto' : 'smooth' });
     document.getElementById('t-hero').setAttribute('tabindex','-1');
@@ -764,6 +933,20 @@ function init(){
       'eri-hojas': '¿Y si hacemos el tejado con hojas grandes?',
       'eri-gracias': '¡Gracias por escucharme!',
       'eri-final': '¡Hasta el próximo cuento!',
+      // voces nuevas del juego: mientras no exista el audio, se usa la voz del navegador
+      'pio-pregunta-tronco': '¿Le ayudamos entre todos, o dejamos que lo intente él solo?',
+      'pio-pregunta-tronco-2': '¿Le ayudamos entre todos?',
+      'coco-dificil': 'Uf... solo es muy difícil.',
+      'pio-mano': '¡Uy, pesa mucho! ¿Y si le echamos una mano?',
+      'coco-pregunta-tejado': 'Pío se ha caído. ¿Qué hacemos por él?',
+      'coco-abrazo': '¡Un abrazo, amigo!',
+      'pio-gracias-coco': '¡Gracias, Coco! ¡Ahora sí puedo!',
+      'coco-nunca-rindes': '¡Bravo, Pío! ¡Nunca te rindes!',
+      'pio-pregunta-eri': 'Eri tiene vergüenza. ¿Cómo le animamos?',
+      'coco-esperamos': 'Tranquilo, Eri. Te esperamos.',
+      'pio-bravo-eri': '¡Bravo, Eri! ¡Tú puedes!',
+      'eri-me-atrevo': 'Gracias... ya me atrevo.',
+      'coco-final-juego': '¡Gracias por jugar con nosotros!',
       // invitaciones a seguir bajando: si aún no existe el audio, el bocadillo sale sin voz
       'coco-sigue-portada': '¡Sigue bajando, que empieza el cuento!',
       'pio-sigue-1': '¡Sigue bajando! ¿Qué pasará con el tejado?',
@@ -889,7 +1072,7 @@ function init(){
       btns.forEach(b => {
         b.setAttribute('aria-pressed', on ? 'true' : 'false');
         b.setAttribute('aria-label', on ? 'Apagar el sonido' : 'Activar el sonido: música y voces de los personajes');
-        const tx = b.querySelector('.sound-text'); if (tx) tx.textContent = on ? 'Sonido activado' : 'Activar música y voces';
+        const tx = b.querySelector('.sound-label'); if (tx) tx.textContent = on ? 'Sonido activado' : 'Activa el sonido';
         if (on) b.classList.remove('nudge');
       });
     }
@@ -930,7 +1113,7 @@ function init(){
     }
     function pause(){ hush(); if (ctx && on) ctx.suspend(); }
     function resume(){ if (ctx && on){ ctx.resume(); nextTime = T() + 0.1; } }
-    return { enable, disable, isOn: () => on, setTheme: (n) => { nextTheme = n; }, hush, update, speak,
+    return { enable, disable, isOn: () => on, busy: () => !!current || queue.length > 0, setTheme: (n) => { nextTheme = n; }, hush, update, speak,
              boing, pop, knock, thud, sparkle, ding, tada, whoosh, leaf: () => pop(1.3 + Math.random() * 0.5), pause, resume };
   })();
 
@@ -1345,7 +1528,10 @@ function init(){
     live.textContent = `${ch.name} dice: ${text}`;
     dur = Math.max(dur, SND.speak(ch.id, text, urgent));
     gsap.killTweensOf(ch.bubbleIn);
-    ch.bubbleShown = true; ch.bubble.style.visibility = 'visible';
+    gsap.set(ch.bubbleIn, { opacity: 0 });                                  // invisible hasta estar colocado
+    ch.bubbleLock = null; ch.bubbleSide = null;                             // se vuelve a elegir sitio (una sola vez) para esta frase
+    ch.bubbleIn.classList.remove('side-l', 'side-r', 'below');
+    ch.bubbleShown = true;
     positionBubble(ch);
     gsap.fromTo(ch.bubbleIn, { scale: 0.3, opacity: 0, y: 12 }, { scale: 1, opacity: 1, y: 0, duration: RM ? 0.15 : 0.45, ease: 'back.out(2.2)' });
     gsap.to(ch.bubbleIn, { scale: 0.6, opacity: 0, y: -8, duration: 0.3, delay: dur, ease: 'power2.in',
@@ -1355,16 +1541,58 @@ function init(){
     chars.forEach(ch => { if (ch.bubble){ gsap.killTweensOf(ch.bubbleIn); ch.bubbleShown = false; ch.bubble.style.visibility = 'hidden'; } });
   }
   const _bv = new V3();
+  const restLift = (o) => (o.jump.position.y + o.pokeG.position.y) * (o.root.scale.y || 1);   // altura del salto actual
   function positionBubble(ch){
     ch.anchor.getWorldPosition(_bv).project(camera);
     if (_bv.z > 1){ ch.bubble.style.visibility = 'hidden'; return; }
-    ch.bubble.style.visibility = 'visible';
     const w = window.innerWidth, h = window.innerHeight;
     const half = (ch.bubbleIn.offsetWidth || 220) / 2 + 10;             // que el bocadillo no se salga por los lados
-    const x = Math.min(Math.max((_bv.x + 1) / 2 * w, half), w - half);
-    const y = Math.max((1 - _bv.y) / 2 * h, (PROFILE.mobile ? 60 : 68) + 80);
-    ch.bubble.style.transform = `translate3d(${x.toFixed(1)}px, ${y.toFixed(1)}px, 0) translate(-50%, -100%)`;
+    const hx = (_bv.x + 1) / 2 * w, hy = (1 - _bv.y) / 2 * h;
+    // la misma cabeza pero en reposo (sin el salto): con ella se decide el sitio, para que no dependa del momento del salto
+    ch.anchor.getWorldPosition(_bv2); _bv2.y -= restLift(ch); _bv2.project(camera);
+    const hyR = (1 - _bv2.y) / 2 * h;
+    const topLimit = (PROFILE.mobile ? 60 : 68) + 10, bw = ch.bubbleIn.offsetWidth || 220, bh = ch.bubbleIn.offsetHeight || 70;
+    const cl = (v, lo, hi) => Math.min(Math.max(v, lo), hi);
+    const layout = (x, y) => {
+      const cx = cl(x, half, w - half);
+      return [
+        { k: '',       cx,                    cy: Math.max(y, topLimit + bh + 14) - bh / 2 },
+        { k: 'side-r', cx: x + 64 + bw / 2,   cy: Math.max(y + 55, topLimit + bh / 2) },
+        { k: 'side-l', cx: x - 64 - bw / 2,   cy: Math.max(y + 55, topLimit + bh / 2) },
+        { k: 'below',  cx,                    cy: y + 112 + bh / 2 }
+      ];
+    };
+    if (ch.bubbleLock == null){
+      // caras de todos los personajes visibles, en reposo (la cara queda ~50 px bajo el ancla)
+      const faces = [];
+      for (const o of chars){
+        if (!o.root.visible || o.root.position.y < -0.2) continue;
+        o.anchor.getWorldPosition(_bv2); _bv2.y -= restLift(o); _bv2.project(camera);
+        faces.push({ l: (_bv2.x + 1) / 2 * w - 50, r: (_bv2.x + 1) / 2 * w + 50, t: (1 - _bv2.y) / 2 * h + 6, b: (1 - _bv2.y) / 2 * h + 104 });
+      }
+      let best = null;
+      // a igualdad de sitio, el bocadillo sale hacia el lado contrario al del amigo más cercano (no le tapa)
+      let near = null; for (const f of faces){ const d = (f.l + 50) - hx; if (Math.abs(d) > 20 && (near === null || Math.abs(d) < Math.abs(near))) near = d; }
+      const away = (near !== null && near > 0) ? 'side-l' : 'side-r';
+      const cands = layout(hx, hyR).sort((a, b) => (a.k === '' ? -2 : a.k === away ? -1 : a.k === 'below' ? 2 : 1) - (b.k === '' ? -2 : b.k === away ? -1 : b.k === 'below' ? 2 : 1));
+      cands.forEach((c, i) => {
+        const r = { l: c.cx - bw / 2, r: c.cx + bw / 2, t: c.cy - bh / 2, b: c.cy + bh / 2 + (c.k === '' ? 13 : 0) };
+        let pen = i * 400;
+        faces.forEach(f => { const ox = Math.min(r.r, f.r) - Math.max(r.l, f.l), oy = Math.min(r.b, f.b) - Math.max(r.t, f.t); if (ox > 0 && oy > 0) pen += ox * oy * 4; });
+        pen += Math.max(0, -r.l) * bh * 6 + Math.max(0, r.r - w) * bh * 6 + Math.max(0, topLimit - r.t) * bw * 6 + Math.max(0, r.b - h + 8) * bw * 2;
+        if (!best || pen < best.pen) best = { k: c.k, pen };
+      });
+      ch.bubbleLock = (hyR - bh - 14 >= topLimit) ? '' : best.k;           // si cabe encima, siempre encima; al lado o debajo solo si no hay sitio
+    }
+    const c = layout(hx, hy).find(o => o.k === ch.bubbleLock);
+    ch.bubble.style.transform = `translate3d(${c.cx.toFixed(1)}px, ${c.cy.toFixed(1)}px, 0) translate(-50%, -50%)`;
+    if (ch.bubbleSide !== c.k){
+      ch.bubbleSide = c.k;
+      ch.bubbleIn.classList.toggle('side-l', c.k === 'side-l'); ch.bubbleIn.classList.toggle('side-r', c.k === 'side-r'); ch.bubbleIn.classList.toggle('below', c.k === 'below');
+    }
+    ch.bubble.style.visibility = 'visible';                                // solo se muestra ya colocado
   }
+  const _bv2 = new V3();
 
   /* =========================================================
      6. DECORADO: suelo, colinas, árboles, arbustos, flores…
@@ -1841,9 +2069,9 @@ function init(){
   }
   const SHOTS = [
     { pos: [0.3, 1.75, 8.4], tgt: [0, 1.0, 0.6], sx: 0.2 },   // hero
-    { pos: [-2.9, 2.9, 8.7], tgt: [0, 1.0, 0.1], sx: 0.2 }, // acto 1
-    { pos: [3.4, 3.1, 8.4], tgt: [0.1, 1.2, 0.2], sx: -0.2 },      // acto 2
-    { pos: [4.2, 2.6, 8.6], tgt: [1.0, 1.2, 0.1], sx: 0.2 },   // acto 3
+    { pos: [-2.9, 2.9, 8.7], tgt: [0, 1.0, 0.1], sx: 0 }, // acto 1
+    { pos: [3.4, 3.1, 8.4], tgt: [0.1, 1.2, 0.2], sx: 0 },      // acto 2
+    { pos: [4.2, 2.6, 8.6], tgt: [1.0, 1.2, 0.1], sx: 0 },   // acto 3
     { pos: [0, 3.4, 12.2], tgt: [0, 1.6, -0.6], sx: 0 }         // final
   ];
   function framing(act, dur){
@@ -1853,7 +2081,7 @@ function init(){
       // pantalla vertical: plano más frontal y centrado para que quepan los tres amigos
       goCam([s.pos[0] * 0.45, s.pos[1], s.pos[2]], [0, s.tgt[1], s.tgt[2]], dur);
     } else goCam(s.pos, s.tgt, dur);
-    gsap.to(view, { sx: mobile ? 0 : s.sx, sy: mobile ? (act === 4 ? 0.24 : 0.17) : (act === 4 ? 0.3 : 0), duration: RM ? 0.3 : dur, ease: 'power2.inOut', overwrite: true });
+    gsap.to(view, { sx: mobile ? 0 : s.sx, sy: mobile ? (act === 4 ? 0.24 : 0.09) : (act === 4 ? 0.3 : (act === 0 ? 0 : 0.1)), duration: RM ? 0.3 : dur, ease: 'power2.inOut', overwrite: true });
   }
   function applyView(){
     const w = window.innerWidth, h = window.innerHeight;
@@ -1886,48 +2114,307 @@ function init(){
       .to(eri.root.position, { y: -0.6, duration: 0.4, ease: 'power2.in' }, at + 1.6);
   }
 
+  /* =========================================================
+     11b. EL JUEGO: escenas, decisiones amables y estrellas
+     Nunca hay respuestas malas: si el niño elige algo distinto,
+     los personajes reaccionan y le dan otra oportunidad.
+     ========================================================= */
+  const sectionsEl = [...document.querySelectorAll('[data-act]')];
+  const cards = sectionsEl.map(s => s.querySelector('.card'));
+  const heroCard = cards[0];
+  const startBtn = document.getElementById('start');
+  const play = document.getElementById('play');
+  const playCard = play.querySelector('.play-card');
+  const playQ = document.getElementById('play-q');
+  const playOpts = play.querySelector('.play-opts');
+  const playWho = play.querySelector('.play-who');
+  const playReplay = play.querySelector('.play-replay');
+  const starsHud = document.getElementById('stars');
+  const starEls = [...starsHud.querySelectorAll('.star')];
+  const game = { a1: null, a1Alone: 0, a2: null, a3: null };
+  let greeting = false, sceneToken = 0, panelToken = 0, lastAsk = null, usingKeys = false;
+  document.addEventListener('keydown', () => { usingKeys = true; }, true);
+  document.addEventListener('pointerdown', () => { usingKeys = false; }, true);
+
+  const ICONS = {
+    together: '<svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="14" cy="21" r="8" fill="#F7E3C4" stroke="#C9A27A" stroke-width="2"/><circle cx="34" cy="21" r="8" fill="#B07A50" stroke="#7A4E2E" stroke-width="2"/><circle cx="24" cy="30" r="8.5" fill="#FFD84D" stroke="#E2B94C" stroke-width="2"/><path d="M24 15c-2-3-6-2-6 1 0 2.5 3 4.5 6 6.5 3-2 6-4 6-6.5 0-3-4-4-6-1z" fill="#FF8A7A"/></svg>',
+    alone:    '<svg viewBox="0 0 48 48" aria-hidden="true"><rect x="7" y="31" width="34" height="9" rx="4.5" fill="#B57A45" stroke="#8A5A30" stroke-width="2"/><circle cx="24" cy="18" r="9" fill="#F7E3C4" stroke="#C9A27A" stroke-width="2"/><circle cx="21" cy="17" r="1.6" fill="#1E2350"/><circle cx="27" cy="17" r="1.6" fill="#1E2350"/></svg>',
+    again:    '<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M37 17a14.5 14.5 0 1 0 1.5 13" fill="none" stroke="#FF8A7A" stroke-width="5" stroke-linecap="round"/><path d="M38.5 7v11h-11" fill="none" stroke="#FF8A7A" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+    hug:      '<svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="17" cy="22" r="9" fill="#F7E3C4" stroke="#C9A27A" stroke-width="2"/><circle cx="31" cy="26" r="9" fill="#FFD84D" stroke="#E2B94C" stroke-width="2"/><path d="M24 10c-1.600-2.600-5-1.800-5 .8 0 2 2.500 3.600 5 5.200 2.500-1.600 5-3.200 5-5.200 0-2.600-3.400-3.400-5-.8z" fill="#FF8A7A"/></svg>',
+    rest:     '<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M29 8a16 16 0 1 0 11 27A13 13 0 0 1 29 8z" fill="#8C9BE8"/><path d="M33 12h7l-7 7h7" fill="none" stroke="#3B4A9E" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+    listen:   '<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 40C12 32 7 25 7 18.5A8.5 8.5 0 0 1 24 15a8.5 8.5 0 0 1 17 3.5C41 25 36 32 24 40z" fill="#FF8A7A"/></svg>',
+    smile:    '<svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="17" fill="#FFD84D" stroke="#E2B94C" stroke-width="2"/><circle cx="18" cy="20" r="2.6" fill="#1E2350"/><circle cx="30" cy="20" r="2.6" fill="#1E2350"/><path d="M16 28c4 6 12 6 16 0" fill="none" stroke="#1E2350" stroke-width="3" stroke-linecap="round"/></svg>',
+    clap:     '<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 5l4.6 11.2 12 .9-9.2 7.8 2.9 11.8L24 30.3l-10.3 6.4 2.9-11.8-9.2-7.8 12-.9z" fill="#F2B53A" stroke="#D99A1E" stroke-width="2" stroke-linejoin="round"/><path d="M7 38l4-3M41 38l-4-3M24 45v-5" stroke="#FF8A7A" stroke-width="3" stroke-linecap="round"/></svg>',
+    go:       '<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M10 24h26M26 13l11 11-11 11" fill="none" stroke="#FF8A7A" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+  };
+
+  /* Panel de decisiones */
+  function voice(ch, text){
+    say(ch, text, 2.8, true);                                              // bocadillo encima de quien pregunta + su voz
+  }
+  /* La pregunta espera a que los personajes terminen de hablar (los audios reales duran lo que duran) */
+  function ask(opts){
+    const tok = sceneToken, t0 = performance.now();
+    const go = () => {
+      if (tok !== sceneToken) return;                                      // ya se cambió de escena
+      if (SND.isOn() && SND.busy() && performance.now() - t0 < 12000) return setTimeout(go, 120);
+      if (SND.isOn() && performance.now() - t0 > 150) return setTimeout(() => { if (tok === sceneToken) askNow(opts); }, 350);   // respiro tras la última frase
+      askNow(opts);
+    };
+    go();
+  }
+  function askNow({ who = null, text = '', title = '', badge = null, options }){
+    const tok = sceneToken, my = ++panelToken;
+    playCard.classList.toggle('has-badge', badge != null);
+    const oldBadge = playCard.querySelector('.badge'); if (oldBadge) oldBadge.remove();
+    let badgeEl = null;
+    if (badge != null){
+      badgeEl = document.createElement('div'); badgeEl.className = 'badge'; badgeEl.innerHTML = badgeSVG(badge);
+      playCard.insertBefore(badgeEl, playCard.firstChild);
+    }
+    stopIdle();
+    if (who && badge == null) idle([who]);
+    lastAsk = text && who ? { who, text } : null;
+    if (lastAsk) voice(who, text);
+    playWho.hidden = !who;
+    if (who){ playWho.style.setProperty('--c', who.uiColor); playWho.querySelector('b').textContent = who.name; }
+    playQ.textContent = title || text;
+    playReplay.hidden = !lastAsk;
+    playOpts.innerHTML = '';
+    playOpts.classList.toggle('one', options.length === 1);
+    options.forEach((o, i) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'opt opt-' + (o.tone || 'abc'[i]);
+      b.innerHTML = `<span class="opt-ic">${ICONS[o.icon] || ''}</span><span class="opt-tx"></span>`;
+      b.querySelector('.opt-tx').textContent = o.label;
+      b.addEventListener('click', () => {
+        if (tok !== sceneToken || my !== panelToken) return;           // panel antiguo: no hace nada
+        panelToken++;
+        SND.pop(1.2);
+        stopIdle();
+        hidePanel();
+        o.pick();
+      });
+      playOpts.appendChild(b);
+    });
+    play.hidden = false;
+    gsap.fromTo(playCard, { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: RM ? 0.15 : 0.5, ease: 'back.out(1.6)', overwrite: true });
+    if (badgeEl && !RM) gsap.fromTo(badgeEl, { scale: 0, rotate: -30 }, { scale: 1, rotate: 0, duration: 1, delay: 0.25, ease: 'elastic.out(1, 0.5)', onStart: () => SND.pop(1.8) });
+    if (usingKeys) setTimeout(() => { if (my === panelToken){ const f = playOpts.querySelector('button'); if (f) f.focus({ preventScroll: true }); } }, 450);
+  }
+  function hidePanel(instant = false){
+    const my = panelToken;
+    if (instant || RM){ play.hidden = true; return; }
+    gsap.to(playCard, { y: 30, opacity: 0, duration: 0.25, ease: 'power2.in', overwrite: true,
+      onComplete(){ if (my === panelToken) play.hidden = true; } });
+  }
+  playReplay.addEventListener('click', () => {
+    if (!lastAsk) return;
+    if (!SND.isOn()){                                                     // sin sonido: recordamos dónde se activa
+      document.querySelectorAll('.nav [data-sound]').forEach(b => { b.classList.remove('nudge'); void b.offsetWidth; b.classList.add('nudge'); });
+      return;
+    }
+    voice(lastAsk.who, lastAsk.text);
+  });
+  /* ---------- Pegatinas ---------- */
+  function starPts(cx, cy, R, r){ let o = ''; for (let i = 0; i < 10; i++){ const a = -Math.PI / 2 + i * Math.PI / 5, d = i % 2 ? r : R; o += (cx + Math.cos(a) * d).toFixed(1) + ',' + (cy + Math.sin(a) * d).toFixed(1) + ' '; } return o.trim(); }
+  const BADGES = [
+    { ring: '#2E8B57', bg: '#BDEBD9', icon: '<path fill="#2E8B57" d="M16 29c-1-7 0-13 5-18 3-3 7-4 9-4 0 5-2 10-6 13-2 2-5 3-7 3"/><path fill="#6FCF97" d="M15 28C9 27 4 22 4 15c5 0 11 3 12 11"/>' },
+    { ring: '#4A90D9', bg: '#CFE6FB', icon: '<path fill="#4A90D9" d="M16 3c4 6 8 10 8 15a8 8 0 0 1-16 0c0-5 4-9 8-15z"/><path fill="none" opacity=".8" d="M12 18a4 4 0 0 0 3 4" stroke="#fff" stroke-width="2" stroke-linecap="round"/>' },
+    { ring: '#E0675A', bg: '#FFE0DA', icon: '<path fill="none" stroke="#FF8A7A" stroke-width="3" d="M4 24a12 12 0 0 1 24 0"/><path fill="none" stroke="#F2B53A" stroke-width="3" d="M8 24a8 8 0 0 1 16 0"/><path fill="none" stroke="#4FB3A9" stroke-width="3" d="M12 24a4 4 0 0 1 8 0"/>' }
+  ];
+  function badgeSVG(i){
+    const B = BADGES[i];
+    return `<svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="47" fill="${B.ring}"/><circle cx="50" cy="50" r="41" fill="${B.bg}" stroke="#fff" stroke-width="4"/>` +
+      `<g transform="translate(24 27) scale(1.6)">${B.icon}</g>` +
+      `<polygon points="${starPts(78, 24, 20, 9)}" fill="#F2B53A" stroke="#fff" stroke-width="4" stroke-linejoin="round"/></svg>`;
+  }
+
+  /* Estrella 3D que flota durante la celebración */
+  const celebStar = (() => {
+    const sh = new THREE.Shape(), R = 0.5, r = 0.22;
+    for (let i = 0; i < 10; i++){ const a = Math.PI / 2 + i * Math.PI / 5, d = i % 2 ? r : R, x = Math.cos(a) * d, y = Math.sin(a) * d; i ? sh.lineTo(x, y) : sh.moveTo(x, y); }
+    sh.closePath();
+    const geo = new THREE.ExtrudeGeometry(sh, { depth: 0.16, bevelEnabled: true, bevelThickness: 0.07, bevelSize: 0.07, bevelSegments: 3 }); geo.center();
+    const mesh = new THREE.Mesh(geo, clay('#FFD24D', { emissive: '#FFB300', ei: 0.35 }));
+    const g = new THREE.Group(); g.add(mesh); g.visible = false; g.scale.setScalar(0.0001); scene.add(g);
+    return g;
+  })();
+  function hideCelebStar(){ gsap.killTweensOf([celebStar.scale, celebStar.rotation, celebStar.position]); celebStar.visible = false; celebStar.scale.setScalar(0.0001); }
+
+  /* Movimiento suave mientras el niño decide */
+  function idle(list){
+    stopIdle();
+    loopTl = gsap.timeline({ repeat: -1, repeatDelay: 1.6, delay: 1.2 });
+    list.forEach((ch, i) => loopTl.add(hop(ch, { h: 0.28, d: 0.5 }), i * 0.35));
+    loopTl.idleList = list;
+  }
+  function stopIdle(){
+    if (!loopTl) return;
+    const l = loopTl.idleList; loopTl.kill(); loopTl = null;
+    if (l) l.forEach(ch => { ch.jump.position.set(0, 0, 0); ch.jump.scale.set(1, 1, 1); });
+  }
+
+  /* ---------- Celebración al ganar cada estrella ---------- */
+  const TAU = Math.PI * 2;
+  function ronda(tl, t, list, cx, cz, rad, turns, dur){
+    const o = { a: 0 }, from = [];
+    tl.to(o, { a: turns * TAU, duration: dur, ease: 'sine.inOut',
+      onStart(){ list.forEach((ch, i) => from[i] = { x: ch.root.position.x, y: ch.root.position.y, z: ch.root.position.z }); },
+      onUpdate(){
+        const k = Math.min(1, o.a / (TAU * 0.25));                         // primer cuarto de vuelta: se colocan en el círculo
+        list.forEach((ch, i) => {
+          const ang = o.a + i * TAU / list.length, tx = cx + Math.cos(ang) * rad, tz = cz + Math.sin(ang) * rad, f = from[i] || { x: tx, y: 0, z: tz };
+          ch.root.position.set(f.x + (tx - f.x) * k, f.y * (1 - k), f.z + (tz - f.z) * k);
+          ch.root.rotation.y = Math.atan2(cx - ch.root.position.x, cz - ch.root.position.z + 1.6);   // miran al centro y un poco al niño
+          ch.plan = { x: ch.root.position.x, y: 0, z: ch.root.position.z };
+        });
+      } }, t);
+    list.forEach((ch, i) => tl.add(hop(ch, { n: 4, h: 0.32, d: dur / 4 }), t + 0.15 * i));
+  }
+  function hearts(ch, n = 12){ burst(headWorld(ch).add(new V3(0, 0.3, 0)), { count: n, colors: ['#FF8A7A', '#F6A7A0', '#FFD3CC'], speed: 1.5, size: 0.075, g: -0.5, life: 1.3 }); }
+  function celebrate(idx, title, nextAct){
+    stopIdle(); hideCelebStar();
+    run(tl => {
+      let vis;
+      const star = (x, y, z) => {
+        celebStar.position.set(x, y, z); celebStar.rotation.set(0, 0, 0); celebStar.visible = true;
+        tl.to(celebStar.scale, { x: 0.85, y: 0.85, z: 0.85, duration: 0.7, ease: 'back.out(2.4)' }, 0.1)
+          .to(celebStar.rotation, { y: TAU * 2, duration: 3.4, ease: 'sine.inOut' }, 0.1)
+          .to(celebStar.position, { y: y + 0.22, duration: 0.9, yoyo: true, repeat: 3, ease: 'sine.inOut' }, 0.6);
+      };
+      if (idx === 0){                                                      // ronda de los tres alrededor de la estrella
+        vis = [coco, pio, eri];
+        tl.call(() => { SND.tada(); setExpr(coco, 'happy'); setExpr(pio, 'happy'); setExpr(eri, 'happy'); }, null, 0.1)
+          .call(() => SND.sparkle(true), null, 0.7);
+        star(0.1, 2.2, 1.75);
+        ronda(tl, 0.3, vis, 0.1, 1.75, 1.0, 1.5, 3.0);
+        tl.call(() => confetti(new V3(0.1, 2.4, 1.75), 90, 2.4), null, 0.9);
+      } else if (idx === 1){                                               // Pío campeón en el tejado, Coco aplaude
+        vis = [coco, pio];
+        const top = roofTop();
+        tl.call(() => { SND.boing('pio'); SND.tada(); setExpr(pio, 'happy'); setExpr(coco, 'happy'); face(coco, 0.4); }, null, 0.1);
+        star(top.x, top.y + 1.25, top.z + 0.3);
+        tl.add(hop(pio, { n: 3, h: 0.5, d: 0.6 }), 0.4).add(punch(pio.jump, 0.3, 0.5), 0.5)
+          .add(hop(coco, { n: 4, h: 0.4, d: 0.55 }), 0.5)
+          .call(() => SND.pop(1.6), null, 1.0).call(() => SND.pop(1.9), null, 1.6).call(() => SND.pop(2.2), null, 2.2)
+          .call(() => confetti(new V3(top.x, top.y + 0.8, top.z + 0.4), 90, 2.2), null, 0.9)
+          .call(() => burst(headWorld(coco), { count: 14, speed: 2.4, size: 0.05 }), null, 1.2);
+      } else {                                                             // Eri con su idea, corazones de los amigos
+        vis = [coco, pio, eri];
+        tl.call(() => { SND.ding(); setExpr(eri, 'happy'); setExpr(coco, 'happy'); setExpr(pio, 'happy'); bulb(true); face(coco, 0.7); face(pio, 0.55); }, null, 0.1)
+          .call(() => SND.sparkle(true), null, 0.9);
+        star(eri.root.position.x, eri.root.position.y + 2.05, eri.root.position.z);
+        tl.add(hop(eri, { n: 3, h: 0.45, d: 0.55 }), 0.4)
+          .add(hop(coco, { n: 3, h: 0.4, d: 0.55 }), 0.5).add(hop(pio, { n: 3, h: 0.45, d: 0.55 }), 0.65)
+          .call(() => { hearts(coco); hearts(pio); }, null, 0.9)
+          .call(() => { hearts(eri, 16); SND.tada(); }, null, 1.8)
+          .call(() => confetti(new V3(1.65, 2.4, 1.5), 90, 2.2), null, 1.1);
+      }
+      tl.call(() => {
+        if (idx === 2) bulb(false);
+        ask({ title, badge: idx, options: [{ icon: 'go', label: '¡Seguimos!', tone: 'go', pick: () => flyBadge(idx, nextAct) }] });
+        idle(vis.filter(ch => ch.root.position.y > -0.2));
+      }, null, 3.5);
+    });
+  }
+  const cont = celebrate;
+  /* la pegatina vuela hasta la estrella de la barra y se queda pegada */
+  function flyBadge(idx, nextAct){
+    const src = playCard.querySelector('.badge'), dst = starEls[idx] && starEls[idx].querySelector('.st');
+    if (RM || !src || !dst){ award(idx); enterAct(nextAct); return; }
+    const a = src.getBoundingClientRect(), d = dst.getBoundingClientRect();
+    const fly = document.createElement('div'); fly.className = 'badge-fly'; fly.innerHTML = badgeSVG(idx);
+    fly.style.cssText = `left:${a.left}px;top:${a.top}px;width:${a.width}px;height:${a.height}px`;
+    document.body.appendChild(fly);
+    const dx = d.left + d.width / 2 - (a.left + a.width / 2), dy = d.top + d.height / 2 - (a.top + a.height / 2), k = d.width / a.width;
+    gsap.timeline({ onComplete(){ fly.remove(); award(idx); } })
+      .to(fly, { y: -30, scale: 1.15, duration: 0.25, ease: 'power2.out' })
+      .to(fly, { x: dx, y: dy, scale: k, duration: 0.75, ease: 'power2.inOut' });
+    SND.whoosh();
+    setTimeout(() => enterAct(nextAct), 1250);
+  }
+  function award(i){
+    const s = starEls[i]; if (!s || s.classList.contains('got')) return;
+    s.classList.add('got');
+    s.setAttribute('aria-label', s.dataset.name + ': conseguida');
+    gsap.fromTo(s.querySelector('.st'), { scale: 0.3, rotate: -40 }, { scale: 1, rotate: 0, duration: RM ? 0.1 : 0.8, ease: 'elastic.out(1, 0.45)' });
+    SND.sparkle(true); SND.pop(2);
+    live.textContent = `¡Has conseguido la estrella de ${s.dataset.name}!`;
+  }
+  function resetGame(){
+    game.a1 = null; game.a1Alone = 0; game.a2 = null; game.a3 = null;
+    starEls.forEach(s => { s.classList.remove('got'); s.setAttribute('aria-label', s.dataset.name + ': pendiente'); });
+  }
+  function run(build){
+    if (actTl) actTl.kill();
+    actTl = gsap.timeline();
+    build(actTl);
+  }
+
   function enterAct(act){
     if (act === currentAct) return;
-    const prev = currentAct; currentAct = act;
-    if (actTl) actTl.kill(); if (loopTl) loopTl.kill();
-    gsap.killTweensOf([twigMat.position, twigMat.rotation, twigMat.scale, coco.holdLog.position, coco.holdLog.rotation, coco.hold.rotation, eri.bulb.scale]);
+    const prev = currentAct; currentAct = act; sceneToken++; panelToken++;
+    if (actTl) actTl.kill(); stopIdle(); if (loopTl) loopTl.kill();
+    hideCelebStar();
+    if (cards[4]) cards[4].classList.remove('away');
+    gsap.killTweensOf([twigMat.position, twigMat.rotation, twigMat.scale, coco.holdLog.position, coco.holdLog.rotation, coco.holdLog.scale, coco.hold.rotation, pio.bundle.scale, eri.bulb.scale]);
     hideBubbles();
     SND.hush();
+    hidePanel(true);
     SND.setTheme(['manana', 'compartir', 'lluvia', 'idea', 'fiesta'][act]);
     chars.forEach(ch => setExpr(ch, 'happy'));
     framing(act, prev === -1 ? 0.01 : 2.2);
     setSky(act, prev === -1 ? 0.01 : 2.2);
     driftTarget.set(0, 0, 0);
-    hideNext();
-    { const t = document.getElementById('tip-saludo'); if (t && act === 0 && !tipDone) t.hidden = false; else if (t) t.hidden = true; }
+    greeting = false;
+    sectionsEl.forEach((s, i) => s.classList.toggle('on', i === act));
+    starsHud.hidden = act === 0 || act === 4;
     revealCard(act);
     const builders = [actHero, act1, act2, act3, actFinal];
     actTl = gsap.timeline();
     builders[act](actTl);
   }
 
-  /* HERO: los tres amigos saltan de alegría */
+  /* PORTADA: los tres amigos saltan de alegría y esperan al botón */
   function actHero(tl){
     setHouseStage(0); setRain(0, 0.8); showRainCloud(false); showRainbow(false, 0.8); setSun(0); leaves(0);
     twigMat.visible = false; coco.hold.visible = false; pio.bundle.visible = false; bulb(false);
     place(coco, -1.15, 0.75, 0.25); place(pio, 0, 1.25, 0); place(eri, 1.15, 0.75, -0.25);
     loopTl = gsap.timeline({ repeat: RM ? 0 : -1, repeatDelay: 0.6, delay: 0.4 });
     loopTl.add(hop(coco, { h: 0.6, d: 0.6 }), 0).add(hop(pio, { h: 0.7, d: 0.55 }), 0.25).add(hop(eri, { h: 0.45, d: 0.6 }), 0.5);
-    tl.call(say, [coco, '¡Hola! Soy Coco.', 2.2], 0.8)
-      .call(say, [pio, '¡Y yo soy Pío!', 2.2], 2.4)
-      .call(say, [eri, 'Yo… soy Eri.', 2.4], 3.9)
-      .call(() => setExpr(eri, 'shy'), null, 3.9)
-      .call(() => setExpr(eri, 'happy'), null, 6.4)
-      .call(say, [coco, '¡Sigue bajando, que empieza el cuento!', 2.6], 6.0)
-      .call(showNext, [0], 6.3);
+    heroCard.classList.remove('away'); startBtn.disabled = false;
   }
+  /* "Empezar a jugar": saludan los tres y empieza la primera escena */
+  function startStory(){
+    if (greeting || currentAct !== 0) return;
+    greeting = true;
+    startBtn.disabled = true; heroCard.classList.add('away');
+    if (loopTl) loopTl.kill();
+    run(g => {
+      g.call(say, [coco, '¡Hola! Soy Coco.', 2.2], 0.4)
+        .add(hop(coco, { h: 0.6, d: 0.6 }), 0.4)
+        .call(say, [pio, '¡Y yo soy Pío!', 2.2], 2.1)
+        .add(hop(pio, { h: 0.7, d: 0.55 }), 2.1)
+        .call(say, [eri, 'Yo… soy Eri.', 2.4], 3.8)
+        .call(() => setExpr(eri, 'shy'), null, 3.8)
+        .add(hop(eri, { h: 0.45, d: 0.6 }), 3.8)
+        .call(() => setExpr(eri, 'happy'), null, 6.2)
+        .call(() => { greeting = false; enterAct(1); }, null, 6.8);
+    });
+  }
+  window.__tigalmaStart = startStory;
+  document.getElementById('restart').addEventListener('click', () => { resetGame(); enterAct(0); });
 
-  /* ACTO 1: Compartir */
+  /* ---------------------------------------------------------
+     ESCENA 1 · Compartir: Coco no puede con el tronco
+     --------------------------------------------------------- */
   function act1(tl){
     setHouseStage(0); setRain(0); showRainCloud(false); showRainbow(false, 0.8); setSun(1); leaves(0);
     twigMat.visible = false; bulb(false);
     place(coco, -1.1, 1.05, 0.15); place(pio, 4.6, 1.5, -Math.PI / 2); place(eri, ERI_HIDE.x, ERI_HIDE.z, -0.6, -0.6);
-    coco.hold.visible = true; coco.holdLog.position.set(0, 0, 0); coco.holdLog.rotation.set(0, 0, Math.PI / 2); coco.hold.rotation.set(0, 0, 0);
+    coco.hold.visible = true; coco.holdLog.position.set(0, 0, 0); coco.holdLog.rotation.set(0, 0, Math.PI / 2); coco.holdLog.scale.setScalar(1); coco.hold.rotation.set(0, 0, 0);
     pio.bundle.visible = true; pio.bundle.scale.setScalar(1);
     tl.to(coco.hold.rotation, { z: 0.18, duration: 0.18, yoyo: true, repeat: 7, ease: 'sine.inOut' }, 0.2)
       .to(coco.jump.scale, { x: 1.08, y: 0.9, z: 1.08, duration: 0.3, yoyo: true, repeat: 3, ease: 'sine.inOut' }, 0.2)
@@ -1937,44 +2424,111 @@ function init(){
       .call(say, [coco, 'Solo no puedo…', 2.0], 3.0);
     peek(tl, 1.0);
     tl.add(hopTo(pio, 1.25, 1.35, { dur: 1.5, h: 0.45 }), 3.0)
-      .add(() => { face(pio, -0.5); faceTo(coco, pio); }, 4.6)
-      .call(() => setExpr(pio, 'happy'), null, 4.6)
-      .call(say, [pio, '¡Coco! ¡Te presto mis ramitas!', 2.6], 4.7)
-      .add(punch(pio.bundle, 0.3, 0.6), 4.8)
-      .call(() => setExpr(coco, 'happy'), null, 6.0)
-      .call(say, [coco, '¡Gracias, Pío! ¡Juntos sí podemos!', 2.6], 6.9)
-      .to(coco.holdLog.scale, { x: 0.0001, y: 0.0001, z: 0.0001, duration: 0.3, onComplete(){ coco.hold.visible = false; coco.holdLog.scale.setScalar(1); } }, 7.0)
-      .to(pio.bundle.scale, { x: 0.0001, y: 0.0001, z: 0.0001, duration: 0.3, onComplete(){ pio.bundle.visible = false; } }, 7.0)
-      .add(() => { face(coco, 0.35); face(pio, -0.35); }, 7.1);
-    // las paredes suben, tronco a tronco
-    const t0 = 7.2, step = RM ? 0.04 : 0.17;
-    logs.forEach((l, i) => {
-      tl.call(() => { l.visible = true; }, null, t0 + i * step)
-        .fromTo(l.position, { y: l.userData.home.y + 2.4 }, { y: l.userData.home.y, duration: 0.55, ease: 'bounce.out', immediateRender: false }, t0 + i * step)
-        .fromTo(l.scale, { x: 0.3, y: 0.3, z: 0.3 }, { x: 1, y: 1, z: 1, duration: 0.3, ease: 'back.out(2)', immediateRender: false }, t0 + i * step)
-        .call(SND.knock, [i], t0 + i * step + 0.2);
-      if (i % 4 === 3) tl.call(() => burst(HOUSE.localToWorld(l.userData.home.clone()), { count: 6, colors: ['#E8C08F', '#FFFFFF', '#FFE08A'], speed: 1.8, size: 0.04 }), null, t0 + i * step + 0.45);
+      .add(() => { face(pio, -0.15); face(coco, 0.55); }, 4.8)
+      .call(ask1, null, 5.1);
+  }
+  function ask1(){
+    const onlyTogether = game.a1Alone >= 1;                              // tras el intento en solitario, solo queda una opción clara
+    const together = { icon: 'together', label: onlyTogether ? '¡Sí, le ayudamos entre todos!' : '¡Ayudarle entre todos!', pick: a1Together };
+    ask({
+      who: pio,
+      text: onlyTogether ? '¿Le ayudamos entre todos?' : '¿Le ayudamos entre todos, o dejamos que lo intente él solo?',
+      title: onlyTogether ? 'Coco no puede solo… ¿Le ayudamos entre todos?' : '¿Qué hacemos con el tronco de Coco?',
+      options: onlyTogether ? [together] : [together, { icon: 'alone', label: 'Que lo intente él solo', pick: a1Alone }]
     });
-    const tEnd = t0 + logs.length * step + 0.3;
-    tl.add(hop(coco, { n: 3, h: 0.35, d: 0.5 }), t0 + 0.2).add(hop(pio, { n: 3, h: 0.4, d: 0.5 }), t0 + 0.45)
-      .call(() => { door.visible = true; SND.pop(1); }, null, tEnd)
-      .fromTo(door.scale, { x: 0.0001, y: 0.0001, z: 0.0001 }, { x: 1, y: 1, z: 1, duration: 0.6, ease: 'back.out(2.2)', immediateRender: false }, tEnd)
-      .call(() => { burst(HOUSE.localToWorld(new V3(0, 0.8, HD / 2 + 0.3)), { count: 22 }); }, null, tEnd + 0.3)
-      .call(say, [pio, '¡Mira, Coco! ¡Ya tenemos paredes!', 2.6], tEnd + 0.4)
-      .add(hop(coco, { h: 0.6 }), tEnd + 0.5).add(hop(pio, { h: 0.7 }), tEnd + 0.65);
-    peek(tl, tEnd + 1.2);
-    tl.call(say, [pio, '¡Sigue bajando! ¿Qué pasará con el tejado?', 2.8], tEnd + 3.0)
-      .call(showNext, [1], tEnd + 3.3);
+  }
+  function a1Alone(){
+    game.a1Alone++;
+    run(tl => {
+      tl.add(() => { faceTo(pio, coco); setExpr(coco, 'happy'); }, 0)
+        .to(coco.holdLog.position, { y: 0, duration: 0.5, ease: 'power2.out' }, 0.2)
+        .to(coco.hold.rotation, { z: 0.18, duration: 0.18, yoyo: true, repeat: 7, ease: 'sine.inOut' }, 0.7)
+        .to(coco.jump.scale, { x: 1.08, y: 0.9, z: 1.08, duration: 0.3, yoyo: true, repeat: 3, ease: 'sine.inOut' }, 0.7)
+        .to(coco.holdLog.position, { y: -0.78, duration: 0.45, ease: 'bounce.out' }, 2.2)
+        .call(() => { setExpr(coco, 'sad'); SND.thud(0.7); burst(coco.root.position.clone().add(new V3(0, 0.2, 0.7)), { count: 10, colors: ['#D9B48A', '#C9A27A', '#EBD3B0'], speed: 1.6, size: 0.05 }); }, null, 2.4)
+        .call(say, [coco, 'Uf… solo es muy difícil.', 2.2], 2.6)
+        .add(hop(pio, { h: 0.4 }), 4.6)
+        .call(say, [pio, '¡Uy, pesa mucho! ¿Y si le echamos una mano?', 2.6], 4.7)
+        .add(() => face(pio, -0.15), 6.6)
+        .call(ask1, null, 7.2);
+    });
+  }
+  function a1Together(){
+    game.a1 = game.a1Alone ? 'despues' : 'juntos';
+    run(tl => {
+      tl.add(() => { face(pio, -0.5); face(coco, 0.55); setExpr(pio, 'happy'); }, 0)
+        .call(say, [pio, '¡Coco! ¡Te presto mis ramitas!', 2.6], 0.1)
+        .add(punch(pio.bundle, 0.3, 0.6), 0.2)
+        .call(() => setExpr(coco, 'happy'), null, 1.4)
+        .call(say, [coco, '¡Gracias, Pío! ¡Juntos sí podemos!', 2.6], 2.3)
+        .to(coco.holdLog.scale, { x: 0.0001, y: 0.0001, z: 0.0001, duration: 0.3, onComplete(){ coco.hold.visible = false; coco.holdLog.scale.setScalar(1); } }, 2.4)
+        .to(pio.bundle.scale, { x: 0.0001, y: 0.0001, z: 0.0001, duration: 0.3, onComplete(){ pio.bundle.visible = false; } }, 2.4)
+        .add(() => { face(coco, 0.35); face(pio, -0.35); }, 2.5);
+      // las paredes suben, tronco a tronco
+      const t0 = 2.6, step = RM ? 0.04 : 0.17;
+      logs.forEach((l, i) => {
+        tl.call(() => { l.visible = true; }, null, t0 + i * step)
+          .fromTo(l.position, { y: l.userData.home.y + 2.4 }, { y: l.userData.home.y, duration: 0.55, ease: 'bounce.out', immediateRender: false }, t0 + i * step)
+          .fromTo(l.scale, { x: 0.3, y: 0.3, z: 0.3 }, { x: 1, y: 1, z: 1, duration: 0.3, ease: 'back.out(2)', immediateRender: false }, t0 + i * step)
+          .call(SND.knock, [i], t0 + i * step + 0.2);
+        if (i % 4 === 3) tl.call(() => burst(HOUSE.localToWorld(l.userData.home.clone()), { count: 6, colors: ['#E8C08F', '#FFFFFF', '#FFE08A'], speed: 1.8, size: 0.04 }), null, t0 + i * step + 0.45);
+      });
+      const tEnd = t0 + logs.length * step + 0.3;
+      tl.add(hop(coco, { n: 3, h: 0.35, d: 0.5 }), t0 + 0.2).add(hop(pio, { n: 3, h: 0.4, d: 0.5 }), t0 + 0.45)
+        .call(() => { door.visible = true; SND.pop(1); }, null, tEnd)
+        .fromTo(door.scale, { x: 0.0001, y: 0.0001, z: 0.0001 }, { x: 1, y: 1, z: 1, duration: 0.6, ease: 'back.out(2.2)', immediateRender: false }, tEnd)
+        .call(() => { burst(HOUSE.localToWorld(new V3(0, 0.8, HD / 2 + 0.3)), { count: 22 }); }, null, tEnd + 0.3)
+        .call(say, [pio, '¡Mira, Coco! ¡Ya tenemos paredes!', 2.6], tEnd + 0.4)
+        .add(hop(coco, { h: 0.6 }), tEnd + 0.5).add(hop(pio, { h: 0.7 }), tEnd + 0.65)
+        .call(cont, [0, '¡Estrella de compartir! Compartiendo, todo es más fácil.', 2], tEnd + 2.9);
+    });
   }
 
-  /* ACTO 2: Perseverar */
+  /* ---------------------------------------------------------
+     ESCENA 2 · Intentarlo otra vez: llueve y el tejado se cae
+     --------------------------------------------------------- */
+  const roofTop = () => ({ x: -0.45, y: wallTop, z: HOUSE.position.z + HD / 2 - 0.02 });
+  const PIO_FALLEN = { x: -0.65, y: 0, z: 1.5 };
+  // Pío pone las ramitas, resbalan y se cae al suelo (Pío empieza en el tejado)
+  function roofTry(tl, t, line){
+    tl.call(() => { twigMat.visible = true; twigMat.position.set(twigRoofPos.x, twigRoofPos.y + 2.2, twigRoofPos.z); twigMat.rotation.set(ang, 0, 0); twigMat.scale.setScalar(1); }, null, t)
+      .fromTo(twigMat.position, { y: twigRoofPos.y + 2.2 }, { y: twigRoofPos.y, duration: 0.6, ease: 'bounce.out', immediateRender: false }, t + 0.05)
+      .call(SND.knock, [1], t + 0.3)
+      .add(hop(pio, { h: 0.25, d: 0.4 }), t + 0.7)
+      .to(twigMat.rotation, { z: 0.09, duration: 0.14, yoyo: true, repeat: 3, ease: 'sine.inOut' }, t + 0.9)
+      .call(() => setExpr(pio, 'surprised'), null, t + 1.5)
+      .to(twigMat.position, { z: twigRoofPos.z + 1.0, y: twigRoofPos.y - 0.55, duration: 0.45, ease: 'power2.in' }, t + 1.5)
+      .to(twigMat.rotation, { x: ang + 0.5, duration: 0.45, ease: 'power2.in' }, t + 1.5)
+      .to(twigMat.position, { x: 2.35, y: 0.08, z: 1.0, duration: 0.55, ease: 'bounce.out' }, t + 1.95)
+      .to(twigMat.rotation, { x: 0, y: 1.25, duration: 0.55, ease: 'power2.out' }, t + 1.95)
+      .add(flyTo(pio.root, PIO_FALLEN, { h: 0.35, dur: 0.6, ease: 'power2.in' }), t + 1.7)
+      .add(() => { pio.plan = { ...PIO_FALLEN }; }, t + 1.7)
+      .call(SND.knock, [3], t + 2.2)
+      .add(punch(pio.jump, 0.38, 0.7), t + 2.3)
+      .call(() => { setExpr(pio, 'sad'); SND.thud(1); burst(pio.root.position.clone().add(new V3(0, 0.5, 0)), { count: 14, colors: ['#FFE08A', '#FFFFFF', '#FFD84D'], speed: 2.6, size: 0.055 }); }, null, t + 2.3)
+      .call(say, [pio, line, 1.8], t + 2.45);
+    return t + 2.6;
+  }
+  // Pío se sacude las plumas y vuelve a subir al tejado
+  function getUp(tl, t, line){
+    const top = roofTop();
+    tl.to(pio.jump.rotation, { z: 0.22, duration: 0.09, yoyo: true, repeat: 5, ease: 'sine.inOut' }, t)
+      .call(() => setExpr(pio, 'happy'), null, t + 0.1);
+    if (line) tl.call(say, [pio, line, 1.8], t + 0.15);
+    tl.to(twigMat.scale, { x: 0.0001, y: 0.0001, z: 0.0001, duration: 0.3 }, t + 0.6)
+      .add(() => { pio.plan = { ...top }; }, t + 1.0)
+      .to(pio.root.rotation, { y: 0, duration: 0.3 }, t + 1.0)
+      .add(flyTo(pio.root, top, { h: 0.9, dur: 0.75 }), t + 1.0)
+      .call(SND.boing, ['pio'], t + 1.0)
+      .add(punch(pio.jump, 0.2, 0.45), t + 1.75);
+    return t + 2.1;
+  }
   function act2(tl){
     setHouseStage(1); setRain(1, 2); showRainCloud(true); showRainbow(false, 0.6); setSun(2, 1.5); leaves(0);
     coco.hold.visible = false; pio.bundle.visible = false; bulb(false);
     place(coco, -1.95, 1.35, 0.4); place(pio, 0.8, 1.45, -0.2); place(eri, ERI_HIDE.x, ERI_HIDE.z, -0.6, -0.6);
     twigMat.visible = false; twigMat.scale.setScalar(0.0001);
-    const top = { x: -0.45, y: wallTop, z: HOUSE.position.z + HD / 2 - 0.02 };
-    const fallen = { x: -0.65, y: 0, z: 1.5 };
+    const top = roofTop();
     tl.call(() => setExpr(coco, 'surprised'), null, 0.3)
       .call(say, [coco, '¡Oh, no! ¡Está lloviendo!', 2.2], 0.4)
       .call(() => setExpr(pio, 'happy'), null, 1.6)
@@ -1985,50 +2539,65 @@ function init(){
       .add(punch(pio.jump, 0.22, 0.5), 3.5)
       .call(() => setExpr(coco, 'happy'), null, 3.5);
     peek(tl, 2.0);
-    // el intento que se repite: Pío se cae, se levanta y lo vuelve a intentar
-    const fails = ['¡Ay! ¡Me he caído!', '¡Pum! ¡Otra vez al suelo!', '¡Uy! Resbala mucho…'];
-    const retry = ['¡No pasa nada! ¡Otra vez!', '¡Me levanto y lo intento!', '¡Esta vez sí!'];
-    const cheer = ['¡Tú puedes, Pío!', '¡Ánimo, amigo!', '¡Venga, que casi está!'];
-    // Pío lo intenta dos veces con voces; luego Coco invita a bajar y Pío sigue intentándolo en silencio
-    const gap = RM ? 1.5 : 0.5, cycleLen = 6.0 + gap;
-    let cycle = 0;
-    const talk = () => cycle <= 2;
-    const mk = () => {
-      const L = gsap.timeline({ repeat: -1, repeatDelay: gap });
-      L.call(() => { cycle++; twigMat.visible = true; twigMat.position.set(twigRoofPos.x, twigRoofPos.y + 2.2, twigRoofPos.z); twigMat.rotation.set(ang, 0, 0); twigMat.scale.setScalar(1); }, null, 0)
-        .fromTo(twigMat.position, { y: twigRoofPos.y + 2.2 }, { y: twigRoofPos.y, duration: 0.6, ease: 'bounce.out', immediateRender: false }, 0.05)
-        .call(SND.knock, [1], 0.3)
-        .call(SND.knock, [3], 2.2)
-        .add(hop(pio, { h: 0.25, d: 0.4 }), 0.7)
-        .to(twigMat.rotation, { z: 0.09, duration: 0.14, yoyo: true, repeat: 3, ease: 'sine.inOut' }, 0.9)
-        .call(() => setExpr(pio, 'surprised'), null, 1.5)
-        .to(twigMat.position, { z: twigRoofPos.z + 1.0, y: twigRoofPos.y - 0.55, duration: 0.45, ease: 'power2.in' }, 1.5)
-        .to(twigMat.rotation, { x: ang + 0.5, duration: 0.45, ease: 'power2.in' }, 1.5)
-        .to(twigMat.position, { x: 2.35, y: 0.08, z: 1.0, duration: 0.55, ease: 'bounce.out' }, 1.95)
-        .to(twigMat.rotation, { x: 0, y: 1.25, duration: 0.55, ease: 'power2.out' }, 1.95)
-        .add(flyTo(pio.root, fallen, { h: 0.35, dur: 0.6, ease: 'power2.in' }), 1.7)
-        .add(punch(pio.jump, 0.38, 0.7), 2.3)
-        .call(() => { setExpr(pio, 'sad'); SND.thud(1); burst(pio.root.position.clone().add(new V3(0, 0.5, 0)), { count: 14, colors: ['#FFE08A', '#FFFFFF', '#FFD84D'], speed: 2.6, size: 0.055 }); }, null, 2.3)
-        .call(() => { if (talk()) say(pio, pick(fails), 1.8); }, null, 2.45)
-        .to(pio.jump.rotation, { z: 0.22, duration: 0.09, yoyo: true, repeat: 5, ease: 'sine.inOut' }, 3.4)
-        .call(() => { setExpr(pio, 'happy'); if (talk()) say(pio, pick(retry), 1.8); }, null, 3.5)
-        .call(() => { setExpr(coco, 'happy'); if (talk()) say(coco, pick(cheer), 1.8); }, null, 3.9)
-        .add(hop(coco, { h: 0.45 }), 4.0)
-        .to(twigMat.scale, { x: 0.0001, y: 0.0001, z: 0.0001, duration: 0.3 }, 4.3)
-        .add(flyTo(pio.root, top, { h: 0.9, dur: 0.75 }), 4.7)
-        .call(SND.boing, ['pio'], 4.7)
-        .add(punch(pio.jump, 0.2, 0.45), 5.45)
-        .call(() => {}, null, 6.0);
-      return L;
-    };
-    const tInvite = 3.9 + cycleLen + 6.0 + 0.3;                         // cuando Pío vuelve al tejado tras el 2.º intento
-    tl.call(() => { loopTl = mk(); }, null, 3.9)
-      .call(() => { setExpr(coco, 'happy'); faceTo(coco, pio); }, null, tInvite - 0.2)
-      .call(say, [coco, '¡Sigue bajando, que Eri tiene una idea!', 2.8], tInvite)
-      .call(showNext, [2], tInvite + 0.3);
+    const te = roofTry(tl, 3.9, '¡Ay! ¡Me he caído!');
+    tl.add(() => { faceTo(coco, pio); setExpr(coco, 'surprised'); }, te + 0.4)
+      .add(() => face(coco, 0.2), te + 1.4)
+      .call(ask2, null, te + 1.6);
+  }
+  function ask2(){
+    ask({
+      who: coco,
+      text: 'Pío se ha caído. ¿Qué hacemos por él?',
+      title: 'Pío se ha caído. ¿Qué hacemos por él?',
+      options: [
+        { icon: 'again', label: 'Darle ánimo', pick: a2Again },
+        { icon: 'hug', label: 'Darle un abrazo', pick: a2Hug }
+      ]
+    });
+  }
+  function a2Finish(tl, t){
+    tl.add(() => { faceTo(coco, pio); setExpr(coco, 'happy'); setExpr(pio, 'happy'); }, t)
+      .add(hop(coco, { h: 0.5 }), t + 0.1)
+      .call(say, [coco, '¡Bravo, Pío! ¡Nunca te rindes!', 2.4], t + 0.2)
+      .call(cont, [1, '¡Estrella de intentarlo otra vez! Si te caes, te levantas y lo vuelves a intentar.', 3], t + 2.8);
+  }
+  function a2Again(){
+    game.a2 = 'animo';
+    run(tl => {
+      tl.add(() => { faceTo(coco, pio); setExpr(coco, 'happy'); }, 0)
+        .add(hop(coco, { h: 0.5 }), 0.1)
+        .call(say, [coco, '¡Tú puedes, Pío!', 1.8], 0.15);
+      let t = getUp(tl, 1.6, '¡Me levanto y lo intento!');
+      t = roofTry(tl, t + 0.4, '¡Pum! ¡Otra vez al suelo!');
+      tl.call(say, [coco, '¡Ánimo, amigo!', 1.8], t + 0.6).add(hop(coco, { h: 0.45 }), t + 0.6);
+      t = getUp(tl, t + 1.9, '¡No pasa nada! ¡Otra vez!');
+      tl.call(say, [pio, '¡Esta vez sí!', 1.6], t + 0.3);
+      t = roofTry(tl, t + 1.6, '¡Uy! Resbala mucho…');
+      a2Finish(tl, t + 1.6);
+    });
+  }
+  function a2Hug(){
+    game.a2 = 'abrazo';
+    run(tl => {
+      tl.add(hopTo(coco, -1.15, 1.6, { dur: 1.0, h: 0.3 }), 0)
+        .add(() => { faceTo(coco, pio); face(pio, -1.2); setExpr(coco, 'happy'); }, 1.1)
+        .call(say, [coco, '¡Un abrazo, amigo!', 2.0], 1.2)
+        .to(coco.jump.scale, { x: 1.12, y: 0.92, z: 1.12, duration: 0.5, yoyo: true, repeat: 3, ease: 'sine.inOut' }, 1.5)
+        .to(pio.jump.scale, { x: 1.1, y: 0.94, z: 1.1, duration: 0.5, yoyo: true, repeat: 3, ease: 'sine.inOut' }, 1.5)
+        .call(() => { SND.sparkle(true); burst(pio.root.position.clone().add(new V3(0, 0.9, 0)), { count: 18, colors: ['#FF8A7A', '#F6A7A0', '#FFD3CC'], speed: 1.6, size: 0.07, g: -0.6 }); }, null, 1.7)
+        .call(() => setExpr(pio, 'happy'), null, 3.4)
+        .call(say, [pio, '¡Gracias, Coco! ¡Ahora sí puedo!', 2.4], 3.5)
+        .add(hopTo(coco, -1.95, 1.35, { dur: 0.9, h: 0.3 }), 5.2)
+        .add(() => face(coco, 0.4), 6.2);
+      let t = getUp(tl, 6.0, null);
+      t = roofTry(tl, t + 0.4, '¡Uy! Resbala mucho…');
+      a2Finish(tl, t + 1.6);
+    });
   }
 
-  /* ACTO 3: Pedir ayuda */
+  /* ---------------------------------------------------------
+     ESCENA 3 · Pedir ayuda: Eri tiene una idea pero le da vergüenza
+     --------------------------------------------------------- */
   function act3(tl){
     setHouseStage(1); setRain(0.55, 1); showRainCloud(true); showRainbow(false, 0.6); setSun(3, 1); leaves(0);
     coco.hold.visible = false; pio.bundle.visible = false; twigMat.visible = false;
@@ -2043,98 +2612,133 @@ function init(){
       .to(eri.root.position, { y: -0.08, duration: 0.5, ease: 'back.out(2)' }, 4.6)
       .call(() => setExpr(eri, 'shy'), null, 4.8)
       .call(say, [eri, 'Tengo una idea… pero me da vergüenza.', 2.8], 4.9)
-      .add(() => { faceTo(coco, eri); faceTo(pio, eri); setExpr(coco, 'happy'); setExpr(pio, 'happy'); }, 8.0)
-      .call(say, [coco, '¡Eri! Cuéntanos, te escuchamos.', 2.4], 8.6)
-      .add(hop(pio, { h: 0.45 }), 10.9)
-      .call(say, [pio, '¡Seguro que tu idea es genial!', 2.2], 11.2)
-      .add(() => { eri.plan = { x: ERI_HIDE.x, y: -0.08, z: ERI_HIDE.z }; }, 12.4)
-      .add(hopTo(eri, 1.65, 1.5, { dur: 1.4, h: 0.4 }), 12.5)
-      .add(() => face(eri, -0.35), 14.0)
-      .call(() => { setExpr(eri, 'happy'); bulb(true); }, null, 14.0)
-      .call(say, [eri, '¿Y si hacemos el tejado con hojas grandes?', 2.8], 14.1)
-      .call(() => { setExpr(coco, 'surprised'); setExpr(pio, 'surprised'); }, null, 15.6)
-      .call(() => { bulb(false); setExpr(coco, 'happy'); setExpr(pio, 'happy'); face(coco, 0.3); face(pio, 0); }, null, 17.6);
-    // las hojas vuelan desde el árbol grande hasta el tejado
-    const t0 = 17.8, step = RM ? 0.01 : 0.045;
-    tl.call(SND.whoosh, null, t0);
-    const src = bigTree.position.clone().add(new V3(0.2, 2.3 * bigTree.scale.y, 0.3));
-    roofLeaves.forEach((leaf, i) => {
-      const at = t0 + i * step;
-      tl.call(() => {
-        const slope = leaf.userData.slope;
-        const local = slope.worldToLocal(src.clone());
-        leaf.visible = true; leaf.position.copy(local); SND.leaf();
-        leaf.scale.copy(leaf.userData.homeScale).multiplyScalar(0.4);
-        const home = leaf.userData.home, ctrl = local.clone().lerp(home, 0.5).add(slope.worldToLocal(new V3(0, 1, 0)).sub(slope.worldToLocal(new V3())).multiplyScalar(1.6));
-        const o = { t: 0 };
-        gsap.to(o, { t: 1, duration: RM ? 0.2 : 0.9, ease: 'power1.inOut', onUpdate(){
-          const t = o.t, a = (1 - t) * (1 - t), b = 2 * (1 - t) * t, c = t * t;
-          leaf.position.set(local.x * a + ctrl.x * b + home.x * c, local.y * a + ctrl.y * b + home.y * c, local.z * a + ctrl.z * b + home.z * c);
-        } });
-        gsap.to(leaf.scale, { x: leaf.userData.homeScale.x, y: leaf.userData.homeScale.y, z: leaf.userData.homeScale.z, duration: 0.9, ease: 'back.out(1.6)' });
-      }, null, at);
+      .add(() => { face(coco, 0.75); setExpr(coco, 'happy'); setExpr(pio, 'happy'); face(pio, 0); }, 7.8)
+      .call(ask3, null, 8.1);
+  }
+  function ask3(){
+    ask({
+      who: pio,
+      text: 'Eri tiene vergüenza. ¿Cómo le animamos?',
+      title: 'Eri tiene vergüenza. ¿Cómo le animamos?',
+      options: [
+        { icon: 'listen', label: '«Cuéntanos, te escuchamos»', pick: () => a3('escuchar') },
+        { icon: 'smile', label: 'Esperarle con una sonrisa', pick: () => a3('sonrisa') },
+        { icon: 'clap', label: '¡Un aplauso para Eri!', pick: () => a3('aplauso') }
+      ]
     });
-    const tRoof = t0 + roofLeaves.length * step + 0.9;
-    tl.call(() => { ridge.visible = true; gables.forEach(g => g.visible = true); SND.pop(0.8); }, null, tRoof)
-      .fromTo(ridge.scale, { x: 0.0001, y: 0.0001, z: 0.0001 }, { x: 1, y: 1, z: 1, duration: 0.5, ease: 'back.out(2)', immediateRender: false }, tRoof)
-      .fromTo(gables.map(g => g.scale), { x: 0.0001, y: 0.0001, z: 0.0001 }, { x: 1, y: 1, z: 1, duration: 0.6, ease: 'back.out(2)', immediateRender: false }, tRoof + 0.1)
-      .call(() => { SND.setTheme('fiesta'); setRain(0, 1.2); showRainCloud(false); setSky('atardecer', 2.5); setSun(4, 2.5); gsap.to(sun.position, { x: 5.5, y: 6.4, duration: RM ? 0.3 : 2.4, ease: 'power2.out', overwrite: true }); }, null, tRoof + 0.3)
-      .call(() => { showRainbow(true, 2.4); SND.sparkle(true); }, null, tRoof + 1.2)
-      .to(windowMat, { emissiveIntensity: 1.1, duration: 1.2 }, tRoof + 0.6)
-      .call(() => { confetti(new V3(0, 2.2, 0.8), 150, 3); leaves(1.5); }, null, tRoof + 1.0)
-      .call(say, [pio, '¡Hurra! ¡La casita está terminada!', 2.6], tRoof + 1.1)
-      .add(hop(coco, { n: 2, h: 0.6 }), tRoof + 1.0).add(hop(pio, { n: 2, h: 0.7 }), tRoof + 1.15).add(hop(eri, { n: 2, h: 0.45 }), tRoof + 1.3)
-      .call(say, [coco, '¡Gracias por tu idea, Eri!', 2.4], tRoof + 3.6)
-      .call(say, [eri, '¡Gracias por escucharme!', 2.4], tRoof + 5.2)
-      .call(() => {
-        loopTl = gsap.timeline({ repeat: RM ? 0 : -1, repeatDelay: 2.2 });
-        loopTl.add(hop(eri, { h: 0.4 }), 0).add(hop(coco, { h: 0.5 }), 0.3).add(hop(pio, { h: 0.55 }), 0.6);
-      }, null, tRoof + 6.5)
-      .call(say, [eri, '¡Sigue bajando, que lo celebramos!', 2.6], tRoof + 6.8)
-      .call(showNext, [3], tRoof + 7.1);
+  }
+  function a3(kind){
+    game.a3 = kind;
+    run(tl => {
+      tl.add(() => { face(coco, 0.75); face(pio, 0.6); setExpr(coco, 'happy'); setExpr(pio, 'happy'); }, 0);
+      let t;
+      if (kind === 'escuchar'){
+        tl.call(say, [coco, '¡Eri! Cuéntanos, te escuchamos.', 2.4], 0.3)
+          .add(hop(pio, { h: 0.45 }), 2.6)
+          .call(say, [pio, '¡Seguro que tu idea es genial!', 2.2], 2.9);
+        t = 4.4;
+      } else if (kind === 'sonrisa'){
+        tl.add(hop(coco, { h: 0.2, d: 0.5 }), 0.3).add(hop(pio, { h: 0.2, d: 0.5 }), 0.5)
+          .call(say, [coco, 'Tranquilo, Eri. Te esperamos.', 2.4], 0.4)
+          .call(() => setExpr(eri, 'happy'), null, 2.8)
+          .call(say, [eri, 'Gracias… ya me atrevo.', 2.2], 3.0);
+        t = 4.8;
+      } else {
+        tl.call(() => { SND.sparkle(true); burst(headWorld(coco), { count: 14, speed: 2.4, size: 0.05 }); burst(headWorld(pio), { count: 14, speed: 2.4, size: 0.05 }); }, null, 0.2)
+          .add(hop(coco, { n: 3, h: 0.3, d: 0.4 }), 0.2).add(hop(pio, { n: 3, h: 0.35, d: 0.4 }), 0.3)
+          .call(() => SND.pop(1.5), null, 0.6).call(() => SND.pop(1.7), null, 1.0)
+          .call(say, [pio, '¡Bravo, Eri! ¡Tú puedes!', 2.0], 0.5)
+          .call(() => setExpr(eri, 'happy'), null, 2.6)
+          .call(say, [eri, 'Gracias… ya me atrevo.', 2.2], 2.8);
+        t = 4.6;
+      }
+      const o = t - 12.4;                                                // mismo final para las tres opciones
+      tl.add(() => { eri.plan = { x: ERI_HIDE.x, y: -0.08, z: ERI_HIDE.z }; }, o + 12.4)
+        .add(hopTo(eri, 1.65, 1.5, { dur: 1.4, h: 0.4 }), o + 12.5)
+        .add(() => face(eri, -0.35), o + 14.0)
+        .call(() => { setExpr(eri, 'happy'); bulb(true); }, null, o + 14.0)
+        .call(say, [eri, '¿Y si hacemos el tejado con hojas grandes?', 2.8], o + 14.1)
+        .call(() => { setExpr(coco, 'surprised'); setExpr(pio, 'surprised'); }, null, o + 15.6)
+        .call(() => { bulb(false); setExpr(coco, 'happy'); setExpr(pio, 'happy'); face(coco, 0.3); face(pio, 0); }, null, o + 17.6);
+      // las hojas vuelan desde el árbol grande hasta el tejado
+      const t0 = o + 17.8, step = RM ? 0.01 : 0.045;
+      tl.call(SND.whoosh, null, t0);
+      const src = bigTree.position.clone().add(new V3(0.2, 2.3 * bigTree.scale.y, 0.3));
+      roofLeaves.forEach((leaf, i) => {
+        tl.call(() => {
+          const slope = leaf.userData.slope;
+          const local = slope.worldToLocal(src.clone());
+          leaf.visible = true; leaf.position.copy(local); SND.leaf();
+          leaf.scale.copy(leaf.userData.homeScale).multiplyScalar(0.4);
+          const home = leaf.userData.home, ctrl = local.clone().lerp(home, 0.5).add(slope.worldToLocal(new V3(0, 1, 0)).sub(slope.worldToLocal(new V3())).multiplyScalar(1.6));
+          const p = { t: 0 };
+          gsap.to(p, { t: 1, duration: RM ? 0.2 : 0.9, ease: 'power1.inOut', onUpdate(){
+            const k = p.t, a = (1 - k) * (1 - k), b = 2 * (1 - k) * k, c = k * k;
+            leaf.position.set(local.x * a + ctrl.x * b + home.x * c, local.y * a + ctrl.y * b + home.y * c, local.z * a + ctrl.z * b + home.z * c);
+          } });
+          gsap.to(leaf.scale, { x: leaf.userData.homeScale.x, y: leaf.userData.homeScale.y, z: leaf.userData.homeScale.z, duration: 0.9, ease: 'back.out(1.6)' });
+        }, null, t0 + i * step);
+      });
+      const tRoof = t0 + roofLeaves.length * step + 0.9;
+      tl.call(() => { ridge.visible = true; gables.forEach(g => g.visible = true); SND.pop(0.8); }, null, tRoof)
+        .fromTo(ridge.scale, { x: 0.0001, y: 0.0001, z: 0.0001 }, { x: 1, y: 1, z: 1, duration: 0.5, ease: 'back.out(2)', immediateRender: false }, tRoof)
+        .fromTo(gables.map(g => g.scale), { x: 0.0001, y: 0.0001, z: 0.0001 }, { x: 1, y: 1, z: 1, duration: 0.6, ease: 'back.out(2)', immediateRender: false }, tRoof + 0.1)
+        .call(() => { SND.setTheme('fiesta'); setRain(0, 1.2); showRainCloud(false); setSky('atardecer', 2.5); setSun(4, 2.5); gsap.to(sun.position, { x: 5.5, y: 6.4, duration: RM ? 0.3 : 2.4, ease: 'power2.out', overwrite: true }); }, null, tRoof + 0.3)
+        .call(() => { showRainbow(true, 2.4); SND.sparkle(true); }, null, tRoof + 1.2)
+        .to(windowMat, { emissiveIntensity: 1.1, duration: 1.2 }, tRoof + 0.6)
+        .call(() => { confetti(new V3(0, 2.2, 0.8), 150, 3); leaves(1.5); }, null, tRoof + 1.0)
+        .call(say, [pio, '¡Hurra! ¡La casita está terminada!', 2.6], tRoof + 1.1)
+        .add(hop(coco, { n: 2, h: 0.6 }), tRoof + 1.0).add(hop(pio, { n: 2, h: 0.7 }), tRoof + 1.15).add(hop(eri, { n: 2, h: 0.45 }), tRoof + 1.3)
+        .call(say, [coco, '¡Gracias por tu idea, Eri!', 2.4], tRoof + 3.6)
+        .call(say, [eri, '¡Gracias por escucharme!', 2.4], tRoof + 5.2)
+        .call(() => {
+          loopTl = gsap.timeline({ repeat: RM ? 0 : -1, repeatDelay: 2.2 });
+          loopTl.add(hop(eri, { h: 0.4 }), 0).add(hop(coco, { h: 0.5 }), 0.3).add(hop(pio, { h: 0.55 }), 0.6);
+        }, null, tRoof + 6.5)
+        .call(cont, [2, '¡Estrella de pedir ayuda! Pedir ayuda y escuchar también es de valientes.', 4], tRoof + 7.2);
+    });
   }
 
-  /* FINAL: celebración junto a la casita terminada */
+  /* FINAL: celebración y lo que hemos aprendido, según lo que eligió el niño */
+  const MINE = {
+    a1: { juntos: 'Elegiste ayudar a Coco entre todos.', despues: 'Coco lo intentó solo… ¡y juntos lo conseguisteis!' },
+    a2: { animo: 'Le diste ánimo a Pío para intentarlo otra vez.', abrazo: 'Le diste un abrazo a Pío y volvió a intentarlo.' },
+    a3: { escuchar: 'Le dijiste a Eri: «te escuchamos».', sonrisa: 'Esperaste a Eri con una sonrisa.', aplauso: '¡Le diste a Eri un gran aplauso!' }
+  };
   function actFinal(tl){
+    document.querySelectorAll('[data-mine]').forEach(el => {
+      const k = el.dataset.mine, v = game[k];
+      el.textContent = (MINE[k] && MINE[k][v]) || '';
+    });
+    starEls.forEach(s => s.classList.add('got'));
     setHouseStage(2); setRain(0, 0.6); showRainCloud(false); showRainbow(true, 1.6); setSun(4); leaves(1.2);
     coco.hold.visible = false; pio.bundle.visible = false; twigMat.visible = false; bulb(false);
     windowMat.emissiveIntensity = 1.2;
     place(coco, -1.5, 1.55, 0.25); place(pio, 0, 1.95, 0); place(eri, 1.5, 1.55, -0.25);
-    tl.call(() => confetti(new V3(0, 2.6, 0.6), 160, 3.2), null, 0.8)
-      .call(say, [coco, '¡Gracias por leer con nosotros!', 2.6], 1.0)
-      .call(say, [eri, '¡Hasta el próximo cuento!', 2.6], 3.8);
+    // la tarjeta se aparta mientras Coco y Eri se despiden: así se les ve (y sus bocadillos); luego vuelve
+    const card = cards[4], mob = PROFILE.mobile || window.innerWidth / window.innerHeight < 1;
+    card.classList.add('away');
+    gsap.to(view, { sy: mob ? 0.02 : 0.0, duration: RM ? 0.3 : 1.2, ease: 'power2.inOut', overwrite: true });
+    tl.call(() => { confetti(new V3(0, 2.6, 0.6), 160, 3.2); SND.tada(); }, null, 0.8)
+      .call(say, [coco, '¡Gracias por jugar con nosotros!', 2.6], 1.0)
+      .call(say, [eri, '¡Hasta el próximo cuento!', 2.6], 3.8)
+      .call(() => {
+        const wait = () => { if (currentAct !== 4) return; if (SND.busy()) return setTimeout(wait, 250); back(); };
+        const back = () => {
+          hideBubbles();
+          gsap.to(view, { sy: mob ? 0.24 : 0.3, duration: RM ? 0.3 : 1.2, ease: 'power2.inOut', overwrite: true });
+          card.classList.remove('away');
+        };
+        setTimeout(wait, 600);
+      }, null, 6.4);
     loopTl = gsap.timeline({ repeat: RM ? 0 : -1, repeatDelay: 1.6, delay: 0.5 });
     loopTl.add(hop(coco, { h: 0.55 }), 0).add(hop(pio, { h: 0.65 }), 0.2).add(hop(eri, { h: 0.45 }), 0.4);
   }
 
-  /* Botón "Sigue bajando": aparece al acabar cada escena; si nadie baja, insiste un poco */
-  const nextBtns = [...document.querySelectorAll('[data-next]')];
-  let nudgeTimer = null;
-  function hideNext(){
-    clearTimeout(nudgeTimer);
-    nextBtns.forEach(b => b.classList.remove('show', 'nudge'));
-  }
-  function showNext(act){
-    const b = cards[act] && cards[act].querySelector('[data-next]');
-    if (!b || currentAct !== act) return;
-    b.classList.remove('nudge'); b.classList.add('show');
-    SND.pop(1.4);
-    clearTimeout(nudgeTimer);
-    if (!RM) nudgeTimer = setTimeout(() => { if (currentAct === act) b.classList.add('nudge'); }, 8000);
-  }
-  function goToAct(act){
-    const sec = sections[act]; if (!sec) return;
-    const nav = document.querySelector('.nav').offsetHeight;            // la escena empieza justo bajo la barra
-    const y = sec.getBoundingClientRect().top + window.scrollY - nav + 2;
-    window.scrollTo({ top: Math.max(0, y), behavior: RM ? 'auto' : 'smooth' });
-  }
-  nextBtns.forEach(b => b.addEventListener('click', () => goToAct(+b.dataset.next)));
-
-  /* Entrada suave de las tarjetas de texto */
-  const cards = [...document.querySelectorAll('[data-act] .card')];
+  /* Entrada suave de las tarjetas (portada y final) */
   function revealCard(act){
     if (RM) return;
-    const c = cards[act]; if (!c) return;
+    const c = cards[act]; if (!c || (act !== 0 && act !== 4)) return;
     gsap.fromTo(c.children, { y: 18, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, stagger: 0.07, ease: 'power2.out', overwrite: true, clearProps: 'transform,opacity' });
   }
 
@@ -2154,10 +2758,7 @@ function init(){
     }
     return null;
   }
-  let tipDone = false;
-  function hideTip(){ tipDone = true; const t0 = document.getElementById('tip-saludo'); if (t0) t0.hidden = true; }
   function poke(ch){
-    hideTip();
     const now = performance.now();
     if (now - ch.lastPoke < 500) return;
     ch.lastPoke = now;
@@ -2173,10 +2774,11 @@ function init(){
     say(ch, ch.phrases[i], 2.4, true);
     burst(headWorld(ch), { count: 18, speed: 2.8, size: 0.055 });
   }
-  canvas.addEventListener('click', (e) => { const ch = pickChar(e.clientX, e.clientY); if (ch) poke(ch); });
-  document.querySelectorAll('[data-char]').forEach(btn => btn.addEventListener('click', () => {
-    const ch = charById[btn.dataset.char]; if (ch) poke(ch);
-  }));
+  canvas.addEventListener('click', (e) => {
+    if (currentAct > 0 && currentAct < 4 && play.hidden) return;         // durante las escenas no interrumpen
+    const ch = pickChar(e.clientX, e.clientY);
+    if (ch && ch.root.position.y > -0.2) poke(ch);
+  });
   if (window.matchMedia('(pointer: fine)').matches){
     let pending = false, lx = 0, ly = 0;
     canvas.addEventListener('pointermove', (e) => {
@@ -2186,19 +2788,6 @@ function init(){
       requestAnimationFrame(() => { pending = false; canvas.style.cursor = pickChar(lx, ly) ? 'pointer' : 'default'; });
     });
   }
-
-  /* =========================================================
-     13. SCROLL: cada sección dispara su acto
-     ========================================================= */
-  const sections = [...document.querySelectorAll('[data-act]')];
-  sections.forEach(sec => {
-    const act = +sec.dataset.act;
-    ScrollTrigger.create({
-      trigger: sec, start: 'top 60%', end: 'bottom 60%',
-      onToggle: self => { if (self.isActive) enterAct(act); },
-      onUpdate: self => { if (currentAct === act && !RM) driftTarget.set((self.progress - 0.5) * 1.3, (0.5 - self.progress) * 0.35, 0); }
-    });
-  });
 
   /* =========================================================
      14. BUCLE ÚNICO DE ANIMACIÓN (se pausa con la pestaña oculta)
@@ -2283,16 +2872,33 @@ function init(){
   drawSky();
   setHouseStage(0);
   renderer.compile(scene, camera);
-  ScrollTrigger.refresh();
-  if (currentAct < 0){
-    const mid = window.innerHeight * 0.6;
-    let act = 0;
-    sections.forEach(s => { const r = s.getBoundingClientRect(); if (r.top <= mid && r.bottom > mid) act = +s.dataset.act; });
-    enterAct(act);
-  }
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => ScrollTrigger.refresh());
+  document.documentElement.classList.add('game');
+  window.scrollTo(0, 0);
+  resetGame();
+  enterAct(0);
   if (!document.hidden) start();
 }
+</script>
+<div class="ios-tip" id="ios-tip" hidden role="dialog" aria-modal="true" aria-label="Cómo instalar el juego"><div><b>Instala el juego en tu iPhone o iPad</b><ol><li>Toca el botón <b style="display:inline">Compartir</b> (el cuadrado con la flecha ↑) de Safari.</li><li>Elige <b style="display:inline">«Añadir a pantalla de inicio»</b>.</li><li>Toca <b style="display:inline">Añadir</b>. ¡Listo!</li></ol><button class="btn btn-soft" type="button" id="ios-tip-ok">Entendido</button></div></div>
+<script>
+(function(){
+  var btn = document.getElementById('install'), tip = document.getElementById('ios-tip'), ev = null;
+  if (!btn) return;
+  var standalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+  var ios = /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)){
+    window.addEventListener('load', function(){ navigator.serviceWorker.register('sw.js').catch(function(){}); });
+  }
+  if (standalone) return;
+  window.addEventListener('beforeinstallprompt', function(e){ e.preventDefault(); ev = e; btn.hidden = false; });
+  window.addEventListener('appinstalled', function(){ btn.hidden = true; ev = null; });
+  if (ios) btn.hidden = false;
+  btn.addEventListener('click', function(){
+    if (ev){ ev.prompt(); ev.userChoice.then(function(){ ev = null; btn.hidden = true; }); }
+    else if (tip) tip.hidden = false;
+  });
+  if (tip){ document.getElementById('ios-tip-ok').addEventListener('click', function(){ tip.hidden = true; }); tip.addEventListener('click', function(e){ if (e.target === tip) tip.hidden = true; }); }
+})();
 </script>
 </body>
 </html>
