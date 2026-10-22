@@ -1,0 +1,2293 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>La casita de los 3 amigos · Cuento en 3D de plastilina | Universo Tigalma</title>
+<meta name="description" content="Un cuento corto e interactivo en 3D, estilo plastilina, para niños de 3 a 8 años: Coco, Pío y Eri aprenden a compartir, a perseverar y a pedir ayuda. De Universo Tigalma.">
+<meta name="theme-color" content="#BFE6F5">
+<meta name="author" content="Universo Tigalma">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_ES">
+<meta property="og:site_name" content="Universo Tigalma">
+<meta property="og:title" content="La casita de los 3 amigos · Un cuento en 3D de plastilina">
+<meta property="og:description" content="Coco, Pío y Eri construyen una casita y aprenden a ayudarse unos a otros. Desliza y vive el cuento.">
+<meta property="og:image" content="og-imagen.jpg">
+<meta property="og:image:alt" content="Coco el conejito, Pío el pollito y Eri el erizo, de plastilina, delante de su casita.">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="La casita de los 3 amigos · Un cuento en 3D de plastilina">
+<meta name="twitter:description" content="Un cuento sobre ayudarnos unos a otros, para niños de 3 a 8 años.">
+<meta name="twitter:image" content="og-imagen.jpg">
+
+<!-- Favicon SVG inline -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23F6A7A0'/%3E%3Cstop offset='.42' stop-color='%23F7C861'/%3E%3Cstop offset='.7' stop-color='%234FB3A9'/%3E%3Cstop offset='1' stop-color='%233B4A9E'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='32' cy='32' r='29' fill='url%28%23g%29' stroke='%23FFF8EC' stroke-width='4'/%3E%3Ccircle cx='38' cy='19' r='6' fill='%23E59A3A'/%3E%3Cpath d='M31 54c0-10 2-16 8-22' stroke='%236F8F3E' stroke-width='3' fill='none' stroke-linecap='round'/%3E%3Cpath d='M32 41c-6-1-9-5-9-9 5 0 9 3 9 9z' fill='%23A6C76B'/%3E%3Cpath d='M35 35c1-6 5-9 9-9 0 5-3 9-9 9z' fill='%23A6C76B'/%3E%3C/svg%3E">
+
+<!-- Tipografías -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Bowlby+One&family=Nunito:wght@400;600;700;800;900&display=swap">
+
+<style>
+  :root{
+    --ink:#1E2350;         /* texto principal (contraste alto) */
+    --navy:#2E3F8F;        /* azul noche del logo */
+    --teal-dark:#1D6B64;   /* turquesa oscuro para etiquetas */
+    --cream:#FFF9EF;
+    --butter:#FFE08A;
+    --coral:#FF8A7A;
+    --yt:#C8372D;          /* rojo para el botón de YouTube */
+    --mint:#A8E6CF;
+    --pink:#F6A7A0;
+    --sky:#BFE6F5;
+    --card:rgba(255,250,240,.9);
+    --radius:30px;
+    --nav-h:68px;
+    --focus:0 0 0 4px #fff, 0 0 0 8px var(--navy);
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; min-height:100%;
+    font-family:'Nunito', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    color:var(--ink);
+    background:#CDEBF6 linear-gradient(180deg,#9FD9F3 0%,#D6F0FA 45%,#FFF3DC 75%,#BFE8CF 100%) fixed;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%;display:block}
+  a{color:inherit}
+  :focus{outline:none}
+  :focus-visible{outline:none; box-shadow:var(--focus); border-radius:14px}
+
+  .sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+  .skip{position:fixed;left:12px;top:-60px;z-index:100;background:var(--navy);color:#fff;padding:10px 16px;border-radius:12px;font-weight:800;text-decoration:none;transition:top .2s}
+  .skip:focus-visible{top:12px}
+
+  /* ---------- Lienzo 3D fijo ---------- */
+  #scene{position:fixed;inset:0;width:100%;height:100%;display:block;z-index:0;touch-action:pan-y}
+  .no3d #scene{display:none}
+
+  /* ---------- Bocadillos ---------- */
+  #bubbles{position:fixed;inset:0;pointer-events:none;z-index:15;overflow:hidden}
+  .bubble{position:absolute;left:0;top:0;visibility:hidden;will-change:transform}
+  .bubble-in{
+    transform-origin:50% 100%;
+    background:#fff; color:var(--ink);
+    border:3px solid var(--c, var(--navy));
+    border-radius:22px; padding:8px 14px 10px;
+    font-family:'Baloo 2', 'Nunito', sans-serif; font-weight:700; font-size:1.06rem; line-height:1.2;
+    max-width:min(240px, 70vw); width:max-content;
+    box-shadow:0 6px 0 rgba(30,35,80,.12), 0 12px 26px rgba(30,35,80,.18);
+    position:relative; text-align:center;
+  }
+  .bubble-in::after{
+    content:""; position:absolute; left:50%; bottom:-13px; width:20px; height:20px;
+    background:#fff; border-right:3px solid var(--c, var(--navy)); border-bottom:3px solid var(--c, var(--navy));
+    transform:translateX(-50%) rotate(45deg); border-bottom-right-radius:6px;
+  }
+  .bubble-name{display:block;font-size:.78rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--c, var(--navy));filter:brightness(.7)}
+
+  /* ---------- Navegación ---------- */
+  .nav{
+    position:fixed; top:0; left:0; right:0; z-index:20; height:var(--nav-h);
+    display:flex; align-items:center; justify-content:space-between; gap:12px;
+    padding:0 clamp(12px,3vw,34px);
+    background:rgba(255,249,239,.74);
+    -webkit-backdrop-filter:blur(12px); backdrop-filter:blur(12px);
+    border-bottom:2px solid rgba(30,35,80,.07);
+  }
+  .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-family:'Baloo 2','Nunito',sans-serif;font-weight:800;font-size:1.2rem;line-height:1}
+  .brand img{width:46px;height:46px;border-radius:50%;object-fit:contain;filter:drop-shadow(0 2px 4px rgba(30,35,80,.18))}
+  .brand small{display:block;font-family:'Nunito',sans-serif;font-weight:700;font-size:.74rem;color:var(--teal-dark);letter-spacing:.02em;margin-top:3px}
+
+  /* ---------- Botones ---------- */
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:10px;
+    font-family:'Baloo 2','Nunito',sans-serif; font-weight:800; font-size:1.06rem; line-height:1;
+    text-decoration:none; border:0; cursor:pointer;
+    padding:13px 22px 12px; border-radius:999px;
+    background:var(--navy); color:#fff;
+    box-shadow:0 5px 0 #1A2560, 0 10px 18px rgba(30,35,80,.22);
+    transition:transform .15s ease, box-shadow .15s ease, filter .15s;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .btn:hover{transform:translateY(-2px);filter:brightness(1.06)}
+  .btn:active{transform:translateY(3px);box-shadow:0 2px 0 #1A2560, 0 4px 8px rgba(30,35,80,.2)}
+  .btn:focus-visible{box-shadow:var(--focus)}
+  .btn svg{width:22px;height:22px;flex:none}
+  .btn-yt{background:var(--yt);box-shadow:0 6px 0 #8E211A,0 12px 22px rgba(140,30,20,.28);font-size:1.3rem;padding:18px 30px 17px}
+  .btn-yt:active{box-shadow:0 2px 0 #8E211A}
+  .btn-soft{background:var(--butter);color:var(--ink);box-shadow:0 5px 0 #E2B94C,0 10px 18px rgba(30,35,80,.15)}
+  .btn-soft:active{box-shadow:0 2px 0 #E2B94C}
+  .btn-small{font-size:.98rem;padding:11px 18px 10px}
+
+  /* ---------- Secciones / actos ---------- */
+  main{position:relative;z-index:2;pointer-events:none}
+  .act{
+    position:relative; min-height:128vh; min-height:128svh;
+    display:flex; align-items:flex-start;
+    padding:calc(var(--nav-h) + 6vh) clamp(16px,5vw,80px) 10vh;
+    pointer-events:none; /* deja tocar a los personajes a través de la sección */
+  }
+  .act.right{justify-content:flex-end}
+  .act.hero{min-height:118vh;min-height:118svh}
+  .card{
+    pointer-events:auto;
+    position:sticky; top:calc(var(--nav-h) + 7vh);
+    width:100%; max-width:470px;
+    background:var(--card);
+    -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px);
+    border:3px solid #fff; border-radius:var(--radius);
+    padding:28px 30px 26px;
+    box-shadow:inset 0 -7px 0 rgba(30,35,80,.05), 0 10px 0 rgba(30,35,80,.07), 0 22px 44px rgba(30,35,80,.16);
+  }
+  .kicker{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'Baloo 2','Nunito',sans-serif; font-weight:800; font-size:.95rem;
+    letter-spacing:.06em; text-transform:uppercase; color:var(--teal-dark);
+    margin:0 0 8px;
+  }
+  .kicker .dot{width:12px;height:12px;border-radius:50%;background:var(--coral);box-shadow:inset -2px -2px 0 rgba(0,0,0,.12)}
+  h1,h2{font-family:'Bowlby One','Baloo 2',sans-serif;font-weight:400;color:var(--ink);margin:0 0 12px;letter-spacing:.005em}
+  h1{font-size:clamp(2.4rem,5.4vw,4.4rem);line-height:1.02}
+  h2{font-size:clamp(2rem,3.8vw,3rem);line-height:1.05}
+  h1 .accent{color:var(--navy)}
+  .lead{font-size:clamp(1.15rem,1.6vw,1.35rem);font-weight:800;margin:0 0 14px;color:#3A3F73}
+  .card p{font-size:1.14rem;line-height:1.55;margin:0 0 12px}
+  .card p q{font-weight:800;quotes:"«" "»"}
+  .moral{
+    display:flex; align-items:center; gap:12px;
+    margin:16px 0 0; padding:13px 16px;
+    background:var(--butter); border:2px solid #fff; border-radius:20px;
+    font-weight:900; font-size:1.14rem; line-height:1.3; color:var(--ink);
+    box-shadow:inset 0 -4px 0 rgba(0,0,0,.05);
+  }
+  .moral svg{width:30px;height:30px;flex:none}
+
+  /* Botones de personajes del hero */
+  .friends{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 4px}
+  .friends-label{font-weight:800;font-size:.98rem;margin:16px 0 0;color:#3A3F73}
+  .chip{
+    display:inline-flex;align-items:center;gap:8px;cursor:pointer;
+    font-family:'Baloo 2','Nunito',sans-serif;font-weight:800;font-size:1rem;color:var(--ink);
+    background:#fff;border:2px solid rgba(30,35,80,.12);border-radius:999px;padding:8px 14px 7px;
+    box-shadow:0 3px 0 rgba(30,35,80,.1);transition:transform .15s;
+  }
+  .chip:hover{transform:translateY(-2px)}
+  .chip:active{transform:translateY(2px)}
+  .chip i{width:16px;height:16px;border-radius:50%;display:block;background:var(--c);box-shadow:inset -2px -2px 0 rgba(0,0,0,.15)}
+
+  /* Indicador de scroll */
+  .scroll-hint{display:flex;align-items:center;gap:12px;margin-top:18px;font-weight:800;color:#3A3F73}
+  .mouse{width:26px;height:40px;border:3px solid var(--navy);border-radius:16px;position:relative;flex:none}
+  .mouse::after{content:"";position:absolute;left:50%;top:7px;width:6px;height:9px;margin-left:-3px;border-radius:4px;background:var(--coral);animation:wheel 1.6s ease-in-out infinite}
+  .arrow{display:inline-block;animation:bob 1.4s ease-in-out infinite}
+  @keyframes wheel{0%{transform:translateY(0);opacity:1}70%{transform:translateY(12px);opacity:0}100%{transform:translateY(0);opacity:0}}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+
+  /* CTA */
+  .act.cta{min-height:112vh;min-height:112svh;align-items:flex-end;justify-content:center;padding-bottom:6vh}
+  .cta .card{max-width:680px;text-align:center;position:relative;top:auto}
+  .cta .btns{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:20px}
+  .cta .kicker{justify-content:center}
+
+  footer{
+    position:relative;z-index:2;text-align:center;
+    padding:26px 18px calc(26px + env(safe-area-inset-bottom));
+    background:rgba(255,249,239,.92);border-top:2px solid rgba(30,35,80,.07);
+    font-weight:700;color:#3A3F73;font-size:.98rem
+  }
+  footer p{margin:0}
+
+  /* ---------- Botón de sonido ---------- */
+  .nav-actions{display:flex;align-items:center;gap:10px}
+  .snd{
+    position:relative; display:inline-flex; align-items:center; gap:8px; cursor:pointer;
+    font-family:'Baloo 2','Nunito',sans-serif; font-weight:800; font-size:1rem; line-height:1; color:var(--ink);
+    background:#fff; border:2px solid rgba(30,35,80,.14); border-radius:999px; padding:10px 16px 9px;
+    box-shadow:0 4px 0 rgba(30,35,80,.12); transition:transform .15s, background .2s;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .snd:hover{transform:translateY(-2px)}
+  .snd:active{transform:translateY(2px)}
+  .snd svg{width:22px;height:22px;flex:none}
+  .snd .ic-on{display:none}
+  .snd[aria-pressed="true"]{background:var(--butter);border-color:#E2B94C}
+  .snd[aria-pressed="true"] .ic-on{display:block}
+  .snd[aria-pressed="true"] .ic-off{display:none}
+  .snd.nudge::after{content:"";position:absolute;inset:-6px;border-radius:999px;border:3px solid var(--coral);animation:ring 1.8s ease-out infinite;pointer-events:none}
+  @keyframes ring{0%{transform:scale(.92);opacity:.9}100%{transform:scale(1.22);opacity:0}}
+  .hero-sound{margin-top:14px}
+  .no3d .snd{display:none}
+
+  /* ---------- Aviso "Pulsa aquí" sobre los botones de saludo ---------- */
+  .friends-wrap{position:relative}
+  .tip{
+    position:absolute; left:0; bottom:calc(100% + 12px); z-index:3;
+    background:var(--coral); color:#fff; border-radius:16px; padding:9px 14px 8px;
+    font-family:'Baloo 2','Nunito',sans-serif; font-weight:800; font-size:1rem; line-height:1.15; white-space:nowrap;
+    text-shadow:0 1px 2px rgba(120,30,20,.55);
+    box-shadow:0 5px 0 #D9604F, 0 10px 18px rgba(217,96,79,.35); pointer-events:none;
+    animation:tipBlink 1.4s ease-in-out infinite;
+  }
+  .tip::after{content:"";position:absolute;left:34px;bottom:-8px;width:16px;height:16px;background:var(--coral);transform:rotate(45deg);border-radius:3px}
+  .tip[hidden]{display:none}
+  .card:has(.tip:not([hidden])) .friends-label{visibility:hidden}   /* el aviso ocupa su sitio; sigue disponible para lectores de pantalla */
+  @keyframes tipBlink{0%,100%{opacity:1;transform:translateY(0)}50%{opacity:.35;transform:translateY(-3px)}}
+  @media (prefers-reduced-motion: reduce){.tip{animation:none}}
+  .no3d .tip{display:none}
+
+  /* ---------- Botón "Sigue bajando" ---------- */
+  .next{
+    display:none; align-items:center; gap:10px; margin:16px 0 0; cursor:pointer;
+    font-family:'Baloo 2','Nunito',sans-serif; font-weight:800; font-size:1.12rem; line-height:1.1; text-align:left;
+    color:#fff; background:var(--coral); border:0; border-radius:999px; padding:11px 22px 10px 12px;
+    box-shadow:0 5px 0 #D9604F, 0 10px 18px rgba(217,96,79,.3);
+    transition:transform .15s; -webkit-tap-highlight-color:transparent;
+  }
+  .next.show{display:inline-flex; animation:nextIn .55s cubic-bezier(.3,1.6,.5,1) both}
+  .no3d .next{display:inline-flex}
+  .next:hover{transform:translateY(-2px)}
+  .next:active{transform:translateY(3px);box-shadow:0 2px 0 #D9604F}
+  .next:focus-visible{box-shadow:var(--focus)}
+  .next-arrow{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:#fff;color:var(--coral);flex:none;animation:nextBob 1.2s ease-in-out infinite}
+  .next-arrow svg{width:22px;height:22px}
+  .next.nudge{animation:nextWiggle 1.6s ease-in-out infinite}
+  .next.nudge::after{content:"";position:absolute;inset:-6px;border-radius:999px;border:3px solid var(--coral);animation:ring 1.6s ease-out infinite;pointer-events:none}
+  .next{position:relative}
+  .card:has(.next.show) .scroll-hint{display:none}
+  @keyframes nextIn{0%{opacity:0;transform:translateY(14px) scale(.7)}100%{opacity:1;transform:none}}
+  @keyframes nextBob{0%,100%{transform:translateY(-2px)}50%{transform:translateY(4px)}}
+  @keyframes nextWiggle{0%,60%,100%{transform:none}68%{transform:translateY(-6px) rotate(-3deg)}76%{transform:translateY(0) rotate(3deg)}84%{transform:translateY(-3px) rotate(-2deg)}92%{transform:none}}
+
+  /* ---------- Pantalla de carga ---------- */
+  #loader{
+    position:fixed;inset:0;z-index:60;display:grid;place-items:center;text-align:center;
+    background:radial-gradient(circle at 50% 40%,#FFF9EF 0%,#D9F1FB 70%,#BFE6F5 100%);
+    transition:opacity .7s ease, visibility .7s;
+  }
+  #loader.hide{opacity:0;visibility:hidden}
+  .balls{display:flex;gap:14px;justify-content:center;height:64px;align-items:flex-end;margin-bottom:16px}
+  .balls span{width:28px;height:28px;border-radius:50%;background:var(--c);box-shadow:inset -4px -5px 0 rgba(0,0,0,.12), inset 3px 3px 0 rgba(255,255,255,.4);animation:clay 1s cubic-bezier(.3,.7,.4,1) infinite}
+  .balls span:nth-child(2){animation-delay:.15s}
+  .balls span:nth-child(3){animation-delay:.3s}
+  @keyframes clay{0%,100%{transform:translateY(0) scale(1.25,.75)}15%{transform:translateY(0) scale(.9,1.12)}50%{transform:translateY(-34px) scale(.95,1.05)}85%{transform:translateY(0) scale(1,1)}}
+  #loader p{margin:0;font-family:'Baloo 2','Nunito',sans-serif;font-weight:800;font-size:1.35rem;color:var(--ink)}
+  #loader small{display:block;margin-top:6px;font-weight:700;color:#3A3F73;font-size:1rem}
+
+  /* Sin 3D (fallo de WebGL o de carga) */
+  .no3d-note{display:none}
+  .no3d .no3d-note{display:block;font-size:.95rem;font-weight:700;color:#3A3F73;margin-top:10px}
+
+  /* noscript */
+  .noscript-story{position:relative;z-index:30;max-width:720px;margin:calc(var(--nav-h) + 20px) auto 40px;padding:28px;background:#fff;border-radius:24px;line-height:1.6;font-size:1.1rem}
+  .noscript-story h2{font-size:1.6rem}
+
+  /* ---------- Móvil ---------- */
+  @media (max-width: 820px){
+    :root{--nav-h:60px;--radius:24px}
+    .brand{font-size:1.05rem}
+    .brand img{width:40px;height:40px}
+    .brand small{display:none}
+    .nav .long{display:none}
+    .nav .sound-label{display:none}
+    .nav .snd{padding:9px 10px}
+    .nav-actions{gap:8px}
+    .act,.act.right,.act.hero{
+      min-height:125svh; align-items:flex-end; justify-content:stretch;
+      padding:var(--nav-h) 12px calc(14px + env(safe-area-inset-bottom));
+    }
+    .card{
+      position:sticky; top:auto; bottom:calc(12px + env(safe-area-inset-bottom));
+      max-width:none; padding:18px 18px 16px;
+      background:rgba(255,250,240,.86);
+    }
+    h1{font-size:clamp(1.9rem,8.6vw,2.6rem)}
+    h2{font-size:clamp(1.6rem,7.4vw,2.1rem);margin-bottom:8px}
+    .lead{font-size:1.05rem;margin-bottom:6px}
+    .card p{font-size:1.02rem;line-height:1.45;margin-bottom:8px}
+    .moral{font-size:1.02rem;padding:10px 12px;margin-top:10px}
+    .moral svg{width:24px;height:24px}
+    .friends-label{margin-top:8px}
+    .friends{margin:8px 0 2px}
+    .scroll-hint{margin-top:10px}
+    .tip{bottom:calc(100% + 4px);font-size:.95rem;padding:7px 12px 6px}
+    .next{margin-top:10px;font-size:1.04rem;width:100%;justify-content:center;padding:10px 18px 9px 10px}
+    .mouse{display:none}
+    .act.cta{align-items:flex-end;min-height:118svh}
+    .btn-yt{font-size:1.12rem;padding:16px 22px 15px;width:100%}
+    .cta .btns .btn-soft{width:100%}
+  }
+  @media (max-width: 380px){
+    .card p{font-size:.98rem}
+    .friends .chip{font-size:.92rem;padding:7px 11px 6px}
+  }
+
+  /* ---------- Movimiento reducido ---------- */
+  @media (prefers-reduced-motion: reduce){
+    *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+  }
+</style>
+
+<!-- GSAP + ScrollTrigger -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+<!-- Three.js como módulo ES -->
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.165.0/build/three.module.js"}}</script>
+</head>
+<body>
+<a class="skip" href="#historia">Saltar al cuento</a>
+
+<!-- Pantalla de carga -->
+<div id="loader" role="status" aria-live="polite">
+  <div>
+    <div class="balls" aria-hidden="true"><span style="--c:#FF8A7A"></span><span style="--c:#FFE08A"></span><span style="--c:#A8E6CF"></span></div>
+    <p>Amasando la plastilina…</p>
+    <small>Coco, Pío y Eri se están preparando</small>
+  </div>
+</div>
+
+<!-- Escena 3D -->
+<canvas id="scene" role="img" aria-label="Escena 3D de plastilina: Coco el conejito, Pío el pollito y Eri el erizo construyen juntos una casita en el bosque. Puedes tocar a cada personaje para que salte y te hable."></canvas>
+<div id="bubbles" aria-hidden="true"></div>
+<div id="live" class="sr-only" aria-live="polite"></div>
+
+<!-- Navegación -->
+<header class="nav">
+  <a class="brand" href="#inicio" aria-label="Universo Tigalma, ir al inicio">
+    <img src="logo-tigalma.png" alt="Logo de Universo Tigalma: un círculo de acuarela con sol, lunas y un brote" width="46" height="46" onerror="this.style.display='none'">
+    <span>Universo Tigalma<small>Cuentos para crecer con calma</small></span>
+  </a>
+  <div class="nav-actions">
+  <button class="snd nudge" type="button" data-sound aria-pressed="false" aria-label="Activar el sonido: música y voces de los personajes">
+    <svg class="ic-off" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 9h3l5-4v14l-5-4H4z"/><path d="M16 9l5 6M21 9l-5 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+    <svg class="ic-on" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 9h3l5-4v14l-5-4H4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+    <span class="sound-label">Sonido</span>
+  </button>
+  <a class="btn btn-small" href="https://www.youtube.com/channel/UCmmC34AnTmV1wHIxVvXbuiQ" target="_blank" rel="noopener" aria-label="Escuchar cuentos de Universo Tigalma en YouTube (se abre en una pestaña nueva)">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 3a9 9 0 0 0-9 9v5a3 3 0 0 0 3 3h1a1 1 0 0 0 1-1v-5a1 1 0 0 0-1-1H5v-1a7 7 0 0 1 14 0v1h-2a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h1a3 3 0 0 0 3-3v-5a9 9 0 0 0-9-9z"/></svg>
+    Escuchar<span class="long">&nbsp;cuentos</span>
+  </a>
+  </div>
+</header>
+
+<noscript>
+  <style>#loader{display:none}</style>
+  <div class="noscript-story">
+    <h2>La casita de los 3 amigos</h2>
+    <p><strong>Un cuento sobre ayudarnos unos a otros.</strong></p>
+    <p><strong>Compartir.</strong> Coco, el conejito, quiere construir una casita, pero los troncos pesan mucho y él solo no puede. Pío, el pollito, le presta sus ramitas y juntos levantan las paredes. <em>Compartiendo, todo es más fácil.</em></p>
+    <p><strong>Perseverar.</strong> Empieza a llover y el tejado se cae. Pío se resbala una y otra vez, pero se levanta y lo vuelve a intentar. <em>Si te caes, te levantas y lo intentas otra vez.</em></p>
+    <p><strong>Pedir ayuda.</strong> Eri, el erizo, es tímido y tiene una idea: un tejado de hojas grandes. Sus amigos le animan a hablar, la casita queda perfecta y sale el arcoíris. <em>Pedir ayuda y escuchar también es de valientes.</em></p>
+    <p><a href="https://www.youtube.com/channel/UCmmC34AnTmV1wHIxVvXbuiQ">Escucha los cuentos de @UniversoTigalma en YouTube</a></p>
+  </div>
+</noscript>
+
+<main id="historia">
+  <!-- HERO -->
+  <section class="act hero" id="inicio" data-act="0" aria-labelledby="t-hero">
+    <div class="card">
+      <p class="kicker"><span class="dot" aria-hidden="true"></span>Cuento en 3D · de 3 a 8 años</p>
+      <h1 id="t-hero">La casita de los <span class="accent">3 amigos</span></h1>
+      <p class="lead">Un cuento sobre ayudarnos unos a otros</p>
+      <p class="friends-label" id="friends-label">Toca a los amigos para saludarles:</p>
+      <div class="friends-wrap">
+      <div class="tip" id="tip-saludo" aria-hidden="true">¡Pulsa aquí para que te saludemos!</div>
+      <div class="friends" role="group" aria-labelledby="friends-label">
+        <button class="chip" type="button" data-char="coco" aria-label="Saludar a Coco, el conejito"><i style="--c:#F7E3C4"></i>Coco</button>
+        <button class="chip" type="button" data-char="pio" aria-label="Saludar a Pío, el pollito"><i style="--c:#FFD84D"></i>Pío</button>
+        <button class="chip" type="button" data-char="eri" aria-label="Saludar a Eri, el erizo"><i style="--c:#9A6540"></i>Eri</button>
+      </div>
+      </div>
+      <button class="snd hero-sound" type="button" data-sound aria-pressed="false" aria-label="Activar el sonido: música y voces de los personajes">
+        <svg class="ic-off" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 9h3l5-4v14l-5-4H4z"/><path d="M16 9l5 6M21 9l-5 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+    <svg class="ic-on" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 9h3l5-4v14l-5-4H4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+        <span class="sound-text">Activar música y voces</span>
+      </button>
+      <div class="scroll-hint" aria-hidden="true"><span class="mouse"></span><span>Desliza hacia abajo <span class="arrow">↓</span></span></div>
+      <button class="next" type="button" data-next="1" aria-label="Ir a la primera escena del cuento"><span class="next-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="M12 4v15M5 12l7 7 7-7"/></svg></span>¡Empieza el cuento!</button>
+      <p class="no3d-note">La escena 3D no ha podido cargarse en este dispositivo, pero puedes leer el cuento igualmente.</p>
+    </div>
+  </section>
+
+  <!-- ACTO 1 -->
+  <section class="act" data-act="1" aria-labelledby="t-a1">
+    <div class="card">
+      <p class="kicker"><span class="dot" aria-hidden="true"></span>Acto 1 de 3</p>
+      <h2 id="t-a1">Compartir</h2>
+      <p>Coco quiere construir una casita para los tres amigos, pero los troncos pesan muchísimo y él solo no puede. Entonces llega Pío: <q>¡Te presto mis ramitas!</q> Juntos, las paredes suben y suben.</p>
+      <p class="moral"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="#2E8B57" d="M16 29c-1-7 0-13 5-18 3-3 7-4 9-4 0 5-2 10-6 13-2 2-5 3-7 3"/><path fill="#6FCF97" d="M15 28C9 27 4 22 4 15c5 0 11 3 12 11"/></svg>Compartiendo, todo es más fácil.</p>
+      <button class="next" type="button" data-next="2" aria-label="Ir a la siguiente escena: Perseverar"><span class="next-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="M12 4v15M5 12l7 7 7-7"/></svg></span>Sigue bajando: ¡llega la lluvia!</button>
+    </div>
+  </section>
+
+  <!-- ACTO 2 -->
+  <section class="act right" data-act="2" aria-labelledby="t-a2">
+    <div class="card">
+      <p class="kicker"><span class="dot" aria-hidden="true"></span>Acto 2 de 3</p>
+      <h2 id="t-a2">Perseverar</h2>
+      <p>De repente… ¡plic, plic, ploc! Empieza a llover. Pío sube a poner el tejado, pero se resbala y ¡pum!, se cae. Se sacude las plumas y lo vuelve a intentar. Una vez, y otra, y otra.</p>
+      <p class="moral"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="#4A90D9" d="M16 3c4 6 8 10 8 15a8 8 0 0 1-16 0c0-5 4-9 8-15z"/><path fill="#fff" opacity=".7" d="M12 18a4 4 0 0 0 3 4" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>Si te caes, te levantas y lo intentas otra vez.</p>
+      <button class="next" type="button" data-next="3" aria-label="Ir a la siguiente escena: Pedir ayuda"><span class="next-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="M12 4v15M5 12l7 7 7-7"/></svg></span>Sigue bajando: la idea de Eri</button>
+    </div>
+  </section>
+
+  <!-- ACTO 3 -->
+  <section class="act" data-act="3" aria-labelledby="t-a3">
+    <div class="card">
+      <p class="kicker"><span class="dot" aria-hidden="true"></span>Acto 3 de 3</p>
+      <h2 id="t-a3">Pedir ayuda</h2>
+      <p>Escondido tras un arbusto, Eri tiene una idea genial: ¡un tejado de hojas grandes! Pero le da vergüenza hablar. Coco y Pío le dicen: <q>Cuéntanos, te escuchamos.</q> Con la idea de Eri, la casita queda perfecta. ¡Sale el sol y un arcoíris!</p>
+      <p class="moral"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="none" stroke="#FF8A7A" stroke-width="3" d="M4 24a12 12 0 0 1 24 0"/><path fill="none" stroke="#F2B53A" stroke-width="3" d="M8 24a8 8 0 0 1 16 0"/><path fill="none" stroke="#4FB3A9" stroke-width="3" d="M12 24a4 4 0 0 1 8 0"/></svg>Pedir ayuda y escuchar también es de valientes.</p>
+      <button class="next" type="button" data-next="4" aria-label="Ir al final del cuento"><span class="next-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="M12 4v15M5 12l7 7 7-7"/></svg></span>Sigue bajando: ¡a celebrar!</button>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="act cta" data-act="4" aria-labelledby="t-cta">
+    <div class="card">
+      <p class="kicker"><span class="dot" aria-hidden="true"></span>¿Te ha gustado el cuento?</p>
+      <h2 id="t-cta">Escucha los cuentos de @UniversoTigalma</h2>
+      <p>Cuentos para crecer con calma, emoción y mucho cariño. Para escuchar en familia, antes de dormir o en cualquier momento.</p>
+      <div class="btns">
+        <a class="btn btn-yt" href="https://www.youtube.com/channel/UCmmC34AnTmV1wHIxVvXbuiQ" target="_blank" rel="noopener" aria-label="Ver los cuentos de Universo Tigalma en YouTube (se abre en una pestaña nueva)">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12 31 31 0 0 0 1 16.8a3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8zM9.7 15V9l5.8 3-5.8 3z"/></svg>
+          Ver cuentos en YouTube
+        </a>
+        <button class="btn btn-soft" type="button" id="restart" aria-label="Volver a empezar el cuento desde el principio">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 5V2L7 6l5 4V7a5 5 0 1 1-5 5H5a7 7 0 1 0 7-7z"/></svg>
+          Volver a empezar
+        </button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>Personajes originales modelados en 3D con estilo plastilina. © UniversoTigalma</p>
+</footer>
+
+<!-- Red de seguridad: si la escena no arranca en 12 s, se muestra el cuento sin 3D -->
+<script>
+  window.__tigalmaFail = function(){
+    document.documentElement.classList.add('no3d');
+    var l = document.getElementById('loader'); if (l) l.classList.add('hide');
+  };
+  window.__tigalmaTimer = setTimeout(function(){
+    if (!document.documentElement.classList.contains('ready')) window.__tigalmaFail();
+  }, 12000);
+  // Sin 3D, los botones "Sigue bajando" se ven siempre y bajan a la siguiente escena
+  document.querySelectorAll('[data-next]').forEach(function(b){
+    b.addEventListener('click', function(){
+      if (!document.documentElement.classList.contains('no3d')) return;
+      var sec = document.querySelectorAll('[data-act]')[+b.getAttribute('data-next')];
+      if (sec) sec.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+  // "Volver a empezar" funciona aunque falle el 3D
+  document.getElementById('restart').addEventListener('click', function(){
+    var rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({ top: 0, behavior: rm ? 'auto' : 'smooth' });
+    document.getElementById('t-hero').setAttribute('tabindex','-1');
+    setTimeout(function(){ document.getElementById('t-hero').focus({ preventScroll: true }); }, rm ? 0 : 900);
+  });
+</script>
+
+<script type="module">
+import * as THREE from 'three';
+import { RoomEnvironment } from 'https://cdn.jsdelivr.net/npm/three@0.165.0/examples/jsm/environments/RoomEnvironment.js';
+
+try {
+  init();
+} catch (err) {
+  console.warn('[Tigalma] No se pudo iniciar la escena 3D:', err);
+  window.__tigalmaFail && window.__tigalmaFail();
+}
+
+function init(){
+  const gsap = window.gsap;
+  const ScrollTrigger = window.ScrollTrigger;
+  if (!gsap || !ScrollTrigger) throw new Error('GSAP no se ha cargado');
+  gsap.registerPlugin(ScrollTrigger);
+  ScrollTrigger.config({ ignoreMobileResize: true });
+
+  const RM = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const canvas = document.getElementById('scene');
+  const V3 = THREE.Vector3;
+  const rand = (a, b) => a + Math.random() * (b - a);
+  const jit = (a = 0.04) => 1 + (Math.random() * 2 - 1) * a;
+
+  /* =========================================================
+     1. PERFIL DE DISPOSITIVO (calidad según móvil / escritorio)
+     ========================================================= */
+  const PROFILE = {};
+  function applyDeviceProfile(){
+    const w = window.innerWidth, h = window.innerHeight;
+    const coarse = window.matchMedia('(pointer: coarse)').matches;
+    const mobile = w <= 820 || (coarse && Math.min(w, h) < 900);
+    const fewCores = (navigator.hardwareConcurrency || 4) <= 4;
+    PROFILE.mobile = mobile;
+    PROFILE.portrait = h > w;
+    PROFILE.pixelRatio = Math.min(window.devicePixelRatio || 1, mobile ? 1.5 : 2);
+    PROFILE.particles = (mobile ? 0.45 : 1) * (RM ? 0.3 : 1);
+    if (PROFILE.shadowMap === undefined){            // sombras y contornos: solo al arrancar
+      PROFILE.shadowMap = mobile ? (fewCores ? 0 : 512) : 1024;
+      PROFILE.outlines = !mobile;
+      PROFILE.decorShadows = !mobile;
+    }
+    return PROFILE;
+  }
+  applyDeviceProfile();
+  const SHADOWS = PROFILE.shadowMap > 0;
+
+  /* =========================================================
+     1b. SONIDO: música creada por código, efectos y voces
+         (Web Audio + voz del navegador, sin archivos externos)
+     ========================================================= */
+  const SND = (() => {
+    const AC = window.AudioContext || window.webkitAudioContext;
+    const synth = ('speechSynthesis' in window) ? window.speechSynthesis : null;
+    const MUSIC_VOL = 0.55, MUSIC_DUCK = 0.2;   // volumen de la música y cuánto baja cuando hablan
+    let ctx = null, master, musicBus, sfxBus, rainGain, noiseBuf, timer = null, lastRain = -1;
+    let on = false, theme = null, nextTheme = 'manana', step = 0, nextTime = 0;
+    const store = {
+      get(){ try { return localStorage.getItem('tigalma-sonido'); } catch (e) { return null; } },
+      set(v){ try { localStorage.setItem('tigalma-sonido', v); } catch (e) {} }
+    };
+    const mtof = m => 440 * Math.pow(2, (m - 69) / 12);
+    const tri = (r, minor) => [r, r + (minor ? 3 : 4), r + 7];
+    // Una melodía para cada momento del cuento (acordes + patrón de notas)
+    const THEMES = {
+      manana:    { bpm: 96,  chords: [tri(60), tri(55), tri(57, 1), tri(53)], pat: [0, 2, 1, 2, 3, 2, 4, null], shaker: true,  vel: 0.9 },
+      compartir: { bpm: 104, chords: [tri(53), tri(60), tri(62, 1), tri(58)], pat: [0, 1, 2, 3, 2, null, 4, 3], shaker: true,  vel: 0.9 },
+      lluvia:    { bpm: 78,  chords: [tri(57, 1), tri(53), tri(60), tri(55)], pat: [0, null, 2, null, 4, null, 3, null], shaker: false, vel: 0.7, drops: true },
+      idea:      { bpm: 88,  chords: [tri(52, 1), tri(48), tri(55), tri(50)], pat: [0, 2, null, 3, null, 2, 1, null], shaker: false, vel: 0.75 },
+      fiesta:    { bpm: 116, chords: [tri(60), tri(53), tri(55), tri(60)], pat: [0, 2, 4, 2, 5, 4, 3, 2], shaker: true,  vel: 1 }
+    };
+    const PENTA = [84, 86, 88, 91, 93, 96];
+
+    function build(){
+      master = ctx.createGain(); master.gain.value = 0.9;
+      const comp = ctx.createDynamicsCompressor(); comp.threshold.value = -16; comp.ratio.value = 4;
+      master.connect(comp); comp.connect(ctx.destination);
+      musicBus = ctx.createGain(); musicBus.gain.value = 0; musicBus.connect(master);
+      sfxBus = ctx.createGain(); sfxBus.gain.value = 0.8; sfxBus.connect(master);
+      voiceBus = ctx.createGain(); voiceBus.gain.value = 1.15; voiceBus.connect(master);
+      noiseBuf = ctx.createBuffer(1, ctx.sampleRate * 2, ctx.sampleRate);
+      const d = noiseBuf.getChannelData(0);
+      for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
+      // rumor de lluvia: ruido filtrado en bucle (volumen según la lluvia 3D)
+      const src = ctx.createBufferSource(); src.buffer = noiseBuf; src.loop = true;
+      const bp = ctx.createBiquadFilter(); bp.type = 'bandpass'; bp.frequency.value = 1600; bp.Q.value = 0.5;
+      const lp = ctx.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 5000;
+      rainGain = ctx.createGain(); rainGain.gain.value = 0;
+      src.connect(bp); bp.connect(lp); lp.connect(rainGain); rainGain.connect(sfxBus); src.start();
+    }
+    const T = () => ctx.currentTime;
+    function env(g, t, peak, dur, attack = 0.01){
+      g.gain.setValueAtTime(0.0001, t);
+      g.gain.exponentialRampToValueAtTime(peak, t + attack);
+      g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    }
+    /* Instrumentos */
+    function pluck(t, midi, vel = 1, dur = 0.7, bus = musicBus){        // tipo kalimba / marimba
+      const f = mtof(midi), g = ctx.createGain(), g2 = ctx.createGain();
+      const o1 = ctx.createOscillator(), o2 = ctx.createOscillator();
+      o1.type = 'sine'; o2.type = 'triangle'; o1.frequency.value = f; o2.frequency.value = f * 2; g2.gain.value = 0.16;
+      o1.connect(g); o2.connect(g2); g2.connect(g); g.connect(bus);
+      env(g, t, 0.28 * vel, dur, 0.008);
+      o1.start(t); o2.start(t); o1.stop(t + dur + 0.05); o2.stop(t + dur + 0.05);
+    }
+    function pad(t, notes, dur){                                         // colchón suave de acordes
+      const g = ctx.createGain(), lp = ctx.createBiquadFilter();
+      lp.type = 'lowpass'; lp.frequency.value = 800;
+      g.connect(lp); lp.connect(musicBus);
+      g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(0.035, t + 0.5);
+      g.gain.setValueAtTime(0.035, t + dur - 0.5); g.gain.linearRampToValueAtTime(0.0001, t + dur);
+      notes.forEach(m => [-7, 7].forEach(det => {
+        const o = ctx.createOscillator(); o.type = 'triangle'; o.frequency.value = mtof(m); o.detune.value = det;
+        o.connect(g); o.start(t); o.stop(t + dur + 0.05);
+      }));
+    }
+    function bass(t, midi, dur){
+      const o = ctx.createOscillator(), g = ctx.createGain();
+      o.type = 'sine'; o.frequency.value = mtof(midi); o.connect(g); g.connect(musicBus);
+      env(g, t, 0.22, dur, 0.02); o.start(t); o.stop(t + dur + 0.05);
+    }
+    function noise(t, dur, vol, freq, type = 'highpass', bus = musicBus, q = 1){
+      const s = ctx.createBufferSource(), f = ctx.createBiquadFilter(), g = ctx.createGain();
+      s.buffer = noiseBuf; f.type = type; f.frequency.value = freq; f.Q.value = q;
+      s.connect(f); f.connect(g); g.connect(bus);
+      env(g, t, vol, dur, 0.004);
+      s.start(t, Math.random() * 1.5); s.stop(t + dur + 0.05);
+      return f;
+    }
+    /* Secuenciador: programa las notas un poquito por adelantado */
+    function tick(){
+      if (!ctx || ctx.state !== 'running') return;
+      if (nextTime < T() - 0.2) nextTime = T() + 0.05;
+      while (nextTime < T() + 0.15){
+        if (!theme){ theme = THEMES[nextTheme || 'manana']; nextTheme = null; }
+        if (step % 8 === 0 && nextTheme){ theme = THEMES[nextTheme]; nextTheme = null; }  // cambia al empezar compás
+        const th = theme, spb = 60 / th.bpm / 2, t = nextTime;
+        const bar = Math.floor(step / 8), s = step % 8;
+        const ch = th.chords[bar % th.chords.length], lift = ch[0] < 58 ? 12 : 0;
+        if (s === 0) pad(t, ch, spb * 8);
+        if (s === 0 || s === 4) bass(t, ch[0] >= 55 ? ch[0] - 12 : ch[0], spb * 3);
+        const pat = (bar % 4 === 3) ? th.pat.slice(1).concat(th.pat[0]) : th.pat;
+        const idx = pat[s];
+        if (idx !== null && idx !== undefined) pluck(t, ch[idx % 3] + 12 * Math.floor(idx / 3) + lift + 12, th.vel * (0.8 + Math.random() * 0.25), th.bpm < 90 ? 1.1 : 0.7);
+        if (th.shaker && s % 2 === 1) noise(t, 0.05, 0.035, 7000);
+        if (th.drops && Math.random() < 0.18) pluck(t + spb * 0.5, PENTA[(Math.random() * PENTA.length) | 0], 0.35, 0.5);
+        step++; nextTime += spb;
+      }
+    }
+
+    /* Efectos de sonido */
+    const last = {};
+    const ok = (k, ms) => { const n = performance.now(); if (n - (last[k] || 0) < ms) return false; last[k] = n; return true; };
+    const ready = () => on && ctx && ctx.state === 'running';
+    const PITCH = { coco: 1, pio: 1.45, eri: 0.78 };
+    function boing(id){                                                  // salto
+      if (!ready() || !ok('boing' + id, 120)) return;
+      const p = (PITCH[id] || 1) * (0.95 + Math.random() * 0.1), t = T();
+      const o = ctx.createOscillator(), g = ctx.createGain(), lfo = ctx.createOscillator(), lg = ctx.createGain();
+      o.type = 'sine';
+      o.frequency.setValueAtTime(190 * p, t);
+      o.frequency.exponentialRampToValueAtTime(520 * p, t + 0.09);
+      o.frequency.exponentialRampToValueAtTime(300 * p, t + 0.3);
+      lfo.frequency.value = 16; lg.gain.value = 18 * p; lfo.connect(lg); lg.connect(o.frequency);
+      o.connect(g); g.connect(sfxBus); env(g, t, 0.13, 0.32, 0.01);
+      o.start(t); lfo.start(t); o.stop(t + 0.36); lfo.stop(t + 0.36);
+    }
+    function pop(p = 1){                                                 // aparece algo
+      if (!ready() || !ok('pop', 60)) return;
+      const t = T(), o = ctx.createOscillator(), g = ctx.createGain();
+      o.type = 'sine'; o.frequency.setValueAtTime(420 * p, t); o.frequency.exponentialRampToValueAtTime(1100 * p, t + 0.06);
+      o.connect(g); g.connect(sfxBus); env(g, t, 0.22, 0.12, 0.005); o.start(t); o.stop(t + 0.15);
+    }
+    function knock(i = 0){                                               // tronco de madera
+      if (!ready() || !ok('knock', 70)) return;
+      const t = T(), o = ctx.createOscillator(), g = ctx.createGain(), p = 1 + (i % 4) * 0.08;
+      o.type = 'triangle'; o.frequency.setValueAtTime(260 * p, t); o.frequency.exponentialRampToValueAtTime(110 * p, t + 0.1);
+      o.connect(g); g.connect(sfxBus); env(g, t, 0.3, 0.16, 0.003); o.start(t); o.stop(t + 0.2);
+      noise(t, 0.06, 0.12, 1400, 'bandpass', sfxBus, 2);
+    }
+    function thud(k = 1){                                                // ¡pum! al caer
+      if (!ready() || !ok('thud', 150)) return;
+      const t = T(), o = ctx.createOscillator(), g = ctx.createGain();
+      o.type = 'sine'; o.frequency.setValueAtTime(150, t); o.frequency.exponentialRampToValueAtTime(48, t + 0.25);
+      o.connect(g); g.connect(sfxBus); env(g, t, 0.45 * k, 0.32, 0.005); o.start(t); o.stop(t + 0.35);
+      noise(t, 0.22, 0.18 * k, 500, 'lowpass', sfxBus);
+    }
+    function sparkle(force = false){                                     // chispitas
+      if (!ready() || !ok('sparkle', force ? 0 : 450)) return;
+      const t = T(), base = (Math.random() * 2) | 0;
+      for (let i = 0; i < 4; i++) pluck(t + i * 0.06, PENTA[base + i], 0.4, 0.45, sfxBus);
+    }
+    function ding(){                                                     // ¡tengo una idea!
+      if (!ready()) return;
+      const t = T(); pluck(t, 88, 0.7, 1.2, sfxBus); pluck(t + 0.12, 95, 0.6, 1.4, sfxBus);
+    }
+    function tada(){                                                     // celebración
+      if (!ready() || !ok('tada', 1500)) return;
+      const t = T(), n = [72, 76, 79, 84];
+      n.forEach((m, i) => pluck(t + i * 0.09, m, 0.8, 0.6, sfxBus));
+      n.forEach(m => pluck(t + 0.42, m, 0.5, 1.4, sfxBus));
+      noise(t + 0.4, 0.5, 0.05, 6000, 'highpass', sfxBus);
+    }
+    function whoosh(){                                                   // hojas volando
+      if (!ready()) return;
+      const t = T(), f = noise(t, 0.8, 0.12, 400, 'bandpass', sfxBus, 1.2);
+      f.frequency.setValueAtTime(400, t); f.frequency.exponentialRampToValueAtTime(2600, t + 0.7);
+    }
+    function plic(){                                                     // gota
+      const t = T(), o = ctx.createOscillator(), g = ctx.createGain(), r = 0.8 + Math.random() * 0.6;
+      o.type = 'sine'; o.frequency.setValueAtTime(1400 * r, t); o.frequency.exponentialRampToValueAtTime(2400 * r, t + 0.03);
+      o.connect(g); g.connect(sfxBus); env(g, t, 0.05, 0.07, 0.003); o.start(t); o.stop(t + 0.1);
+    }
+    function update(dt, amount){                                         // se llama en cada fotograma
+      if (!ready()) return;
+      if (Math.abs(amount - lastRain) > 0.02){ lastRain = amount; rainGain.gain.setTargetAtTime(amount * 0.1, T(), 0.4); }
+      if (amount > 0.15 && Math.random() < dt * 7 * amount) plic();
+    }
+
+    /* Voces: audios grabados (carpeta voces/) y, solo de reserva, la voz del navegador */
+    const VOICE_DIR = 'voces/';
+    // nombre del archivo (sin .mp3) → frase exacta que dice el personaje
+    const LINES = {
+      'coco-hola': '¡Hola! Soy Coco.',
+      'coco-toque-1': '¡Hola! ¡Soy Coco y salto rapidísimo!',
+      'coco-toque-2': '¡Mis orejas oyen hasta a las hormigas!',
+      'coco-toque-3': '¡Uy, qué prisa tengo! ¿Adónde iba?',
+      'coco-tronco': '¡Uf! Este tronco pesa muchísimo...',
+      'coco-solo': 'Solo no puedo...',
+      'coco-gracias-pio': '¡Gracias, Pío! ¡Juntos sí podemos!',
+      'coco-lloviendo': '¡Oh, no! ¡Está lloviendo!',
+      'coco-animo-1': '¡Tú puedes, Pío!',
+      'coco-animo-2': '¡Ánimo, amigo!',
+      'coco-animo-3': '¡Venga, que casi está!',
+      'coco-escuchamos': '¡Eri! Cuéntanos, te escuchamos.',
+      'coco-gracias-eri': '¡Gracias por tu idea, Eri!',
+      'coco-final': '¡Gracias por leer con nosotros!',
+      'pio-soy': '¡Y yo soy Pío!',
+      'pio-toque-1': '¡Pío, pío! ¡Hoy va a ser un gran día!',
+      'pio-toque-2': '¡Soy pequeñito, pero trabajo un montón!',
+      'pio-toque-3': '¡Si me caigo, me levanto!',
+      'pio-ramitas': '¡Coco! ¡Te presto mis ramitas!',
+      'pio-paredes': '¡Mira, Coco! ¡Ya tenemos paredes!',
+      'pio-tejado': '¡Tranquilo! ¡Yo pongo el tejado!',
+      'pio-caida-1': '¡Ay! ¡Me he caído!',
+      'pio-caida-2': '¡Pum! ¡Otra vez al suelo!',
+      'pio-caida-3': '¡Uy! Resbala mucho...',
+      'pio-otra-1': '¡No pasa nada! ¡Otra vez!',
+      'pio-otra-2': '¡Me levanto y lo intento!',
+      'pio-otra-3': '¡Esta vez sí!',
+      'pio-como': '¿Cómo hacemos un tejado que no se caiga?',
+      'pio-genial': '¡Seguro que tu idea es genial!',
+      'pio-hurra': '¡Hurra! ¡La casita está terminada!',
+      'eri-soy': 'Yo... soy Eri.',
+      'eri-toque-1': 'Ho... hola. Soy Eri.',
+      'eri-toque-2': '¡Cosquillas no, que pincho un poquito!',
+      'eri-toque-3': 'Tengo muchas ideas... ¡y alguna es genial!',
+      'eri-verguenza': 'Tengo una idea... pero me da vergüenza.',
+      'eri-hojas': '¿Y si hacemos el tejado con hojas grandes?',
+      'eri-gracias': '¡Gracias por escucharme!',
+      'eri-final': '¡Hasta el próximo cuento!',
+      // invitaciones a seguir bajando: si aún no existe el audio, el bocadillo sale sin voz
+      'coco-sigue-portada': '¡Sigue bajando, que empieza el cuento!',
+      'pio-sigue-1': '¡Sigue bajando! ¿Qué pasará con el tejado?',
+      'coco-sigue-2': '¡Sigue bajando, que Eri tiene una idea!',
+      'eri-sigue-3': '¡Sigue bajando, que lo celebramos!'
+    };
+    const OPTIONAL = new Set(['coco-sigue-portada', 'pio-sigue-1', 'coco-sigue-2', 'eri-sigue-3']);
+    const norm = (t) => t.replace(/…/g, '...').replace(/\s+/g, ' ').trim();
+    const byText = {};
+    Object.keys(LINES).forEach(k => { byText[norm(LINES[k])] = k; });
+    const clips = {};
+    let voiceBus = null;
+    // Carga un audio: primero con Web Audio (más fiable en móvil); si no se puede
+    // (por ejemplo al abrir el archivo con doble clic), con un elemento <audio>.
+    function loadClip(key){
+      if (clips[key]) return clips[key].p;
+      const c = clips[key] = { state: 'loading', dur: 0 };
+      const url = VOICE_DIR + key + '.mp3';
+      const viaAudioTag = () => {
+        // se carga al reproducirse; la duración real llega en cuanto el navegador la conoce
+        const a = new Audio(); a.preload = 'none';
+        a.addEventListener('loadedmetadata', () => { c.dur = a.duration || c.dur; }, { once: true });
+        a.addEventListener('error', () => { c.state = 'fail'; }, { once: true });
+        a.src = url;
+        c.el = a; c.dur = LINES[key].length / 13 + 0.4; c.state = 'ok';
+      };
+      const viaWebAudio = (ctx && /^https?:$/.test(location.protocol))
+        ? fetch(url).then(r => { if (!r.ok) throw new Error(r.status); return r.arrayBuffer(); })
+            .then(ab => new Promise((ok, ko) => ctx.decodeAudioData(ab, ok, ko)))
+            .then(b => { c.buf = b; c.dur = b.duration; c.state = 'ok'; })
+        : Promise.reject(new Error('sin web audio'));
+      c.p = /^https?:$/.test(location.protocol) ? viaWebAudio.catch(() => { c.state = 'fail'; }) : viaWebAudio.catch(viaAudioTag);
+      return c.p;
+    }
+    function playClip(c, done){
+      if (c.buf && ctx){
+        const src = ctx.createBufferSource(); src.buffer = c.buf; src.connect(voiceBus);
+        src.onended = done; src.start();
+        return () => { src.onended = null; try { src.stop(); } catch (e) {} };
+      }
+      const a = c.el; a.onended = done;
+      try { a.currentTime = 0; } catch (e) {}
+      const pr = a.play(); if (pr && pr.catch) pr.catch(done);
+      const safety = setTimeout(done, (c.dur + 2) * 1000);               // por si el navegador no avisa al terminar
+      return () => { clearTimeout(safety); a.onended = null; a.pause(); };
+    }
+
+    // Reserva: voz del navegador, solo si falta un audio
+    let voice = null;
+    const keep = [];
+    function pickVoice(){
+      if (!synth) return;
+      let best = null, bs = -99;
+      synth.getVoices().forEach(v => {
+        if (!/^es([-_]|$)/i.test(v.lang)) return;
+        let sc = 0;
+        if (/es[-_]ES/i.test(v.lang)) sc += 3; else if (/es[-_](MX|US|419)/i.test(v.lang)) sc += 1;
+        if (/google|natural|online|neural|premium|enhanced|mejorad/i.test(v.name)) sc += 2;
+        if (/compact|eloquence/i.test(v.name)) sc -= 2;
+        if (sc > bs){ bs = sc; best = v; }
+      });
+      voice = best;
+    }
+    if (synth){ pickVoice(); synth.onvoiceschanged = pickVoice; }
+    const VOICE = { coco: { pitch: 1.2, rate: 1.06 }, pio: { pitch: 1.8, rate: 1.1 }, eri: { pitch: 0.85, rate: 0.86, volume: 0.9 } };
+    function browserSpeak(item, done){
+      if (!synth){ setTimeout(done, 0); return () => {}; }
+      const v = VOICE[item.id] || { pitch: 1, rate: 1 };
+      const u = new SpeechSynthesisUtterance(item.text.replace(/…/g, ', '));
+      if (voice){ u.voice = voice; u.lang = voice.lang; } else u.lang = 'es-ES';
+      u.pitch = v.pitch; u.rate = v.rate; u.volume = v.volume ?? 1;
+      u.onend = done; u.onerror = done;
+      keep.push(u); synth.speak(u);
+      const safety = setTimeout(done, (item.text.length / 9 + 3) * 1000);   // por si el navegador no avisa al terminar
+      return () => { clearTimeout(safety); synth.cancel(); keep.length = 0; };
+    }
+
+    // Cola: las frases suenan una detrás de otra, sin pisarse
+    const queue = [];
+    let current = null, stopCurrent = null, queueEnd = 0;
+    function duck(d){ if (ctx && musicBus && on) musicBus.gain.setTargetAtTime(d ? MUSIC_DUCK : MUSIC_VOL, T(), 0.15); }
+    function next(){
+      const item = queue.shift();
+      if (!item){ current = null; stopCurrent = null; duck(false); return; }
+      const token = current = {};
+      const done = () => { if (current !== token) return; current = null; stopCurrent = null; next(); };
+      const go = () => {
+        if (current !== token || !on) return;
+        const c = item.key ? clips[item.key] : null;
+        if (OPTIONAL.has(item.key) && !(c && c.state === 'ok')){ done(); return; }   // sin audio: no usa la voz del navegador
+        duck(true);
+        if (c && c.state === 'ok') stopCurrent = playClip(c, () => { if (c.el && c.el.error) c.state = 'fail'; done(); });
+        else stopCurrent = browserSpeak(item, done);
+      };
+      const c = item.key ? clips[item.key] : null;
+      if (c && c.state === 'loading') Promise.race([c.p, new Promise(r => setTimeout(r, 1500))]).then(go);
+      else go();
+    }
+    function speak(id, text, urgent = false){
+      if (!on) return 0;
+      const key = byText[norm(text)] || null;
+      if (key && !clips[key]) loadClip(key);
+      const now = performance.now() / 1000;
+      if (urgent || queue.length >= 2) hush();
+      const c = key ? clips[key] : null;
+      const est = (c && c.state === 'ok') ? c.dur + 0.3 : text.length / 13 + 0.6;
+      queue.push({ id, text, key });
+      if (!current) next();
+      queueEnd = Math.max(now, queueEnd) + est;
+      return queueEnd - now;                                             // segundos hasta que termine de hablar
+    }
+    function hush(){
+      queue.length = 0;
+      if (stopCurrent) stopCurrent();
+      current = null; stopCurrent = null; queueEnd = 0;
+      if (synth) synth.cancel();
+      keep.length = 0; duck(false);
+    }
+
+    /* Botones de sonido (barra superior y portada) */
+    const btns = [...document.querySelectorAll('[data-sound]')];
+    function paint(){
+      btns.forEach(b => {
+        b.setAttribute('aria-pressed', on ? 'true' : 'false');
+        b.setAttribute('aria-label', on ? 'Apagar el sonido' : 'Activar el sonido: música y voces de los personajes');
+        const tx = b.querySelector('.sound-text'); if (tx) tx.textContent = on ? 'Sonido activado' : 'Activar música y voces';
+        if (on) b.classList.remove('nudge');
+      });
+    }
+    function enable(){
+      if (!AC && !synth) return;
+      if (AC && !ctx){
+        try { if (navigator.audioSession) navigator.audioSession.type = 'playback'; } catch (e) {}  // en iPhone, que suene aunque esté en silencio
+        ctx = new AC(); build();
+      }
+      on = true; store.set('on'); paint();
+      Object.keys(LINES).forEach(loadClip);                              // precarga las 38 voces
+      if (ctx){
+        ctx.resume();
+        musicBus.gain.cancelScheduledValues(T()); musicBus.gain.setTargetAtTime(MUSIC_VOL, T(), 0.6);
+        lastRain = -1; nextTime = T() + 0.1;
+        if (!timer) timer = setInterval(tick, 25);
+      }
+      if (synth){ const u = new SpeechSynthesisUtterance(' '); u.volume = 0; synth.speak(u); }  // desbloquea la voz de reserva en iPhone
+      setTimeout(() => sparkle(true), 150);
+    }
+    function disable(){
+      on = false; store.set('off'); paint(); hush();
+      if (ctx){
+        musicBus.gain.setTargetAtTime(0, T(), 0.1); rainGain.gain.setTargetAtTime(0, T(), 0.1);
+        setTimeout(() => { if (!on) ctx.suspend(); }, 400);
+      }
+      clearInterval(timer); timer = null;
+    }
+    btns.forEach(b => b.addEventListener('click', () => (on ? disable() : enable())));
+    // si la última vez dejó el sonido activado, se reactiva con el primer toque en la página
+    if (store.get() === 'on'){
+      const first = (e) => {
+        document.removeEventListener('click', first, true); document.removeEventListener('keydown', first, true);
+        if (e.target && e.target.closest && e.target.closest('[data-sound]')) return;
+        if (!on) enable();
+      };
+      document.addEventListener('click', first, true); document.addEventListener('keydown', first, true);
+    }
+    function pause(){ hush(); if (ctx && on) ctx.suspend(); }
+    function resume(){ if (ctx && on){ ctx.resume(); nextTime = T() + 0.1; } }
+    return { enable, disable, isOn: () => on, setTheme: (n) => { nextTheme = n; }, hush, update, speak,
+             boing, pop, knock, thud, sparkle, ding, tada, whoosh, leaf: () => pop(1.3 + Math.random() * 0.5), pause, resume };
+  })();
+
+  /* =========================================================
+     2. RENDERER, ESCENA, CÁMARA
+     ========================================================= */
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, powerPreference: 'high-performance' });
+  renderer.setPixelRatio(PROFILE.pixelRatio);
+  renderer.setSize(window.innerWidth, window.innerHeight, false);
+  renderer.outputColorSpace = THREE.SRGBColorSpace;
+  renderer.toneMapping = THREE.NeutralToneMapping;
+  renderer.toneMappingExposure = 1.0;
+  renderer.shadowMap.enabled = SHADOWS;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+
+  const scene = new THREE.Scene();
+  const pmrem = new THREE.PMREMGenerator(renderer);
+  scene.environment = pmrem.fromScene(new RoomEnvironment(renderer), 0.04).texture;
+  scene.environmentIntensity = 0.38;
+  pmrem.dispose();
+
+  const camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.1, 140);
+  const camBase = new V3(0, 1.5, 6.6);      // la posición que mueve GSAP
+  const camTarget = new V3(0, 0.95, 0.6);   // el punto al que mira
+  const drift = new V3(), driftTarget = new V3(), mouse = new THREE.Vector2();
+  camera.position.copy(camBase);
+
+  /* =========================================================
+     3. CIELO DEGRADADO (canvas 2D) + LUCES
+     ========================================================= */
+  const skyCanvas = document.createElement('canvas');
+  skyCanvas.width = 4; skyCanvas.height = 256;
+  const skyCtx = skyCanvas.getContext('2d');
+  const skyTex = new THREE.CanvasTexture(skyCanvas);
+  skyTex.colorSpace = THREE.SRGBColorSpace;
+  scene.background = skyTex;
+  scene.fog = new THREE.Fog(0xFFF3DC, 22, 60);
+
+  const SKIES = {
+    manana:    { top:'#8FD3F4', mid:'#CDEFFB', bot:'#FFF3DC', hemiSky:'#E3F5FF', hemiGround:'#BFE8C9', sun:'#FFF1D6', sunI:2.5, hemiI:1.15, cloud:'#FFFFFF' },
+    mediodia:  { top:'#62BDF0', mid:'#B5E6FA', bot:'#F4FBFF', hemiSky:'#EAF7FF', hemiGround:'#C2EBCB', sun:'#FFFFFF', sunI:2.9, hemiI:1.1,  cloud:'#FFFFFF' },
+    lluvia:    { top:'#7489A6', mid:'#A9BACB', bot:'#D9E1E7', hemiSky:'#CBD8E4', hemiGround:'#9DBFAE', sun:'#DCE6F0', sunI:1.15, hemiI:1.05, cloud:'#A3AEBD' },
+    atardecer: { top:'#7F8FD8', mid:'#F6B8A6', bot:'#FFE2A8', hemiSky:'#FFE4C8', hemiGround:'#CBE4B6', sun:'#FFCC8F', sunI:2.6, hemiI:1.0,  cloud:'#FFEDE4' },
+    dulce:     { top:'#4352A6', mid:'#B98ECB', bot:'#FFCBA8', hemiSky:'#F2D7F0', hemiGround:'#BFD9B8', sun:'#FFB98A', sunI:2.1, hemiI:0.95, cloud:'#F6DDF0' }
+  };
+  const ACT_SKY = ['manana', 'mediodia', 'lluvia', 'atardecer', 'dulce'];
+  const skyKeys = ['top', 'mid', 'bot', 'hemiSky', 'hemiGround', 'sun', 'cloud'];
+  const skyNow = {}; skyKeys.forEach(k => skyNow[k] = new THREE.Color(SKIES.manana[k]));
+  skyNow.sunI = SKIES.manana.sunI; skyNow.hemiI = SKIES.manana.hemiI;
+
+  const hemi = new THREE.HemisphereLight(skyNow.hemiSky, skyNow.hemiGround, skyNow.hemiI);
+  scene.add(hemi);
+  const sunLight = new THREE.DirectionalLight(skyNow.sun, skyNow.sunI);
+  sunLight.position.set(5, 10, 7);
+  sunLight.castShadow = SHADOWS;
+  if (SHADOWS){
+    sunLight.shadow.mapSize.set(PROFILE.shadowMap, PROFILE.shadowMap);
+    const sc = sunLight.shadow.camera;
+    sc.left = -9; sc.right = 9; sc.top = 9; sc.bottom = -9; sc.near = 1; sc.far = 32;
+    sunLight.shadow.bias = -0.0006;
+    sunLight.shadow.normalBias = 0.03;
+    sunLight.shadow.radius = 4;
+  }
+  scene.add(sunLight, sunLight.target);
+
+  function drawSky(){
+    const g = skyCtx.createLinearGradient(0, 0, 0, 256);
+    g.addColorStop(0, '#' + skyNow.top.getHexString());
+    g.addColorStop(0.55, '#' + skyNow.mid.getHexString());
+    g.addColorStop(1, '#' + skyNow.bot.getHexString());
+    skyCtx.fillStyle = g; skyCtx.fillRect(0, 0, 4, 256);
+    skyTex.needsUpdate = true;
+    scene.fog.color.copy(skyNow.bot);
+    hemi.color.copy(skyNow.hemiSky); hemi.groundColor.copy(skyNow.hemiGround); hemi.intensity = skyNow.hemiI;
+    sunLight.color.copy(skyNow.sun); sunLight.intensity = skyNow.sunI;
+    if (cloudMat) cloudMat.color.copy(skyNow.cloud);
+    const meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.setAttribute('content', '#' + skyNow.mid.getHexString());
+  }
+  let skyTween = null, cloudMat = null;
+  function setSky(act, dur = 2.2){
+    const name = typeof act === 'number' ? ACT_SKY[act] : act;
+    const to = SKIES[name]; if (!to) return;
+    const from = {}; skyKeys.forEach(k => from[k] = skyNow[k].clone());
+    const fromI = { sunI: skyNow.sunI, hemiI: skyNow.hemiI };
+    const toC = {}; skyKeys.forEach(k => toC[k] = new THREE.Color(to[k]));
+    const p = { t: 0 };
+    if (skyTween) skyTween.kill();
+    skyTween = gsap.to(p, {
+      t: 1, duration: RM ? 0.4 : dur, ease: 'sine.inOut',
+      onUpdate(){
+        skyKeys.forEach(k => skyNow[k].copy(from[k]).lerp(toC[k], p.t));
+        skyNow.sunI = fromI.sunI + (to.sunI - fromI.sunI) * p.t;
+        skyNow.hemiI = fromI.hemiI + (to.hemiI - fromI.hemiI) * p.t;
+        drawSky();
+      }
+    });
+  }
+
+  /* =========================================================
+     4. MATERIAL "PLASTILINA" (huellas de dedos con CanvasTexture)
+     ========================================================= */
+  function makeClayTexture(){
+    const S = 256, c = document.createElement('canvas'); c.width = c.height = S;
+    const g = c.getContext('2d');
+    const img = g.createImageData(S, S);
+    for (let i = 0; i < img.data.length; i += 4){
+      const v = 128 + (Math.random() - 0.5) * 22;
+      img.data[i] = img.data[i + 1] = img.data[i + 2] = v; img.data[i + 3] = 255;
+    }
+    g.putImageData(img, 0, 0);
+    for (let i = 0; i < 46; i++){             // pequeñas abolladuras
+      const light = Math.random() < 0.5;
+      g.fillStyle = light ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.06)';
+      g.beginPath(); g.arc(Math.random() * S, Math.random() * S, rand(6, 22), 0, Math.PI * 2); g.fill();
+    }
+    g.lineWidth = 1.4;                        // huellas dactilares
+    for (let f = 0; f < 10; f++){
+      const cx = Math.random() * S, cy = Math.random() * S, rot = Math.random() * Math.PI;
+      for (let r = 3; r < 30; r += 2.7){
+        g.strokeStyle = Math.random() < 0.5 ? 'rgba(255,255,255,0.10)' : 'rgba(0,0,0,0.10)';
+        g.beginPath();
+        g.ellipse(cx, cy, r, r * 0.72, rot, rand(0.1, 0.8), Math.PI * rand(1.4, 1.9));
+        g.stroke();
+      }
+    }
+    const t = new THREE.CanvasTexture(c);
+    t.wrapS = t.wrapT = THREE.RepeatWrapping;
+    t.repeat.set(2, 2);
+    t.anisotropy = 4;
+    return t;
+  }
+  const CLAY_TEX = makeClayTexture();
+  const GROUND_TEX = CLAY_TEX.clone(); GROUND_TEX.repeat.set(22, 22); GROUND_TEX.needsUpdate = true;
+
+  const matCache = new Map();
+  function clay(hex, { rough = 0.88, emissive = null, ei = 0, unique = false, bump = 0.7 } = {}){
+    const key = `${hex}|${rough}|${emissive}|${ei}|${bump}`;
+    if (!unique && matCache.has(key)) return matCache.get(key);
+    const m = new THREE.MeshStandardMaterial({ color: hex, roughness: rough, metalness: 0, bumpMap: CLAY_TEX, bumpScale: bump });
+    if (emissive){ m.emissive = new THREE.Color(emissive); m.emissiveIntensity = ei; }
+    if (!unique) matCache.set(key, m);
+    return m;
+  }
+  const outlineCache = new Map();
+  function outlineMat(hex){
+    if (outlineCache.has(hex)) return outlineCache.get(hex);
+    const c = new THREE.Color(hex).multiplyScalar(0.42);
+    const m = new THREE.MeshBasicMaterial({ color: c, side: THREE.BackSide });
+    outlineCache.set(hex, m); return m;
+  }
+  const noRaycast = () => {};
+  function addOutline(mesh, hex, s = 1.05){
+    if (!PROFILE.outlines) return;
+    const o = new THREE.Mesh(mesh.geometry, outlineMat(hex));
+    o.scale.setScalar(s); o.raycast = noRaycast; o.userData.outline = true;
+    mesh.add(o);
+  }
+
+  /* Geometrías compartidas, con un toque "hecho a mano" (deformación suave) */
+  function lumpy(geo, amount, seed){
+    const p = geo.attributes.position, v = new V3();
+    for (let i = 0; i < p.count; i++){
+      v.fromBufferAttribute(p, i);
+      const len = v.length() || 1;
+      const d = amount * (Math.sin(v.x * 3.1 + seed) * Math.sin(v.y * 2.7 + seed * 1.3) * Math.sin(v.z * 3.3 + seed * 0.7)
+                + 0.45 * Math.sin(v.x * 7.3 + v.y * 5.1 + v.z * 4.2 + seed * 2.1));
+      p.setXYZ(i, v.x + (v.x / len) * d, v.y + (v.y / len) * d, v.z + (v.z / len) * d);
+    }
+    geo.computeVertexNormals();
+    return geo;
+  }
+  const SEG = PROFILE.mobile ? [26, 20] : [36, 28];
+  const GEO = {
+    blob: [ lumpy(new THREE.SphereGeometry(1, SEG[0], SEG[1]), 0.028, 1.1),
+            lumpy(new THREE.SphereGeometry(1, SEG[0], SEG[1]), 0.032, 4.2),
+            lumpy(new THREE.SphereGeometry(1, SEG[0], SEG[1]), 0.022, 7.7) ],
+    smooth: new THREE.SphereGeometry(1, 24, 18),
+    low: new THREE.SphereGeometry(1, 12, 9),
+    cone: new THREE.ConeGeometry(1, 1, 14),
+    smile: new THREE.TorusGeometry(1, 0.24, 8, 22, Math.PI),
+    ring: new THREE.TorusGeometry(1, 0.3, 8, 22)
+  };
+  const geoCache = new Map();
+  const cachedGeo = (key, fn) => { if (!geoCache.has(key)) geoCache.set(key, fn()); return geoCache.get(key); };
+
+  /* Pieza de plastilina: esfera deformada, escala ligeramente imperfecta */
+  function blob(hex, sx, sy, sz, { x = 0, y = 0, z = 0, outline = true, cast = true, rough, geo, jitter = 0.04, os = 1.05 } = {}){
+    const m = new THREE.Mesh(geo || GEO.blob[(Math.random() * 3) | 0], clay(hex, { rough }));
+    m.scale.set(sx * jit(jitter), sy * jit(jitter), sz * jit(jitter));
+    m.position.set(x, y, z);
+    m.castShadow = cast && SHADOWS; m.receiveShadow = SHADOWS;
+    if (outline) addOutline(m, hex, os);
+    return m;
+  }
+
+  /* =========================================================
+     5. PERSONAJES
+     ========================================================= */
+  const EYE_WHITE = new THREE.MeshStandardMaterial({ color: '#FFFFFF', roughness: 0.35, metalness: 0 });
+  const PUPIL = new THREE.MeshStandardMaterial({ color: '#1B1A33', roughness: 0.22, metalness: 0 });
+  const SHINE = new THREE.MeshBasicMaterial({ color: '#FFFFFF' });
+  const MOUTH = new THREE.MeshStandardMaterial({ color: '#5A2E33', roughness: 0.6, metalness: 0 });
+
+  function makeEye(r){
+    const wrap = new THREE.Group();            // expresión
+    const blink = new THREE.Group();           // parpadeo
+    wrap.add(blink);
+    const white = new THREE.Mesh(GEO.smooth, EYE_WHITE); white.scale.set(r, r * 1.08, r * 0.8);
+    if (PROFILE.outlines){ const o = new THREE.Mesh(GEO.smooth, outlineMat('#6B5A7A')); o.scale.setScalar(1.07); o.raycast = noRaycast; white.add(o); }
+    const pupil = new THREE.Mesh(GEO.smooth, PUPIL); pupil.scale.set(r * 0.58, r * 0.64, r * 0.4); pupil.position.z = r * 0.58;
+    const s1 = new THREE.Mesh(GEO.low, SHINE); s1.scale.setScalar(r * 0.2); s1.position.set(r * 0.2, r * 0.26, r * 0.96);
+    const s2 = new THREE.Mesh(GEO.low, SHINE); s2.scale.setScalar(r * 0.09); s2.position.set(-r * 0.16, -r * 0.2, r * 0.95);
+    blink.add(white, pupil, s1, s2);
+    wrap.userData = { blink, pupil, r };
+    return wrap;
+  }
+  function makeMouths(size){
+    const g = new THREE.Group();
+    const smile = new THREE.Mesh(GEO.smile, MOUTH); smile.rotation.z = Math.PI; smile.scale.setScalar(size);
+    const sad = new THREE.Mesh(GEO.smile, MOUTH); sad.scale.setScalar(size * 0.8); sad.position.y = -size * 0.9;
+    const o = new THREE.Mesh(GEO.ring, MOUTH); o.scale.set(size * 0.55, size * 0.7, size * 0.55); o.position.y = -size * 0.4;
+    sad.visible = o.visible = false;
+    g.add(smile, sad, o);
+    return { group: g, smile, sad, o };
+  }
+  function makeCheek(x, y, z, ry){
+    const c = blob('#FF9DAE', 0.11, 0.07, 0.035, { x, y, z, outline: false, cast: false, rough: 0.7 });
+    c.rotation.y = ry; return c;
+  }
+
+  function baseCharacter(id, name, uiColor){
+    const root = new THREE.Group(), jump = new THREE.Group(), pokeG = new THREE.Group(), breath = new THREE.Group();
+    root.add(jump); jump.add(pokeG); pokeG.add(breath);
+    root.userData.charId = id; root.name = name;
+    const anchor = new THREE.Object3D(); breath.add(anchor);
+    return { id, name, uiColor, root, jump, pokeG, breath, anchor, eyes: [], ears: [], cheeks: [], wings: [],
+             mouths: null, head: null, expr: 'happy', phase: Math.random() * 10, nextBlink: rand(1, 3),
+             phrases: [], pokeExpr: [], pIdx: 0, plan: { x: 0, y: 0, z: 0 }, lastPoke: 0 };
+  }
+
+  /* Coco, el conejito */
+  function makeCoco(){
+    const ch = baseCharacter('coco', 'Coco', '#E07A5F');
+    const B = ch.breath, cream = '#F7E3C4', white = '#FFFBF4', pink = '#FFB0BA';
+    B.add(blob(cream, 0.6, 0.68, 0.55, { y: 0.72 }));                       // cuerpo
+    B.add(blob(white, 0.4, 0.46, 0.2, { y: 0.66, z: 0.42, outline: false })); // barriga
+    B.add(blob(cream, 0.22, 0.12, 0.3, { x: -0.27, y: 0.09, z: 0.24 }));    // pies
+    B.add(blob(cream, 0.22, 0.12, 0.3, { x: 0.27, y: 0.09, z: 0.24 }));
+    const armL = blob(cream, 0.13, 0.25, 0.13, { x: -0.55, y: 0.84, z: 0.12 }); armL.rotation.z = 0.55;
+    const armR = blob(cream, 0.13, 0.25, 0.13, { x: 0.55, y: 0.84, z: 0.12 }); armR.rotation.z = -0.55;
+    B.add(armL, armR);
+    B.add(blob(white, 0.17, 0.17, 0.17, { y: 0.42, z: -0.55 }));            // colita
+    const head = new THREE.Group(); head.position.y = 1.5; B.add(head); ch.head = head;
+    head.add(blob(cream, 0.52, 0.47, 0.48));
+    head.add(blob(white, 0.22, 0.15, 0.14, { y: -0.13, z: 0.39, outline: false }));
+    head.add(blob('#FF8FA3', 0.075, 0.055, 0.05, { y: -0.04, z: 0.5, outline: false }));
+    const eL = makeEye(0.13); eL.position.set(-0.19, 0.07, 0.37); eL.rotation.y = -0.28;
+    const eR = makeEye(0.13); eR.position.set(0.19, 0.07, 0.37); eR.rotation.y = 0.28;
+    head.add(eL, eR); ch.eyes.push(eL, eR);
+    ch.cheeks.push(makeCheek(-0.3, -0.12, 0.33, -0.6), makeCheek(0.3, -0.12, 0.33, 0.6));
+    head.add(...ch.cheeks);
+    ch.mouths = makeMouths(0.075); ch.mouths.group.position.set(0, -0.2, 0.46); ch.mouths.group.rotation.x = -0.25;
+    head.add(ch.mouths.group);
+    [-1, 1].forEach(s => {                                                  // orejas largas
+      const pivot = new THREE.Group(); pivot.position.set(0.17 * s, 0.36, -0.03);
+      pivot.rotation.z = -0.16 * s; pivot.userData.baseZ = pivot.rotation.z;
+      pivot.add(blob(cream, 0.12, 0.45, 0.08, { y: 0.42 }));
+      pivot.add(blob(pink, 0.06, 0.33, 0.035, { y: 0.42, z: 0.055, outline: false, cast: false }));
+      head.add(pivot); ch.ears.push(pivot);
+    });
+    ch.anchor.position.y = 2.65;
+    // tronco que intenta levantar (acto 1)
+    const hold = new THREE.Group(); hold.position.set(0, 0.95, 0.62); B.add(hold);
+    const log = makeLog(1.1, '#A8744B'); log.rotation.z = Math.PI / 2; hold.add(log);
+    ch.hold = hold; ch.holdLog = log; hold.visible = false;
+    ch.phrases = ['¡Hola! ¡Soy Coco y salto rapidísimo!', '¡Mis orejas oyen hasta a las hormigas!', '¡Uy, qué prisa tengo! ¿Adónde iba?'];
+    ch.pokeExpr = ['happy', 'surprised', 'happy'];
+    return ch;
+  }
+
+  /* Pío, el pollito */
+  function makePio(){
+    const ch = baseCharacter('pio', 'Pío', '#E0A800');
+    const B = ch.breath, yellow = '#FFD84D', dark = '#FFC531', orange = '#FF9F43';
+    B.add(blob(yellow, 0.48, 0.47, 0.46, { y: 0.5 }));
+    B.add(blob(orange, 0.1, 0.05, 0.16, { x: -0.17, y: 0.04, z: 0.16 }));
+    B.add(blob(orange, 0.1, 0.05, 0.16, { x: 0.17, y: 0.04, z: 0.16 }));
+    [-1, 1].forEach(s => {
+      const w = new THREE.Group(); w.position.set(0.44 * s, 0.62, 0); w.rotation.z = 0.35 * s; w.userData.baseZ = w.rotation.z; w.userData.s = s;
+      w.add(blob(dark, 0.1, 0.24, 0.2, { y: -0.12 }));
+      B.add(w); ch.wings.push(w);
+    });
+    const head = new THREE.Group(); head.position.y = 1.0; B.add(head); ch.head = head;
+    head.add(blob(yellow, 0.4, 0.37, 0.37));
+    [[-0.06, 0.38, 0.02, 0.35], [0.03, 0.42, 0, -0.1], [0.11, 0.37, -0.02, -0.5]].forEach(([x, y, z, rz]) => {
+      const t = blob(yellow, 0.055, 0.15, 0.055, { x, y, z }); t.rotation.z = rz; head.add(t);
+    });
+    const eL = makeEye(0.155); eL.position.set(-0.155, 0.07, 0.27); eL.rotation.y = -0.32;
+    const eR = makeEye(0.155); eR.position.set(0.155, 0.07, 0.27); eR.rotation.y = 0.32;
+    head.add(eL, eR); ch.eyes.push(eL, eR);
+    const beakMat = clay(orange, { rough: 0.7 });
+    const bTop = new THREE.Mesh(GEO.cone, beakMat); bTop.scale.set(0.085, 0.16, 0.06); bTop.rotation.x = Math.PI / 2; bTop.position.set(0, -0.06, 0.4);
+    const lowPivot = new THREE.Group(); lowPivot.position.set(0, -0.1, 0.34);
+    const bLow = new THREE.Mesh(GEO.cone, beakMat); bLow.scale.set(0.065, 0.12, 0.04); bLow.rotation.x = Math.PI / 2; bLow.position.set(0, 0, 0.05);
+    lowPivot.add(bLow); head.add(bTop, lowPivot); ch.beakLow = lowPivot;
+    addOutline(bTop, orange, 1.08);
+    ch.cheeks.push(makeCheek(-0.27, -0.09, 0.24, -0.7), makeCheek(0.27, -0.09, 0.24, 0.7));
+    head.add(...ch.cheeks);
+    ch.anchor.position.y = 1.78;
+    // hatillo de ramitas a la espalda (acto 1)
+    const bundle = new THREE.Group(); bundle.position.set(0, 0.75, -0.5);
+    for (let i = 0; i < 5; i++){
+      const tw = makeLog(0.9, ['#9C6B45', '#B07D52', '#8A5D3B'][i % 3], 0.05);
+      tw.rotation.z = Math.PI / 2 + rand(-0.12, 0.12); tw.position.set(rand(-0.05, 0.05), (i % 3) * 0.08, (i - 2) * 0.05);
+      bundle.add(tw);
+    }
+    bundle.rotation.z = 0.25; bundle.visible = false; B.add(bundle); ch.bundle = bundle;
+    ch.phrases = ['¡Pío, pío! ¡Hoy va a ser un gran día!', '¡Soy pequeñito, pero trabajo un montón!', '¡Si me caigo, me levanto!'];
+    ch.pokeExpr = ['happy', 'surprised', 'happy'];
+    ch.baseScale = 0.88;
+    return ch;
+  }
+
+  /* Eri, el erizo */
+  function makeEri(){
+    const ch = baseCharacter('eri', 'Eri', '#8A5A3C');
+    const B = ch.breath, brown = '#B07A4F', beige = '#F1D4AE', spike = '#6E4529', dark = '#3B2A2A';
+    const bx = 0.62, by = 0.55, bz = 0.66, cy = 0.56;
+    B.add(blob(brown, bx, by, bz, { y: cy }));
+    // púas: conos pequeños repartidos por la espalda (un único InstancedMesh)
+    const dirs = [], N = PROFILE.mobile ? 80 : 130;
+    for (let i = 0; i < N; i++){
+      const yy = 1 - (i / (N - 1)) * 2, rr = Math.sqrt(1 - yy * yy), th = i * 2.399963;
+      const d = new V3(Math.cos(th) * rr, yy, Math.sin(th) * rr);
+      if (d.z < 0.3 && d.y > -0.25) dirs.push(d);
+    }
+    const spikes = new THREE.InstancedMesh(GEO.cone, clay(spike, { rough: 0.85 }), dirs.length);
+    const dummy = new THREE.Object3D(), up = new V3(0, 1, 0);
+    dirs.forEach((d, i) => {
+      dummy.position.set(d.x * bx * 0.98, cy + d.y * by * 0.98, d.z * bz * 0.98);
+      dummy.quaternion.setFromUnitVectors(up, d.clone().add(new V3(0, 0.25, -0.2)).normalize());
+      const s = rand(0.85, 1.15);
+      dummy.scale.set(0.075 * s, 0.24 * s, 0.075 * s);
+      dummy.translateY(0.08);
+      dummy.updateMatrix(); spikes.setMatrixAt(i, dummy.matrix);
+    });
+    spikes.castShadow = SHADOWS; spikes.receiveShadow = SHADOWS;
+    B.add(spikes);
+    B.add(blob(dark, 0.12, 0.07, 0.18, { x: -0.26, y: 0.06, z: 0.28, outline: false }));
+    B.add(blob(dark, 0.12, 0.07, 0.18, { x: 0.26, y: 0.06, z: 0.28, outline: false }));
+    const head = new THREE.Group(); head.position.set(0, 0.62, 0.36); B.add(head); ch.head = head;
+    head.add(blob(beige, 0.42, 0.38, 0.3, { z: 0.06 }));
+    head.add(blob(beige, 0.17, 0.14, 0.2, { y: -0.1, z: 0.32 }));
+    head.add(blob(dark, 0.065, 0.055, 0.055, { y: -0.07, z: 0.52, outline: false, rough: 0.4 }));
+    head.add(blob(beige, 0.09, 0.09, 0.06, { x: -0.28, y: 0.3, z: -0.02 }));
+    head.add(blob(beige, 0.09, 0.09, 0.06, { x: 0.28, y: 0.3, z: -0.02 }));
+    const eL = makeEye(0.115); eL.position.set(-0.16, 0.1, 0.27); eL.rotation.y = -0.3;
+    const eR = makeEye(0.115); eR.position.set(0.16, 0.1, 0.27); eR.rotation.y = 0.3;
+    head.add(eL, eR); ch.eyes.push(eL, eR);
+    ch.cheeks.push(makeCheek(-0.26, -0.08, 0.26, -0.7), makeCheek(0.26, -0.08, 0.26, 0.7));
+    head.add(...ch.cheeks);
+    ch.mouths = makeMouths(0.06); ch.mouths.group.position.set(0, -0.23, 0.36); ch.mouths.group.rotation.x = -0.3;
+    head.add(ch.mouths.group);
+    ch.anchor.position.y = 1.55;
+    // bombilla de "¡tengo una idea!"
+    const bulb = new THREE.Group(); bulb.position.y = 1.55;
+    const glass = new THREE.Mesh(GEO.blob[0], clay('#FFE680', { emissive: '#FFD23F', ei: 0.9, rough: 0.5, unique: true }));
+    glass.scale.setScalar(0.17); bulb.add(glass);
+    const base = new THREE.Mesh(cachedGeo('bulbBase', () => new THREE.CylinderGeometry(0.07, 0.07, 0.1, 12)), clay('#B8B8C8', { rough: 0.6 }));
+    base.position.y = -0.18; bulb.add(base);
+    bulb.scale.setScalar(0.001); B.add(bulb); ch.bulb = bulb; ch.bulbMat = glass.material;
+    ch.phrases = ['Ho… hola. Soy Eri.', '¡Cosquillas no, que pincho un poquito!', 'Tengo muchas ideas… ¡y alguna es genial!'];
+    ch.pokeExpr = ['shy', 'surprised', 'happy'];
+    ch.baseScale = 0.96;
+    return ch;
+  }
+
+  /* Expresiones */
+  function setExpr(ch, e){
+    ch.expr = e;
+    const key = { happy: 'smile', surprised: 'o', sad: 'sad', shy: 'smile' }[e] || 'smile';
+    if (ch.mouths){
+      ['smile', 'sad', 'o'].forEach(k => ch.mouths[k].visible = (k === key));
+      const s = e === 'shy' ? 0.7 : 1;
+      ch.mouths.group.scale.setScalar(s);
+    }
+    if (ch.beakLow) gsap.to(ch.beakLow.rotation, { x: e === 'surprised' ? 0.55 : e === 'happy' ? 0.22 : 0.05, duration: 0.2 });
+    const eyeS = e === 'surprised' ? 1.18 : 1;
+    const eyeY = e === 'sad' ? 0.82 : 1;
+    ch.eyes.forEach(eye => {
+      gsap.to(eye.scale, { x: eyeS, y: eyeS * eyeY, z: eyeS, duration: 0.25, ease: 'back.out(2)' });
+      const r = eye.userData.r;
+      gsap.to(eye.userData.pupil.position, { y: (e === 'shy' || e === 'sad') ? -r * 0.18 : 0, duration: 0.25 });
+    });
+    ch.cheeks.forEach(c => gsap.to(c.scale, { x: e === 'shy' ? 0.17 : 0.11, y: e === 'shy' ? 0.1 : 0.07, duration: 0.3 }));
+  }
+
+  /* Bocadillos de texto */
+  const bubbleLayer = document.getElementById('bubbles');
+  const live = document.getElementById('live');
+  function say(ch, text, dur = 2.8, urgent = false){
+    if (!ch.bubble){
+      const el = document.createElement('div'); el.className = 'bubble';
+      el.innerHTML = '<div class="bubble-in"><span class="bubble-name"></span><span class="bubble-text"></span></div>';
+      el.style.setProperty('--c', ch.uiColor);
+      el.querySelector('.bubble-name').textContent = ch.name;
+      bubbleLayer.appendChild(el);
+      ch.bubble = el; ch.bubbleIn = el.firstChild; ch.bubbleText = el.querySelector('.bubble-text');
+    }
+    ch.bubbleText.textContent = text;
+    live.textContent = `${ch.name} dice: ${text}`;
+    dur = Math.max(dur, SND.speak(ch.id, text, urgent));
+    gsap.killTweensOf(ch.bubbleIn);
+    ch.bubbleShown = true; ch.bubble.style.visibility = 'visible';
+    positionBubble(ch);
+    gsap.fromTo(ch.bubbleIn, { scale: 0.3, opacity: 0, y: 12 }, { scale: 1, opacity: 1, y: 0, duration: RM ? 0.15 : 0.45, ease: 'back.out(2.2)' });
+    gsap.to(ch.bubbleIn, { scale: 0.6, opacity: 0, y: -8, duration: 0.3, delay: dur, ease: 'power2.in',
+      onComplete(){ ch.bubbleShown = false; ch.bubble.style.visibility = 'hidden'; } });
+  }
+  function hideBubbles(){
+    chars.forEach(ch => { if (ch.bubble){ gsap.killTweensOf(ch.bubbleIn); ch.bubbleShown = false; ch.bubble.style.visibility = 'hidden'; } });
+  }
+  const _bv = new V3();
+  function positionBubble(ch){
+    ch.anchor.getWorldPosition(_bv).project(camera);
+    if (_bv.z > 1){ ch.bubble.style.visibility = 'hidden'; return; }
+    ch.bubble.style.visibility = 'visible';
+    const w = window.innerWidth, h = window.innerHeight;
+    const half = (ch.bubbleIn.offsetWidth || 220) / 2 + 10;             // que el bocadillo no se salga por los lados
+    const x = Math.min(Math.max((_bv.x + 1) / 2 * w, half), w - half);
+    const y = Math.max((1 - _bv.y) / 2 * h, (PROFILE.mobile ? 60 : 68) + 80);
+    ch.bubble.style.transform = `translate3d(${x.toFixed(1)}px, ${y.toFixed(1)}px, 0) translate(-50%, -100%)`;
+  }
+
+  /* =========================================================
+     6. DECORADO: suelo, colinas, árboles, arbustos, flores…
+     ========================================================= */
+  function makeLog(len, hex, r = 0.16){
+    const key = `log${len}_${r}`;
+    const geo = cachedGeo(key, () => lumpy(new THREE.CylinderGeometry(r, r * 1.04, len, 14, 3), r * 0.08, len * 3));
+    const m = new THREE.Mesh(geo, [clay(hex), clay('#E8C08F', { rough: 0.8 }), clay('#E8C08F', { rough: 0.8 })]);
+    m.castShadow = SHADOWS; m.receiveShadow = SHADOWS;
+    if (PROFILE.outlines && r > 0.1){ const o = new THREE.Mesh(geo, outlineMat(hex)); o.scale.set(1.08, 1.01, 1.08); o.raycast = noRaycast; m.add(o); }
+    return m;
+  }
+
+  // Suelo verde menta con ondulaciones suaves lejos del centro
+  const groundGeo = new THREE.PlaneGeometry(120, 120, 90, 90);
+  groundGeo.rotateX(-Math.PI / 2);
+  {
+    const p = groundGeo.attributes.position;
+    for (let i = 0; i < p.count; i++){
+      const x = p.getX(i), z = p.getZ(i), d = Math.hypot(x, z);
+      const k = THREE.MathUtils.smoothstep(d, 7, 22);
+      p.setY(i, k * (Math.sin(x * 0.18) * Math.cos(z * 0.21) * 1.4 + Math.sin(x * 0.07 + z * 0.05) * 1.6) - 0.02);
+    }
+    groundGeo.computeVertexNormals();
+  }
+  const ground = new THREE.Mesh(groundGeo, new THREE.MeshStandardMaterial({ color: '#9FE0BC', roughness: 0.95, metalness: 0, bumpMap: GROUND_TEX, bumpScale: 0.9 }));
+  ground.receiveShadow = SHADOWS;
+  scene.add(ground);
+
+  // Caminito de tierra
+  [[0, 1.9, 1.2], [0.3, 3.2, 1.0], [-0.1, 4.6, 0.9], [0.4, 6.0, 0.85]].forEach(([x, z, s]) => {
+    const st = blob('#F2D8B0', s, 0.05, s * 0.7, { x, y: 0.0, z, outline: false, cast: false });
+    st.rotation.y = rand(0, Math.PI); scene.add(st);
+  });
+
+  // Colinas de fondo
+  [[-14, -24, 11, 5.5, '#8ED6B0'], [0, -30, 14, 6.5, '#7CC7A8'], [14, -25, 12, 5, '#A3E0BF'], [-26, -16, 10, 4, '#93D9B4'], [27, -15, 11, 4.5, '#86CFAB']]
+    .forEach(([x, z, s, h, c]) => scene.add(blob(c, s, h, s * 0.6, { x, y: -1.2, z, outline: false, cast: false })));
+
+  // Árboles
+  const trees = [];
+  function makeTree(x, z, s = 1, apples = false){
+    const g = new THREE.Group(); g.position.set(x, 0, z); g.scale.setScalar(s * jit(0.06));
+    const trunk = new THREE.Mesh(cachedGeo('trunk', () => lumpy(new THREE.CylinderGeometry(0.18, 0.26, 1.7, 12, 4), 0.02, 3)), clay('#9C6B45'));
+    trunk.position.y = 0.85; trunk.castShadow = SHADOWS && PROFILE.decorShadows; trunk.receiveShadow = SHADOWS;
+    addOutline(trunk, '#9C6B45', 1.06); g.add(trunk);
+    const greens = ['#7ED3A4', '#6CC492', '#93DDB0', '#5FBF86'];
+    [[0, 2.1, 0, 1.05], [-0.55, 1.75, 0.2, 0.72], [0.6, 1.8, -0.1, 0.78], [0.05, 2.75, -0.05, 0.7]].forEach(([fx, fy, fz, fs], i) => {
+      const f = blob(greens[i % 4], fs, fs * 0.92, fs, { x: fx, y: fy, z: fz, cast: PROFILE.decorShadows });
+      g.add(f);
+    });
+    if (apples){
+      [[0.5, 2.2, 0.75], [-0.6, 1.9, 0.75], [0.15, 2.6, 0.75], [0.8, 1.7, 0.4]].forEach(([ax, ay, az]) =>
+        g.add(blob('#FF7B6B', 0.1, 0.1, 0.1, { x: ax, y: ay, z: az, cast: false })));
+    }
+    scene.add(g); trees.push(g); return g;
+  }
+  const bigTree = makeTree(-4.3, -2.3, 1.35, true);
+  [[4.8, -3.6, 1.1], [-7, -6.5, 1.2], [7.4, -7.5, 1.3], [-2.6, -8.5, 1.0], [2.8, -9.8, 1.15], [-9.5, -2.5, 1.1], [9.6, -1.2, 1.0], [-11, -10, 1.4], [11.5, -11, 1.3]]
+    .forEach(([x, z, s], i) => makeTree(x, z, s, i === 1));
+
+  // Arbusto donde se esconde Eri y otros
+  function makeBush(x, z, s = 1){
+    const g = new THREE.Group(); g.position.set(x, 0, z); g.scale.setScalar(s);
+    g.add(blob('#6CC492', 0.85, 0.7, 0.75, { y: 0.4 }));
+    g.add(blob('#7ED3A4', 0.6, 0.55, 0.6, { x: -0.65, y: 0.3, z: 0.15 }));
+    g.add(blob('#5FBF86', 0.55, 0.5, 0.55, { x: 0.62, y: 0.28, z: 0.1 }));
+    g.add(blob('#FF8FA3', 0.08, 0.08, 0.08, { x: 0.2, y: 0.95, z: 0.55, outline: false, cast: false }));
+    g.add(blob('#FFE08A', 0.08, 0.08, 0.08, { x: -0.45, y: 0.7, z: 0.62, outline: false, cast: false }));
+    scene.add(g); return g;
+  }
+  const eriBush = makeBush(3.45, 0.15, 1.05);
+  makeBush(-3.6, 1.3, 0.7); makeBush(6.2, 2.4, 0.8); makeBush(-6.4, 3.0, 0.75);
+
+  // Setas
+  function makeMushroom(x, z, s){
+    const g = new THREE.Group(); g.position.set(x, 0, z); g.scale.setScalar(s);
+    g.add(blob('#FFF4E2', 0.12, 0.22, 0.12, { y: 0.2 }));
+    const cap = blob('#FF8A7A', 0.3, 0.17, 0.3, { y: 0.42 }); g.add(cap);
+    [[0.12, 0.54, 0.12], [-0.14, 0.52, 0.06], [0.02, 0.58, -0.12], [0.18, 0.47, -0.08]].forEach(([dx, dy, dz]) =>
+      g.add(blob('#FFFFFF', 0.045, 0.03, 0.045, { x: dx, y: dy, z: dz, outline: false, cast: false })));
+    scene.add(g);
+  }
+  makeMushroom(-3.1, 2.6, 1); makeMushroom(-2.7, 3.0, 0.65); makeMushroom(2.9, 3.3, 0.85);
+
+  // Piedras
+  [[-1.9, 3.6, 0.22], [2.0, 2.1, 0.18], [5.0, 0.8, 0.3], [-5.2, -0.4, 0.28]].forEach(([x, z, s]) =>
+    scene.add(blob('#C9C3DA', s * 1.3, s * 0.8, s, { x, y: s * 0.4, z, cast: PROFILE.decorShadows })));
+
+  // Flores y matojos (InstancedMesh: muchas piezas, una sola llamada de dibujo)
+  {
+    const flowerN = Math.round(70 * (PROFILE.mobile ? 0.6 : 1)), tuftN = Math.round(160 * (PROFILE.mobile ? 0.55 : 1));
+    const flowers = new THREE.InstancedMesh(GEO.low, clay('#FFFFFF', { rough: 0.8 }), flowerN);
+    const centers = new THREE.InstancedMesh(GEO.low, clay('#FFD23F', { rough: 0.8 }), flowerN);
+    const tufts = new THREE.InstancedMesh(GEO.cone, clay('#67C08C'), tuftN);
+    const d = new THREE.Object3D(), col = new THREE.Color();
+    const palette = ['#FF8FA3', '#FFE08A', '#FFFFFF', '#C3A6F0', '#FF8A7A', '#8EC9F5'];
+    const okSpot = (x, z) => !(Math.abs(x) < 2.6 && z > -2.2 && z < 2.6) && !(Math.abs(x) < 1.1 && z > 2.4 && z < 7);
+    let i = 0;
+    while (i < flowerN){
+      const x = rand(-12, 12), z = rand(-9, 9); if (!okSpot(x, z)) continue;
+      d.position.set(x, 0.08, z); d.scale.set(0.11, 0.05, 0.11); d.rotation.set(0, 0, 0); d.updateMatrix();
+      flowers.setMatrixAt(i, d.matrix); flowers.setColorAt(i, col.set(palette[i % palette.length]));
+      d.position.y = 0.12; d.scale.set(0.045, 0.035, 0.045); d.updateMatrix(); centers.setMatrixAt(i, d.matrix);
+      i++;
+    }
+    i = 0;
+    while (i < tuftN){
+      const x = rand(-14, 14), z = rand(-10, 9); if (!okSpot(x, z)) continue;
+      const s = rand(0.7, 1.3);
+      d.position.set(x, 0.1 * s, z); d.scale.set(0.05 * s, 0.24 * s, 0.05 * s);
+      d.rotation.set(rand(-0.3, 0.3), 0, rand(-0.3, 0.3)); d.updateMatrix(); tufts.setMatrixAt(i, d.matrix);
+      tufts.setColorAt(i, col.set(i % 2 ? '#67C08C' : '#86D3A2'));
+      i++;
+    }
+    scene.add(flowers, centers, tufts);
+  }
+
+  // Nubes
+  cloudMat = clay('#FFFFFF', { rough: 0.95, unique: true });
+  function makeCloud(x, y, z, s){
+    const g = new THREE.Group(); g.position.set(x, y, z); g.scale.setScalar(s);
+    [[0, 0, 0, 1], [-0.95, -0.15, 0.1, 0.7], [0.95, -0.1, 0, 0.78], [0.35, 0.45, 0, 0.65], [-0.4, 0.35, -0.1, 0.6]].forEach(([cx, cy, cz, cs]) => {
+      const m = new THREE.Mesh(GEO.blob[(Math.random() * 3) | 0], cloudMat); m.position.set(cx, cy, cz); m.scale.set(cs, cs * 0.8, cs * 0.75); g.add(m);
+    });
+    scene.add(g); return g;
+  }
+  const clouds = [makeCloud(-8, 8.5, -14, 1.6), makeCloud(4, 9.5, -18, 2.0), makeCloud(12, 7.5, -12, 1.3), makeCloud(-15, 10, -20, 2.2), makeCloud(18, 10.5, -22, 1.8)];
+  clouds.forEach(c => c.userData.speed = rand(0.12, 0.28));
+  const rainCloud = new THREE.Group();
+  {
+    const rcMat = clay('#9AA6B7', { rough: 0.95 });
+    [[0, 0, 0, 1.3], [-1.3, -0.2, 0.2, 1.0], [1.4, -0.15, 0, 1.05], [0.5, 0.6, -0.1, 0.9], [-0.6, 0.5, 0.1, 0.85], [2.3, -0.3, -0.2, 0.7], [-2.2, -0.35, 0, 0.7]]
+      .forEach(([cx, cy, cz, cs]) => { const m = new THREE.Mesh(GEO.blob[1], rcMat); m.position.set(cx, cy, cz); m.scale.set(cs, cs * 0.75, cs * 0.8); rainCloud.add(m); });
+    rainCloud.position.set(0.3, 5.4, -1.2); rainCloud.scale.setScalar(0.001); scene.add(rainCloud);
+  }
+
+  // Sol sonriente
+  const sun = new THREE.Group();
+  {
+    const core = new THREE.Mesh(GEO.blob[0], clay('#FFD86B', { emissive: '#FFB84D', ei: 0.85, rough: 0.8 }));
+    core.scale.setScalar(1.1); sun.add(core);
+    const rays = new THREE.Group(); sun.add(rays); sun.userData.rays = rays;
+    const rayMat = clay('#FFE08A', { emissive: '#FFC94D', ei: 0.7 });
+    for (let i = 0; i < 10; i++){
+      const a = i / 10 * Math.PI * 2, r = new THREE.Mesh(GEO.cone, rayMat);
+      r.scale.set(0.2, 0.5, 0.12); r.position.set(Math.cos(a) * 1.55, Math.sin(a) * 1.55, 0); r.rotation.z = a - Math.PI / 2;
+      rays.add(r);
+    }
+    const eyeM = new THREE.MeshBasicMaterial({ color: '#7A4A2A' });
+    [-0.35, 0.35].forEach(x => { const e = new THREE.Mesh(GEO.low, eyeM); e.scale.set(0.1, 0.14, 0.05); e.position.set(x, 0.18, 1.05); sun.add(e); });
+    const sm = new THREE.Mesh(GEO.smile, eyeM); sm.rotation.z = Math.PI; sm.scale.setScalar(0.3); sm.position.set(0, -0.2, 1.05); sun.add(sm);
+    [-0.62, 0.62].forEach(x => { const c = new THREE.Mesh(GEO.low, new THREE.MeshBasicMaterial({ color: '#FF9D7A' })); c.scale.set(0.16, 0.1, 0.04); c.position.set(x, -0.1, 0.98); sun.add(c); });
+    sun.position.set(-6.5, 7.2, -16);
+    scene.add(sun);
+  }
+
+  // Arcoíris
+  const rainbow = new THREE.Group();
+  const rainbowMats = [];
+  ['#FF8A80', '#FFB86B', '#FFE08A', '#A8E6CF', '#8EC9F5', '#C3A6F0'].forEach((c, i) => {
+    const R = 6 - i * 0.42;
+    const m = new THREE.MeshStandardMaterial({ color: c, roughness: 0.9, metalness: 0, emissive: c, emissiveIntensity: 0.28, transparent: true, opacity: 0, bumpMap: CLAY_TEX, bumpScale: 0.5, depthWrite: false });
+    rainbowMats.push(m);
+    rainbow.add(new THREE.Mesh(new THREE.TorusGeometry(R, 0.22, 10, 72, Math.PI), m));
+  });
+  rainbow.position.set(2.5, -0.6, -13); rainbow.scale.setScalar(0.001);
+  scene.add(rainbow);
+
+  /* =========================================================
+     7. LA CASITA (troncos, puerta, tejado de hojas)
+     ========================================================= */
+  const HOUSE = new THREE.Group(); HOUSE.position.set(0, 0, -0.6); scene.add(HOUSE);
+  const HW = 2.6, HD = 2.0, LR = 0.16, ROW = LR * 1.85;
+  const logs = [], logColors = ['#A8744B', '#B8845A', '#9C6B45', '#B07D52'];
+  function addLog(x, y, z, len, alongZ){
+    const g = new THREE.Group(); g.position.set(x, y, z);
+    const m = makeLog(len, logColors[logs.length % 4]); m.rotation.z = Math.PI / 2;
+    if (alongZ) g.rotation.y = Math.PI / 2;
+    g.add(m); g.userData.home = new V3(x, y, z); HOUSE.add(g); logs.push(g);
+  }
+  for (let r = 0; r < 4; r++){
+    const y = LR + r * ROW, ys = y + ROW / 2;
+    addLog(0, y, -HD / 2, HW + 0.35, false);                 // trasera
+    addLog(-HW / 2, ys, 0, HD + 0.35, true);                 // laterales
+    addLog(HW / 2, ys, 0, HD + 0.35, true);
+    if (r < 3){                                              // delantera con hueco de puerta
+      const seg = HW / 2 - 0.42 + 0.17;
+      addLog(-(0.42 + seg / 2) + 0.08, y, HD / 2, seg, false);
+      addLog((0.42 + seg / 2) - 0.08, y, HD / 2, seg, false);
+    } else addLog(0, y, HD / 2, HW + 0.35, false);
+  }
+  logs.sort((a, b) => a.userData.home.y - b.userData.home.y);  // se construyen de abajo arriba
+  const wallTop = LR + 3 * ROW + LR;                           // altura de la fachada (≈1.21)
+
+  const door = new THREE.Group(); door.position.set(0, 0, HD / 2 + 0.02); HOUSE.add(door);
+  {
+    const panel = new THREE.Mesh(cachedGeo('door', () => {
+      const s = new THREE.Shape(); s.moveTo(-0.36, 0); s.lineTo(0.36, 0); s.lineTo(0.36, 0.55); s.absarc(0, 0.55, 0.36, 0, Math.PI, false); s.lineTo(-0.36, 0);
+      return new THREE.ExtrudeGeometry(s, { depth: 0.08, bevelEnabled: true, bevelThickness: 0.03, bevelSize: 0.03, bevelSegments: 3, curveSegments: 16 });
+    }), clay('#FF8A7A')); panel.castShadow = SHADOWS; panel.receiveShadow = SHADOWS; addOutline(panel, '#FF8A7A', 1.03);
+    door.add(panel);
+    door.add(blob('#FFE08A', 0.06, 0.06, 0.05, { x: 0.22, y: 0.45, z: 0.12, outline: false }));
+  }
+  door.userData.home = door.position.clone();
+
+  // Tejado de hojas grandes (acto 3)
+  const ang = THREE.MathUtils.degToRad(36);
+  const halfSpan = HD / 2 + 0.4, ridgeY = wallTop + halfSpan * Math.tan(ang) - 0.12, slopeLen = halfSpan / Math.cos(ang);
+  const roofLeaves = [], leafCols = PROFILE.mobile ? 6 : 7, leafRows = 4;
+  const leafGreens = ['#5FBF7F', '#7ED3A4', '#4FAF6E', '#93DDB0'];
+  const slopes = [];
+  [0, Math.PI].forEach(ry => {
+    const outer = new THREE.Group(); outer.position.y = ridgeY; outer.rotation.y = ry; HOUSE.add(outer);
+    const inner = new THREE.Group(); inner.rotation.x = ang; outer.add(inner); slopes.push(inner);
+    for (let r = 0; r < leafRows; r++){
+      for (let c = 0; c < leafCols; c++){
+        const x = -((HW + 0.8) / 2) + (c + 0.5) * ((HW + 0.8) / leafCols) + (r % 2 ? 0.12 : -0.12);
+        const s = 0.18 + r * (slopeLen - 0.15) / leafRows + 0.12;
+        const leaf = blob(leafGreens[(r + c) % 4], 0.36, 0.06, 0.32, { x, y: 0.05 + (leafRows - r) * 0.012, z: s, outline: false, jitter: 0.08 });
+        leaf.rotation.y = rand(-0.25, 0.25);
+        leaf.userData.home = leaf.position.clone();
+        leaf.userData.homeScale = leaf.scale.clone();
+        leaf.userData.slope = inner;
+        inner.add(leaf); roofLeaves.push(leaf);
+      }
+    }
+  });
+  const ridge = makeLog(HW + 0.9, '#6FBF86', 0.13); ridge.rotation.z = Math.PI / 2; ridge.position.set(0, ridgeY + 0.06, 0); HOUSE.add(ridge);
+  ridge.userData.homeScale = ridge.scale.clone();
+
+  // Frontones con ventanita redonda
+  const gables = [];
+  const gableGeo = (() => {
+    const w = HW + 0.15, h = ridgeY - wallTop + 0.05, s = new THREE.Shape();
+    s.moveTo(-w / 2, 0); s.lineTo(w / 2, 0); s.lineTo(0, h); s.lineTo(-w / 2, 0);
+    return new THREE.ExtrudeGeometry(s, { depth: 0.1, bevelEnabled: true, bevelThickness: 0.03, bevelSize: 0.04, bevelSegments: 2 });
+  })();
+  const windowMat = new THREE.MeshStandardMaterial({ color: '#FFE7A3', emissive: '#FFC65C', emissiveIntensity: 0.25, roughness: 0.6, metalness: 0 });
+  [1, -1].forEach(side => {
+    const g = new THREE.Mesh(gableGeo, clay('#FFE08A'));
+    g.position.set(0, wallTop - 0.02, side * (HD / 2 - 0.05) - (side > 0 ? 0.06 : -0.06));
+    if (side < 0) g.rotation.y = Math.PI;
+    g.castShadow = SHADOWS; g.receiveShadow = SHADOWS; addOutline(g, '#FFE08A', 1.02);
+    if (side > 0){
+      const win = new THREE.Mesh(cachedGeo('win', () => new THREE.CircleGeometry(0.17, 24)), windowMat); win.position.set(0, 0.36, 0.16); g.add(win);
+      const frame = new THREE.Mesh(cachedGeo('winframe', () => new THREE.TorusGeometry(0.18, 0.035, 8, 24)), clay('#A8744B')); frame.position.set(0, 0.36, 0.16); g.add(frame);
+    }
+    g.userData.homeScale = g.scale.clone();
+    HOUSE.add(g); gables.push(g);
+  });
+
+  // Esterilla de ramitas que se cae (acto 2)
+  const twigMat = new THREE.Group();
+  for (let i = 0; i < 7; i++){
+    const tw = makeLog(HW + 0.5, ['#9C6B45', '#B07D52', '#8A5D3B'][i % 3], 0.07);
+    tw.rotation.z = Math.PI / 2; tw.position.set(rand(-0.06, 0.06), 0, -0.6 + i * 0.2); twigMat.add(tw);
+  }
+  scene.add(twigMat); twigMat.visible = false;
+  const twigRoofPos = new V3(0, HOUSE.position.y + (wallTop + ridgeY) / 2 + 0.05, HOUSE.position.z + halfSpan / 2 - 0.05);
+
+  /* Estados de la casa: 0 = nada, 1 = paredes, 2 = terminada */
+  function setHouseStage(stage){
+    gsap.killTweensOf([...logs.map(l => l.position), ...logs.map(l => l.scale), door.scale, door.position,
+      ...roofLeaves.map(l => l.position), ...roofLeaves.map(l => l.scale), ridge.scale, ...gables.map(g => g.scale), windowMat]);
+    logs.forEach(l => { l.position.copy(l.userData.home); l.scale.setScalar(stage >= 1 ? 1 : 0.0001); l.visible = stage >= 1; });
+    door.position.copy(door.userData.home); door.scale.setScalar(stage >= 1 ? 1 : 0.0001); door.visible = stage >= 1;
+    roofLeaves.forEach(l => { l.position.copy(l.userData.home); l.scale.copy(l.userData.homeScale); if (stage < 2) l.scale.multiplyScalar(0.0001); l.visible = stage >= 2; });
+    ridge.scale.copy(ridge.userData.homeScale); if (stage < 2) ridge.scale.multiplyScalar(0.0001); ridge.visible = stage >= 2;
+    gables.forEach(g => { g.scale.copy(g.userData.homeScale); if (stage < 2) g.scale.multiplyScalar(0.0001); g.visible = stage >= 2; });
+    windowMat.emissiveIntensity = stage >= 2 ? 0.25 : 0.25;
+  }
+
+  /* =========================================================
+     8. EFECTOS REUTILIZABLES (partículas, lluvia, hojas, confeti)
+     ========================================================= */
+  class Pool {
+    constructor(geo, mat, max){
+      this.max = max;
+      this.mesh = new THREE.InstancedMesh(geo, mat, max);
+      this.mesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
+      this.mesh.frustumCulled = false;
+      this.p = []; this.cursor = 0; this.alive = 0;
+      const zero = new THREE.Matrix4().makeScale(0, 0, 0), white = new THREE.Color(1, 1, 1);
+      for (let i = 0; i < max; i++){
+        this.mesh.setMatrixAt(i, zero); this.mesh.setColorAt(i, white);
+        this.p.push({ on: false, pos: new V3(), vel: new V3(), rot: new THREE.Euler(), rv: new V3(), sc: new V3(1, 1, 1), life: 0, max: 1, g: 9, drag: 0.98, sway: 0, floor: 0.02, rest: false });
+      }
+      this.dummy = new THREE.Object3D(); this.zero = zero;
+      scene.add(this.mesh);
+    }
+    spawn(o){
+      for (let k = 0; k < this.max; k++){
+        const i = (this.cursor + k) % this.max, p = this.p[i];
+        if (p.on) continue;
+        this.cursor = (i + 1) % this.max;
+        p.on = true; p.life = 0; p.max = o.life || 1; p.g = o.g ?? 9; p.drag = o.drag ?? 0.98; p.sway = o.sway || 0; p.floor = o.floor ?? 0.02; p.rest = false;
+        p.pos.copy(o.pos); p.vel.copy(o.vel); p.sc.copy(o.scale); p.rot.set(rand(0, 6), rand(0, 6), rand(0, 6));
+        p.rv.set(rand(-1, 1), rand(-1, 1), rand(-1, 1)).multiplyScalar(o.spin ?? 6); p.seed = Math.random() * 10;
+        this.mesh.setColorAt(i, o.color); this.mesh.instanceColor.needsUpdate = true;
+        this.alive++;
+        return;
+      }
+    }
+    update(dt, t){
+      if (!this.alive) return;
+      const d = this.dummy;
+      for (let i = 0; i < this.max; i++){
+        const p = this.p[i]; if (!p.on) continue;
+        p.life += dt;
+        if (p.life >= p.max){ p.on = false; this.alive--; this.mesh.setMatrixAt(i, this.zero); continue; }
+        if (!p.rest){
+          p.vel.y -= p.g * dt;
+          const dr = Math.pow(p.drag, dt * 60); p.vel.multiplyScalar(dr);
+          p.pos.addScaledVector(p.vel, dt);
+          if (p.sway) p.pos.x += Math.sin(t * 2.2 + p.seed) * p.sway * dt;
+          p.rot.x += p.rv.x * dt; p.rot.y += p.rv.y * dt; p.rot.z += p.rv.z * dt;
+          if (p.pos.y < p.floor){ p.pos.y = p.floor; p.rest = true; p.rot.x = Math.PI / 2 + rand(-0.2, 0.2); p.rot.z = 0; }
+        }
+        const fade = Math.min(1, (p.max - p.life) / 0.35);
+        d.position.copy(p.pos); d.rotation.copy(p.rot); d.scale.copy(p.sc).multiplyScalar(fade);
+        d.updateMatrix(); this.mesh.setMatrixAt(i, d.matrix);
+      }
+      this.mesh.instanceMatrix.needsUpdate = true;
+    }
+  }
+  const sparkPool = new Pool(new THREE.IcosahedronGeometry(1, 0), new THREE.MeshBasicMaterial({ color: '#FFFFFF' }), Math.round(160 * Math.max(PROFILE.particles, 0.4)));
+  const confettiPool = new Pool(new THREE.PlaneGeometry(1, 1.6), new THREE.MeshStandardMaterial({ roughness: 0.7, metalness: 0, side: THREE.DoubleSide }), Math.round(260 * Math.max(PROFILE.particles, 0.35)));
+  const leafPool = new Pool(GEO.low, new THREE.MeshStandardMaterial({ roughness: 0.85, metalness: 0, bumpMap: CLAY_TEX, bumpScale: 0.5 }), Math.round(70 * Math.max(PROFILE.particles, 0.5)));
+
+  const _c = new THREE.Color();
+  const PARTY = ['#FF8A80', '#FFE08A', '#A8E6CF', '#8EC9F5', '#C3A6F0', '#FFB86B', '#FFFFFF'];
+
+  /* burst: chispas de colores */
+  function burst(pos, { count = 16, colors = PARTY, speed = 3, life = 0.8, size = 0.06, g = 4 } = {}){
+    SND.sparkle();
+    const n = Math.max(4, Math.round(count * PROFILE.particles));
+    for (let i = 0; i < n; i++){
+      const dir = new V3(rand(-1, 1), rand(0.2, 1.2), rand(-1, 1)).normalize();
+      sparkPool.spawn({ pos, vel: dir.multiplyScalar(speed * rand(0.6, 1.2)), life: life * rand(0.7, 1.2), g, drag: 0.93,
+        scale: new V3(size, size, size).multiplyScalar(rand(0.7, 1.3)), color: _c.set(colors[i % colors.length]), spin: 8, floor: -5 });
+    }
+  }
+  /* confetti: lluvia de papelitos */
+  function confetti(center = new V3(0, 3, 0), count = 140, spread = 3){
+    SND.tada();
+    const n = Math.round(count * PROFILE.particles);
+    for (let i = 0; i < n; i++){
+      const pos = center.clone().add(new V3(rand(-spread, spread) * 0.4, rand(0, 0.6), rand(-spread, spread) * 0.3));
+      const vel = new V3(rand(-1, 1) * spread, rand(3.5, 7), rand(-0.5, 1.5) * spread * 0.5);
+      confettiPool.spawn({ pos, vel, life: rand(3, 4.5), g: 4.5, drag: 0.965, sway: 0.8, scale: new V3(0.07, 0.07, 0.07), color: _c.set(PARTY[i % PARTY.length]), spin: 9 });
+    }
+  }
+  /* hojas que caen */
+  const leafFall = { rate: 0, acc: 0 };
+  function leaves(rate = 2){ leafFall.rate = RM ? Math.min(rate, 0.5) : rate * (PROFILE.mobile ? 0.6 : 1); }
+  const leafColors = ['#7ED3A4', '#5FBF86', '#FFB86B', '#FFE08A', '#93DDB0'];
+  function spawnLeaf(){
+    const tr = trees[(Math.random() * Math.min(trees.length, 4)) | 0];
+    const pos = tr.position.clone().add(new V3(rand(-1, 1), rand(1.8, 2.8) * tr.scale.y, rand(-0.6, 0.8)));
+    leafPool.spawn({ pos, vel: new V3(rand(0.2, 0.8), rand(-0.2, 0.2), rand(0, 0.5)), life: rand(4, 6), g: 0.6, drag: 0.94, sway: 1.4,
+      scale: new V3(0.12, 0.025, 0.08), color: _c.set(leafColors[(Math.random() * leafColors.length) | 0]), spin: 2.5 });
+  }
+  /* lluvia con partículas (gotas 3D) */
+  const RAIN_N = Math.max(120, Math.round(650 * PROFILE.particles));
+  const rainMesh = new THREE.InstancedMesh(new THREE.CapsuleGeometry(0.016, 0.22, 2, 6),
+    new THREE.MeshStandardMaterial({ color: '#DDF0FF', roughness: 0.3, metalness: 0, transparent: true, opacity: 0.75 }), RAIN_N);
+  rainMesh.frustumCulled = false; rainMesh.count = 0; scene.add(rainMesh);
+  const drops = [];
+  for (let i = 0; i < RAIN_N; i++) drops.push(new V3(rand(-7, 7), rand(0, 10), rand(-5, 6)));
+  const rain = { amount: 0 };
+  const _rd = new THREE.Object3D();
+  function setRain(amount, dur = 1.5){ gsap.to(rain, { amount, duration: RM ? 0.3 : dur, ease: 'sine.inOut', overwrite: true }); }
+  function updateRain(dt){
+    const n = Math.floor(RAIN_N * rain.amount);
+    rainMesh.count = n;
+    if (!n) return;
+    for (let i = 0; i < n; i++){
+      const p = drops[i];
+      p.y -= dt * (RM ? 5 : 9.5);
+      if (p.y < 0){
+        if (Math.random() < 0.06 * PROFILE.particles) sparkPool.spawn({ pos: new V3(p.x, 0.05, p.z), vel: new V3(rand(-0.5, 0.5), rand(0.8, 1.4), rand(-0.5, 0.5)), life: 0.35, g: 6, drag: 0.95, scale: new V3(0.025, 0.025, 0.025), color: _c.set('#E6F4FF'), spin: 0, floor: -1 });
+        p.set(rand(-7, 7), rand(8, 10), rand(-5, 6));
+      }
+      _rd.position.copy(p); _rd.updateMatrix(); rainMesh.setMatrixAt(i, _rd.matrix);
+    }
+    rainMesh.instanceMatrix.needsUpdate = true;
+  }
+
+  /* punch / rebound: squash & stretch */
+  function punch(obj, k = 0.25, d = 0.6){
+    const b = obj.userData.baseScale || (obj.userData.baseScale = obj.scale.clone());
+    return gsap.timeline()
+      .to(obj.scale, { x: b.x * (1 + k), y: b.y * (1 - k), z: b.z * (1 + k), duration: d * 0.15, ease: 'power2.out' })
+      .to(obj.scale, { x: b.x * (1 - k * 0.6), y: b.y * (1 + k * 0.7), z: b.z * (1 - k * 0.6), duration: d * 0.2, ease: 'power1.out' })
+      .to(obj.scale, { x: b.x, y: b.y, z: b.z, duration: d * 0.65, ease: 'elastic.out(1, 0.35)' });
+  }
+  /* saltito con aplastamiento al despegar y al aterrizar */
+  function hop(ch, { h = 0.55, d = 0.55, n = 1, target = ch.jump } = {}){
+    if (RM){ h *= 0.4; }
+    const tl = gsap.timeline();
+    for (let i = 0; i < n; i++){
+      tl.to(target.scale, { x: 1.14, y: 0.84, z: 1.14, duration: d * 0.16, ease: 'power2.out' })
+        .call(SND.boing, [ch.id])
+        .to(target.scale, { x: 0.9, y: 1.14, z: 0.9, duration: d * 0.18, ease: 'power2.out' })
+        .to(target.position, { y: h, duration: d * 0.36, ease: 'power2.out' }, '<')
+        .to(target.position, { y: 0, duration: d * 0.34, ease: 'power2.in' })
+        .to(target.scale, { x: 1, y: 1, z: 1, duration: d * 0.34, ease: 'power1.inOut' }, '<')
+        .to(target.scale, { x: 1.16, y: 0.82, z: 1.16, duration: d * 0.08, ease: 'power2.out' })
+        .to(target.scale, { x: 1, y: 1, z: 1, duration: d * 0.3, ease: 'elastic.out(1, 0.45)' });
+    }
+    return tl;
+  }
+  /* desplazarse a saltitos */
+  function hopTo(ch, x, z, { dur = 1.2, h = 0.4, hops = null, y = 0 } = {}){
+    const from = ch.plan, dist = Math.hypot(x - from.x, z - from.z);
+    const n = hops || Math.max(1, Math.round(dist / 0.65));
+    const angle = Math.atan2(x - from.x, z - from.z);
+    const tl = gsap.timeline();
+    tl.to(ch.root.rotation, { y: angle, duration: 0.25, ease: 'power2.out' })
+      .to(ch.root.position, { x, z, y, duration: dur, ease: 'none' })
+      .add(hop(ch, { h, d: dur / n, n }), '<');
+    ch.plan = { x, y, z };
+    return tl;
+  }
+  /* trayectoria en arco (curva de Bézier) */
+  function flyTo(obj, to, { h = 1, dur = 1, ease = 'power1.inOut' } = {}){
+    const p0 = new V3(), p1 = new V3(), p2 = new V3(to.x, to.y, to.z), o = { t: 0 };
+    return gsap.fromTo(o, { t: 0 }, { t: 1, duration: dur, ease,
+      onStart(){ p0.copy(obj.position); p1.copy(p0).lerp(p2, 0.5); p1.y = Math.max(p0.y, p2.y) + h; },
+      onUpdate(){ const t = o.t, a = (1 - t) * (1 - t), b = 2 * (1 - t) * t, c = t * t;
+        obj.position.set(p0.x * a + p1.x * b + p2.x * c, p0.y * a + p1.y * b + p2.y * c, p0.z * a + p1.z * b + p2.z * c); } });
+  }
+  const face = (ch, ry, d = 0.35) => gsap.to(ch.root.rotation, { y: ry, duration: d, ease: 'power2.out' });
+  const faceTo = (ch, other, d = 0.35) => face(ch, Math.atan2(other.plan.x - ch.plan.x, other.plan.z - ch.plan.z), d);
+  const headWorld = (ch) => ch.anchor.getWorldPosition(new V3()).add(new V3(0, -0.4, 0));
+
+  /* =========================================================
+     9. CREAR PERSONAJES
+     ========================================================= */
+  const coco = makeCoco(), pio = makePio(), eri = makeEri();
+  const chars = [coco, pio, eri];
+  const charById = { coco, pio, eri };
+  const charScale = PROFILE.mobile ? 1.12 : 1;
+  chars.forEach(ch => { ch.root.scale.setScalar((ch.baseScale || 1) * charScale); scene.add(ch.root); setExpr(ch, 'happy'); });
+
+  function place(ch, x, z, ry = 0, y = 0){
+    gsap.killTweensOf([ch.root.position, ch.root.rotation, ch.jump.position, ch.jump.scale, ch.jump.rotation]);
+    ch.root.position.set(x, y, z); ch.root.rotation.set(0, ry, 0);
+    ch.jump.position.set(0, 0, 0); ch.jump.scale.set(1, 1, 1); ch.jump.rotation.set(0, 0, 0);
+    ch.plan = { x, y, z }; ch.root.visible = true;
+  }
+
+  /* =========================================================
+     10. CÁMARA: goCam + encuadre según el dispositivo
+     ========================================================= */
+  const view = { sx: 0, sy: 0 };
+  function camFactor(){
+    const a = window.innerWidth / window.innerHeight;
+    if (a >= 1) return 1;
+    return THREE.MathUtils.clamp(1.3 * Math.sqrt(0.62 / a), 1.1, 1.7);
+  }
+  function updateFov(){
+    const a = window.innerWidth / window.innerHeight;
+    camera.fov = a < 1 ? 52 : (a < 1.3 ? 46 : 40);
+    camera.aspect = a;
+  }
+  function goCam(pos, target, dur = 2.2){
+    const k = camFactor();
+    const t = new V3(...target), p = new V3(...pos).sub(t).multiplyScalar(k).add(t);
+    const d = RM ? Math.min(dur, 0.5) : dur;
+    gsap.to(camBase, { x: p.x, y: p.y, z: p.z, duration: d, ease: 'power2.inOut', overwrite: true });
+    gsap.to(camTarget, { x: t.x, y: t.y, z: t.z, duration: d, ease: 'power2.inOut', overwrite: true });
+  }
+  const SHOTS = [
+    { pos: [0.3, 1.75, 8.4], tgt: [0, 1.0, 0.6], sx: 0.2 },   // hero
+    { pos: [-2.9, 2.9, 8.7], tgt: [0, 1.0, 0.1], sx: 0.2 }, // acto 1
+    { pos: [3.4, 3.1, 8.4], tgt: [0.1, 1.2, 0.2], sx: -0.2 },      // acto 2
+    { pos: [4.2, 2.6, 8.6], tgt: [1.0, 1.2, 0.1], sx: 0.2 },   // acto 3
+    { pos: [0, 3.4, 12.2], tgt: [0, 1.6, -0.6], sx: 0 }         // final
+  ];
+  function framing(act, dur){
+    const s = SHOTS[act];
+    const mobile = PROFILE.mobile || window.innerWidth / window.innerHeight < 1;
+    if (window.innerWidth / window.innerHeight < 1){
+      // pantalla vertical: plano más frontal y centrado para que quepan los tres amigos
+      goCam([s.pos[0] * 0.45, s.pos[1], s.pos[2]], [0, s.tgt[1], s.tgt[2]], dur);
+    } else goCam(s.pos, s.tgt, dur);
+    gsap.to(view, { sx: mobile ? 0 : s.sx, sy: mobile ? (act === 4 ? 0.24 : 0.17) : (act === 4 ? 0.3 : 0), duration: RM ? 0.3 : dur, ease: 'power2.inOut', overwrite: true });
+  }
+  function applyView(){
+    const w = window.innerWidth, h = window.innerHeight;
+    camera.setViewOffset(w, h, -view.sx * w, view.sy * h, w, h);
+  }
+
+  /* =========================================================
+     11. LA HISTORIA: un estado base + una línea de tiempo por acto
+     ========================================================= */
+  let currentAct = -1, actTl = null, loopTl = null, sunTween = null;
+  const SUN_POS = [[-6.5, 7.2, -16], [-3, 8.6, -16], [-3, -4, -16], [4, -4, -16], [6.5, 3.6, -16]];
+  function setSun(act, dur = 2){
+    if (sunTween) sunTween.kill();
+    const p = SUN_POS[act];
+    sunTween = gsap.to(sun.position, { x: p[0], y: p[1], z: p[2], duration: RM ? 0.3 : dur, ease: 'power2.inOut' });
+  }
+  function showRainCloud(on){ gsap.to(rainCloud.scale, { x: on ? 1 : 0.001, y: on ? 1 : 0.001, z: on ? 1 : 0.001, duration: RM ? 0.2 : 1.2, ease: on ? 'back.out(1.4)' : 'power2.in', overwrite: true }); }
+  function showRainbow(on, dur = 2){
+    gsap.to(rainbow.scale, { x: on ? 1 : 0.001, y: on ? 1 : 0.001, z: on ? 1 : 0.001, duration: RM ? 0.3 : dur, ease: on ? 'power2.out' : 'power2.in', overwrite: true });
+    rainbowMats.forEach((m, i) => gsap.to(m, { opacity: on ? 0.92 : 0, duration: RM ? 0.3 : dur, delay: on ? i * 0.12 : 0, overwrite: true }));
+  }
+  function bulb(on){
+    gsap.to(eri.bulb.scale, { x: on ? 1 : 0.001, y: on ? 1 : 0.001, z: on ? 1 : 0.001, duration: 0.45, ease: on ? 'back.out(3)' : 'power2.in', overwrite: true });
+    if (on){ SND.ding(); burst(eri.bulb.getWorldPosition(new V3()), { count: 10, colors: ['#FFE08A', '#FFFFFF', '#FFB86B'], speed: 2, size: 0.045 }); }
+  }
+  const pick = (arr) => { arr._i = ((arr._i ?? -1) + 1) % arr.length; return arr[arr._i]; };
+  const ERI_HIDE = { x: 3.55, z: -0.75 };
+  function peek(tl, at, up = -0.12){
+    tl.to(eri.root.position, { y: up, duration: 0.45, ease: 'back.out(2)' }, at)
+      .to(eri.root.position, { y: -0.6, duration: 0.4, ease: 'power2.in' }, at + 1.6);
+  }
+
+  function enterAct(act){
+    if (act === currentAct) return;
+    const prev = currentAct; currentAct = act;
+    if (actTl) actTl.kill(); if (loopTl) loopTl.kill();
+    gsap.killTweensOf([twigMat.position, twigMat.rotation, twigMat.scale, coco.holdLog.position, coco.holdLog.rotation, coco.hold.rotation, eri.bulb.scale]);
+    hideBubbles();
+    SND.hush();
+    SND.setTheme(['manana', 'compartir', 'lluvia', 'idea', 'fiesta'][act]);
+    chars.forEach(ch => setExpr(ch, 'happy'));
+    framing(act, prev === -1 ? 0.01 : 2.2);
+    setSky(act, prev === -1 ? 0.01 : 2.2);
+    driftTarget.set(0, 0, 0);
+    hideNext();
+    { const t = document.getElementById('tip-saludo'); if (t && act === 0 && !tipDone) t.hidden = false; else if (t) t.hidden = true; }
+    revealCard(act);
+    const builders = [actHero, act1, act2, act3, actFinal];
+    actTl = gsap.timeline();
+    builders[act](actTl);
+  }
+
+  /* HERO: los tres amigos saltan de alegría */
+  function actHero(tl){
+    setHouseStage(0); setRain(0, 0.8); showRainCloud(false); showRainbow(false, 0.8); setSun(0); leaves(0);
+    twigMat.visible = false; coco.hold.visible = false; pio.bundle.visible = false; bulb(false);
+    place(coco, -1.15, 0.75, 0.25); place(pio, 0, 1.25, 0); place(eri, 1.15, 0.75, -0.25);
+    loopTl = gsap.timeline({ repeat: RM ? 0 : -1, repeatDelay: 0.6, delay: 0.4 });
+    loopTl.add(hop(coco, { h: 0.6, d: 0.6 }), 0).add(hop(pio, { h: 0.7, d: 0.55 }), 0.25).add(hop(eri, { h: 0.45, d: 0.6 }), 0.5);
+    tl.call(say, [coco, '¡Hola! Soy Coco.', 2.2], 0.8)
+      .call(say, [pio, '¡Y yo soy Pío!', 2.2], 2.4)
+      .call(say, [eri, 'Yo… soy Eri.', 2.4], 3.9)
+      .call(() => setExpr(eri, 'shy'), null, 3.9)
+      .call(() => setExpr(eri, 'happy'), null, 6.4)
+      .call(say, [coco, '¡Sigue bajando, que empieza el cuento!', 2.6], 6.0)
+      .call(showNext, [0], 6.3);
+  }
+
+  /* ACTO 1: Compartir */
+  function act1(tl){
+    setHouseStage(0); setRain(0); showRainCloud(false); showRainbow(false, 0.8); setSun(1); leaves(0);
+    twigMat.visible = false; bulb(false);
+    place(coco, -1.1, 1.05, 0.15); place(pio, 4.6, 1.5, -Math.PI / 2); place(eri, ERI_HIDE.x, ERI_HIDE.z, -0.6, -0.6);
+    coco.hold.visible = true; coco.holdLog.position.set(0, 0, 0); coco.holdLog.rotation.set(0, 0, Math.PI / 2); coco.hold.rotation.set(0, 0, 0);
+    pio.bundle.visible = true; pio.bundle.scale.setScalar(1);
+    tl.to(coco.hold.rotation, { z: 0.18, duration: 0.18, yoyo: true, repeat: 7, ease: 'sine.inOut' }, 0.2)
+      .to(coco.jump.scale, { x: 1.08, y: 0.9, z: 1.08, duration: 0.3, yoyo: true, repeat: 3, ease: 'sine.inOut' }, 0.2)
+      .call(say, [coco, '¡Uf! Este tronco pesa muchísimo…', 2.4], 0.3)
+      .to(coco.holdLog.position, { y: -0.78, duration: 0.45, ease: 'bounce.out' }, 1.9)
+      .call(() => { setExpr(coco, 'sad'); SND.thud(0.7); burst(coco.root.position.clone().add(new V3(0, 0.2, 0.7)), { count: 10, colors: ['#D9B48A', '#C9A27A', '#EBD3B0'], speed: 1.6, size: 0.05 }); }, null, 2.1)
+      .call(say, [coco, 'Solo no puedo…', 2.0], 3.0);
+    peek(tl, 1.0);
+    tl.add(hopTo(pio, 1.25, 1.35, { dur: 1.5, h: 0.45 }), 3.0)
+      .add(() => { face(pio, -0.5); faceTo(coco, pio); }, 4.6)
+      .call(() => setExpr(pio, 'happy'), null, 4.6)
+      .call(say, [pio, '¡Coco! ¡Te presto mis ramitas!', 2.6], 4.7)
+      .add(punch(pio.bundle, 0.3, 0.6), 4.8)
+      .call(() => setExpr(coco, 'happy'), null, 6.0)
+      .call(say, [coco, '¡Gracias, Pío! ¡Juntos sí podemos!', 2.6], 6.9)
+      .to(coco.holdLog.scale, { x: 0.0001, y: 0.0001, z: 0.0001, duration: 0.3, onComplete(){ coco.hold.visible = false; coco.holdLog.scale.setScalar(1); } }, 7.0)
+      .to(pio.bundle.scale, { x: 0.0001, y: 0.0001, z: 0.0001, duration: 0.3, onComplete(){ pio.bundle.visible = false; } }, 7.0)
+      .add(() => { face(coco, 0.35); face(pio, -0.35); }, 7.1);
+    // las paredes suben, tronco a tronco
+    const t0 = 7.2, step = RM ? 0.04 : 0.17;
+    logs.forEach((l, i) => {
+      tl.call(() => { l.visible = true; }, null, t0 + i * step)
+        .fromTo(l.position, { y: l.userData.home.y + 2.4 }, { y: l.userData.home.y, duration: 0.55, ease: 'bounce.out', immediateRender: false }, t0 + i * step)
+        .fromTo(l.scale, { x: 0.3, y: 0.3, z: 0.3 }, { x: 1, y: 1, z: 1, duration: 0.3, ease: 'back.out(2)', immediateRender: false }, t0 + i * step)
+        .call(SND.knock, [i], t0 + i * step + 0.2);
+      if (i % 4 === 3) tl.call(() => burst(HOUSE.localToWorld(l.userData.home.clone()), { count: 6, colors: ['#E8C08F', '#FFFFFF', '#FFE08A'], speed: 1.8, size: 0.04 }), null, t0 + i * step + 0.45);
+    });
+    const tEnd = t0 + logs.length * step + 0.3;
+    tl.add(hop(coco, { n: 3, h: 0.35, d: 0.5 }), t0 + 0.2).add(hop(pio, { n: 3, h: 0.4, d: 0.5 }), t0 + 0.45)
+      .call(() => { door.visible = true; SND.pop(1); }, null, tEnd)
+      .fromTo(door.scale, { x: 0.0001, y: 0.0001, z: 0.0001 }, { x: 1, y: 1, z: 1, duration: 0.6, ease: 'back.out(2.2)', immediateRender: false }, tEnd)
+      .call(() => { burst(HOUSE.localToWorld(new V3(0, 0.8, HD / 2 + 0.3)), { count: 22 }); }, null, tEnd + 0.3)
+      .call(say, [pio, '¡Mira, Coco! ¡Ya tenemos paredes!', 2.6], tEnd + 0.4)
+      .add(hop(coco, { h: 0.6 }), tEnd + 0.5).add(hop(pio, { h: 0.7 }), tEnd + 0.65);
+    peek(tl, tEnd + 1.2);
+    tl.call(say, [pio, '¡Sigue bajando! ¿Qué pasará con el tejado?', 2.8], tEnd + 3.0)
+      .call(showNext, [1], tEnd + 3.3);
+  }
+
+  /* ACTO 2: Perseverar */
+  function act2(tl){
+    setHouseStage(1); setRain(1, 2); showRainCloud(true); showRainbow(false, 0.6); setSun(2, 1.5); leaves(0);
+    coco.hold.visible = false; pio.bundle.visible = false; bulb(false);
+    place(coco, -1.95, 1.35, 0.4); place(pio, 0.8, 1.45, -0.2); place(eri, ERI_HIDE.x, ERI_HIDE.z, -0.6, -0.6);
+    twigMat.visible = false; twigMat.scale.setScalar(0.0001);
+    const top = { x: -0.45, y: wallTop, z: HOUSE.position.z + HD / 2 - 0.02 };
+    const fallen = { x: -0.65, y: 0, z: 1.5 };
+    tl.call(() => setExpr(coco, 'surprised'), null, 0.3)
+      .call(say, [coco, '¡Oh, no! ¡Está lloviendo!', 2.2], 0.4)
+      .call(() => setExpr(pio, 'happy'), null, 1.6)
+      .call(say, [pio, '¡Tranquilo! ¡Yo pongo el tejado!', 2.4], 2.1)
+      .add(() => { pio.plan = { ...top }; }, 2.6)
+      .to(pio.root.rotation, { y: 0, duration: 0.3 }, 2.6)
+      .add(flyTo(pio.root, top, { h: 0.9, dur: 0.8, ease: 'power1.inOut' }), 2.7)
+      .add(punch(pio.jump, 0.22, 0.5), 3.5)
+      .call(() => setExpr(coco, 'happy'), null, 3.5);
+    peek(tl, 2.0);
+    // el intento que se repite: Pío se cae, se levanta y lo vuelve a intentar
+    const fails = ['¡Ay! ¡Me he caído!', '¡Pum! ¡Otra vez al suelo!', '¡Uy! Resbala mucho…'];
+    const retry = ['¡No pasa nada! ¡Otra vez!', '¡Me levanto y lo intento!', '¡Esta vez sí!'];
+    const cheer = ['¡Tú puedes, Pío!', '¡Ánimo, amigo!', '¡Venga, que casi está!'];
+    // Pío lo intenta dos veces con voces; luego Coco invita a bajar y Pío sigue intentándolo en silencio
+    const gap = RM ? 1.5 : 0.5, cycleLen = 6.0 + gap;
+    let cycle = 0;
+    const talk = () => cycle <= 2;
+    const mk = () => {
+      const L = gsap.timeline({ repeat: -1, repeatDelay: gap });
+      L.call(() => { cycle++; twigMat.visible = true; twigMat.position.set(twigRoofPos.x, twigRoofPos.y + 2.2, twigRoofPos.z); twigMat.rotation.set(ang, 0, 0); twigMat.scale.setScalar(1); }, null, 0)
+        .fromTo(twigMat.position, { y: twigRoofPos.y + 2.2 }, { y: twigRoofPos.y, duration: 0.6, ease: 'bounce.out', immediateRender: false }, 0.05)
+        .call(SND.knock, [1], 0.3)
+        .call(SND.knock, [3], 2.2)
+        .add(hop(pio, { h: 0.25, d: 0.4 }), 0.7)
+        .to(twigMat.rotation, { z: 0.09, duration: 0.14, yoyo: true, repeat: 3, ease: 'sine.inOut' }, 0.9)
+        .call(() => setExpr(pio, 'surprised'), null, 1.5)
+        .to(twigMat.position, { z: twigRoofPos.z + 1.0, y: twigRoofPos.y - 0.55, duration: 0.45, ease: 'power2.in' }, 1.5)
+        .to(twigMat.rotation, { x: ang + 0.5, duration: 0.45, ease: 'power2.in' }, 1.5)
+        .to(twigMat.position, { x: 2.35, y: 0.08, z: 1.0, duration: 0.55, ease: 'bounce.out' }, 1.95)
+        .to(twigMat.rotation, { x: 0, y: 1.25, duration: 0.55, ease: 'power2.out' }, 1.95)
+        .add(flyTo(pio.root, fallen, { h: 0.35, dur: 0.6, ease: 'power2.in' }), 1.7)
+        .add(punch(pio.jump, 0.38, 0.7), 2.3)
+        .call(() => { setExpr(pio, 'sad'); SND.thud(1); burst(pio.root.position.clone().add(new V3(0, 0.5, 0)), { count: 14, colors: ['#FFE08A', '#FFFFFF', '#FFD84D'], speed: 2.6, size: 0.055 }); }, null, 2.3)
+        .call(() => { if (talk()) say(pio, pick(fails), 1.8); }, null, 2.45)
+        .to(pio.jump.rotation, { z: 0.22, duration: 0.09, yoyo: true, repeat: 5, ease: 'sine.inOut' }, 3.4)
+        .call(() => { setExpr(pio, 'happy'); if (talk()) say(pio, pick(retry), 1.8); }, null, 3.5)
+        .call(() => { setExpr(coco, 'happy'); if (talk()) say(coco, pick(cheer), 1.8); }, null, 3.9)
+        .add(hop(coco, { h: 0.45 }), 4.0)
+        .to(twigMat.scale, { x: 0.0001, y: 0.0001, z: 0.0001, duration: 0.3 }, 4.3)
+        .add(flyTo(pio.root, top, { h: 0.9, dur: 0.75 }), 4.7)
+        .call(SND.boing, ['pio'], 4.7)
+        .add(punch(pio.jump, 0.2, 0.45), 5.45)
+        .call(() => {}, null, 6.0);
+      return L;
+    };
+    const tInvite = 3.9 + cycleLen + 6.0 + 0.3;                         // cuando Pío vuelve al tejado tras el 2.º intento
+    tl.call(() => { loopTl = mk(); }, null, 3.9)
+      .call(() => { setExpr(coco, 'happy'); faceTo(coco, pio); }, null, tInvite - 0.2)
+      .call(say, [coco, '¡Sigue bajando, que Eri tiene una idea!', 2.8], tInvite)
+      .call(showNext, [2], tInvite + 0.3);
+  }
+
+  /* ACTO 3: Pedir ayuda */
+  function act3(tl){
+    setHouseStage(1); setRain(0.55, 1); showRainCloud(true); showRainbow(false, 0.6); setSun(3, 1); leaves(0);
+    coco.hold.visible = false; pio.bundle.visible = false; twigMat.visible = false;
+    place(coco, -1.55, 1.45, 0.2); place(pio, -0.1, 1.75, 0.1); place(eri, ERI_HIDE.x, ERI_HIDE.z, -0.6, -0.6);
+    eri.bulb.scale.setScalar(0.001);
+    tl.call(() => { setExpr(coco, 'sad'); setExpr(pio, 'sad'); }, null, 0.2)
+      .call(say, [pio, '¿Cómo hacemos un tejado que no se caiga?', 2.6], 0.4)
+      .to(eri.root.position, { y: -0.1, duration: 0.5, ease: 'back.out(2)' }, 2.2)
+      .call(() => { setExpr(eri, 'shy'); bulb(true); }, null, 2.6)
+      .to(eri.root.position, { y: -0.55, duration: 0.4, ease: 'power2.in' }, 3.8)
+      .call(() => bulb(false), null, 3.8)
+      .to(eri.root.position, { y: -0.08, duration: 0.5, ease: 'back.out(2)' }, 4.6)
+      .call(() => setExpr(eri, 'shy'), null, 4.8)
+      .call(say, [eri, 'Tengo una idea… pero me da vergüenza.', 2.8], 4.9)
+      .add(() => { faceTo(coco, eri); faceTo(pio, eri); setExpr(coco, 'happy'); setExpr(pio, 'happy'); }, 8.0)
+      .call(say, [coco, '¡Eri! Cuéntanos, te escuchamos.', 2.4], 8.6)
+      .add(hop(pio, { h: 0.45 }), 10.9)
+      .call(say, [pio, '¡Seguro que tu idea es genial!', 2.2], 11.2)
+      .add(() => { eri.plan = { x: ERI_HIDE.x, y: -0.08, z: ERI_HIDE.z }; }, 12.4)
+      .add(hopTo(eri, 1.65, 1.5, { dur: 1.4, h: 0.4 }), 12.5)
+      .add(() => face(eri, -0.35), 14.0)
+      .call(() => { setExpr(eri, 'happy'); bulb(true); }, null, 14.0)
+      .call(say, [eri, '¿Y si hacemos el tejado con hojas grandes?', 2.8], 14.1)
+      .call(() => { setExpr(coco, 'surprised'); setExpr(pio, 'surprised'); }, null, 15.6)
+      .call(() => { bulb(false); setExpr(coco, 'happy'); setExpr(pio, 'happy'); face(coco, 0.3); face(pio, 0); }, null, 17.6);
+    // las hojas vuelan desde el árbol grande hasta el tejado
+    const t0 = 17.8, step = RM ? 0.01 : 0.045;
+    tl.call(SND.whoosh, null, t0);
+    const src = bigTree.position.clone().add(new V3(0.2, 2.3 * bigTree.scale.y, 0.3));
+    roofLeaves.forEach((leaf, i) => {
+      const at = t0 + i * step;
+      tl.call(() => {
+        const slope = leaf.userData.slope;
+        const local = slope.worldToLocal(src.clone());
+        leaf.visible = true; leaf.position.copy(local); SND.leaf();
+        leaf.scale.copy(leaf.userData.homeScale).multiplyScalar(0.4);
+        const home = leaf.userData.home, ctrl = local.clone().lerp(home, 0.5).add(slope.worldToLocal(new V3(0, 1, 0)).sub(slope.worldToLocal(new V3())).multiplyScalar(1.6));
+        const o = { t: 0 };
+        gsap.to(o, { t: 1, duration: RM ? 0.2 : 0.9, ease: 'power1.inOut', onUpdate(){
+          const t = o.t, a = (1 - t) * (1 - t), b = 2 * (1 - t) * t, c = t * t;
+          leaf.position.set(local.x * a + ctrl.x * b + home.x * c, local.y * a + ctrl.y * b + home.y * c, local.z * a + ctrl.z * b + home.z * c);
+        } });
+        gsap.to(leaf.scale, { x: leaf.userData.homeScale.x, y: leaf.userData.homeScale.y, z: leaf.userData.homeScale.z, duration: 0.9, ease: 'back.out(1.6)' });
+      }, null, at);
+    });
+    const tRoof = t0 + roofLeaves.length * step + 0.9;
+    tl.call(() => { ridge.visible = true; gables.forEach(g => g.visible = true); SND.pop(0.8); }, null, tRoof)
+      .fromTo(ridge.scale, { x: 0.0001, y: 0.0001, z: 0.0001 }, { x: 1, y: 1, z: 1, duration: 0.5, ease: 'back.out(2)', immediateRender: false }, tRoof)
+      .fromTo(gables.map(g => g.scale), { x: 0.0001, y: 0.0001, z: 0.0001 }, { x: 1, y: 1, z: 1, duration: 0.6, ease: 'back.out(2)', immediateRender: false }, tRoof + 0.1)
+      .call(() => { SND.setTheme('fiesta'); setRain(0, 1.2); showRainCloud(false); setSky('atardecer', 2.5); setSun(4, 2.5); gsap.to(sun.position, { x: 5.5, y: 6.4, duration: RM ? 0.3 : 2.4, ease: 'power2.out', overwrite: true }); }, null, tRoof + 0.3)
+      .call(() => { showRainbow(true, 2.4); SND.sparkle(true); }, null, tRoof + 1.2)
+      .to(windowMat, { emissiveIntensity: 1.1, duration: 1.2 }, tRoof + 0.6)
+      .call(() => { confetti(new V3(0, 2.2, 0.8), 150, 3); leaves(1.5); }, null, tRoof + 1.0)
+      .call(say, [pio, '¡Hurra! ¡La casita está terminada!', 2.6], tRoof + 1.1)
+      .add(hop(coco, { n: 2, h: 0.6 }), tRoof + 1.0).add(hop(pio, { n: 2, h: 0.7 }), tRoof + 1.15).add(hop(eri, { n: 2, h: 0.45 }), tRoof + 1.3)
+      .call(say, [coco, '¡Gracias por tu idea, Eri!', 2.4], tRoof + 3.6)
+      .call(say, [eri, '¡Gracias por escucharme!', 2.4], tRoof + 5.2)
+      .call(() => {
+        loopTl = gsap.timeline({ repeat: RM ? 0 : -1, repeatDelay: 2.2 });
+        loopTl.add(hop(eri, { h: 0.4 }), 0).add(hop(coco, { h: 0.5 }), 0.3).add(hop(pio, { h: 0.55 }), 0.6);
+      }, null, tRoof + 6.5)
+      .call(say, [eri, '¡Sigue bajando, que lo celebramos!', 2.6], tRoof + 6.8)
+      .call(showNext, [3], tRoof + 7.1);
+  }
+
+  /* FINAL: celebración junto a la casita terminada */
+  function actFinal(tl){
+    setHouseStage(2); setRain(0, 0.6); showRainCloud(false); showRainbow(true, 1.6); setSun(4); leaves(1.2);
+    coco.hold.visible = false; pio.bundle.visible = false; twigMat.visible = false; bulb(false);
+    windowMat.emissiveIntensity = 1.2;
+    place(coco, -1.5, 1.55, 0.25); place(pio, 0, 1.95, 0); place(eri, 1.5, 1.55, -0.25);
+    tl.call(() => confetti(new V3(0, 2.6, 0.6), 160, 3.2), null, 0.8)
+      .call(say, [coco, '¡Gracias por leer con nosotros!', 2.6], 1.0)
+      .call(say, [eri, '¡Hasta el próximo cuento!', 2.6], 3.8);
+    loopTl = gsap.timeline({ repeat: RM ? 0 : -1, repeatDelay: 1.6, delay: 0.5 });
+    loopTl.add(hop(coco, { h: 0.55 }), 0).add(hop(pio, { h: 0.65 }), 0.2).add(hop(eri, { h: 0.45 }), 0.4);
+  }
+
+  /* Botón "Sigue bajando": aparece al acabar cada escena; si nadie baja, insiste un poco */
+  const nextBtns = [...document.querySelectorAll('[data-next]')];
+  let nudgeTimer = null;
+  function hideNext(){
+    clearTimeout(nudgeTimer);
+    nextBtns.forEach(b => b.classList.remove('show', 'nudge'));
+  }
+  function showNext(act){
+    const b = cards[act] && cards[act].querySelector('[data-next]');
+    if (!b || currentAct !== act) return;
+    b.classList.remove('nudge'); b.classList.add('show');
+    SND.pop(1.4);
+    clearTimeout(nudgeTimer);
+    if (!RM) nudgeTimer = setTimeout(() => { if (currentAct === act) b.classList.add('nudge'); }, 8000);
+  }
+  function goToAct(act){
+    const sec = sections[act]; if (!sec) return;
+    const nav = document.querySelector('.nav').offsetHeight;            // la escena empieza justo bajo la barra
+    const y = sec.getBoundingClientRect().top + window.scrollY - nav + 2;
+    window.scrollTo({ top: Math.max(0, y), behavior: RM ? 'auto' : 'smooth' });
+  }
+  nextBtns.forEach(b => b.addEventListener('click', () => goToAct(+b.dataset.next)));
+
+  /* Entrada suave de las tarjetas de texto */
+  const cards = [...document.querySelectorAll('[data-act] .card')];
+  function revealCard(act){
+    if (RM) return;
+    const c = cards[act]; if (!c) return;
+    gsap.fromTo(c.children, { y: 18, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, stagger: 0.07, ease: 'power2.out', overwrite: true, clearProps: 'transform,opacity' });
+  }
+
+  /* =========================================================
+     12. INTERACCIÓN: tocar a un personaje (Raycaster)
+     ========================================================= */
+  const raycaster = new THREE.Raycaster(), ndc = new THREE.Vector2();
+  function pickChar(cx, cy){
+    const r = canvas.getBoundingClientRect();
+    ndc.set(((cx - r.left) / r.width) * 2 - 1, -((cy - r.top) / r.height) * 2 + 1);
+    raycaster.setFromCamera(ndc, camera);
+    const hits = raycaster.intersectObjects(chars.map(c => c.root), true);
+    for (const h of hits){
+      let o = h.object;
+      while (o && o.userData.charId === undefined) o = o.parent;
+      if (o) return charById[o.userData.charId];
+    }
+    return null;
+  }
+  let tipDone = false;
+  function hideTip(){ tipDone = true; const t0 = document.getElementById('tip-saludo'); if (t0) t0.hidden = true; }
+  function poke(ch){
+    hideTip();
+    const now = performance.now();
+    if (now - ch.lastPoke < 500) return;
+    ch.lastPoke = now;
+    const P = ch.pokeG;
+    gsap.killTweensOf([P.position, P.scale, P.rotation]);
+    P.position.y = 0; P.scale.set(1, 1, 1); P.rotation.y = 0;
+    const tl = hop(ch, { h: 0.6, d: 0.6, target: P });
+    if (!RM) tl.to(P.rotation, { y: Math.PI * 2, duration: 0.6, ease: 'power2.out' }, 0.1).set(P.rotation, { y: 0 });
+    const i = ch.pIdx % 3; ch.pIdx++;
+    const prev = ch.expr, e = ch.pokeExpr[i];
+    setExpr(ch, e);
+    gsap.delayedCall(1.8, () => { if (ch.expr === e) setExpr(ch, prev === e ? 'happy' : prev); });
+    say(ch, ch.phrases[i], 2.4, true);
+    burst(headWorld(ch), { count: 18, speed: 2.8, size: 0.055 });
+  }
+  canvas.addEventListener('click', (e) => { const ch = pickChar(e.clientX, e.clientY); if (ch) poke(ch); });
+  document.querySelectorAll('[data-char]').forEach(btn => btn.addEventListener('click', () => {
+    const ch = charById[btn.dataset.char]; if (ch) poke(ch);
+  }));
+  if (window.matchMedia('(pointer: fine)').matches){
+    let pending = false, lx = 0, ly = 0;
+    canvas.addEventListener('pointermove', (e) => {
+      lx = e.clientX; ly = e.clientY;
+      mouse.set((e.clientX / window.innerWidth) * 2 - 1, (e.clientY / window.innerHeight) * 2 - 1);
+      if (pending) return; pending = true;
+      requestAnimationFrame(() => { pending = false; canvas.style.cursor = pickChar(lx, ly) ? 'pointer' : 'default'; });
+    });
+  }
+
+  /* =========================================================
+     13. SCROLL: cada sección dispara su acto
+     ========================================================= */
+  const sections = [...document.querySelectorAll('[data-act]')];
+  sections.forEach(sec => {
+    const act = +sec.dataset.act;
+    ScrollTrigger.create({
+      trigger: sec, start: 'top 60%', end: 'bottom 60%',
+      onToggle: self => { if (self.isActive) enterAct(act); },
+      onUpdate: self => { if (currentAct === act && !RM) driftTarget.set((self.progress - 0.5) * 1.3, (0.5 - self.progress) * 0.35, 0); }
+    });
+  });
+
+  /* =========================================================
+     14. BUCLE ÚNICO DE ANIMACIÓN (se pausa con la pestaña oculta)
+     ========================================================= */
+  const clock = new THREE.Clock();
+  let raf = null, firstFrame = true;
+  const lookTmp = new V3();
+  function updateCharacters(t, dt){
+    for (const ch of chars){
+      const b = RM ? 0.008 : 0.024;
+      const s = Math.sin(t * 2.4 + ch.phase) * b;
+      ch.breath.scale.set(1 - s * 0.5, 1 + s, 1 - s * 0.5);
+      if (ch.head) ch.head.rotation.z = Math.sin(t * 0.9 + ch.phase) * (RM ? 0.01 : 0.05);
+      ch.ears.forEach((e, i) => { e.rotation.z = e.userData.baseZ + Math.sin(t * 1.8 + ch.phase + i * 1.3) * (RM ? 0.02 : 0.09) + Math.max(0, Math.sin(t * 0.7 + i)) ** 12 * 0.25 * (i ? -1 : 1); });
+      if (ch.wings.length){
+        const air = THREE.MathUtils.clamp((ch.jump.position.y + ch.pokeG.position.y) * 3, 0, 1);
+        ch.wings.forEach(w => { w.rotation.z = w.userData.baseZ + w.userData.s * (Math.sin(t * 28) * 0.55 * air + Math.sin(t * 2 + ch.phase) * 0.05); });
+      }
+      if (t > ch.nextBlink){
+        ch.nextBlink = t + rand(2, 5.5);
+        ch.eyes.forEach(eye => gsap.to(eye.userData.blink.scale, { y: 0.08, duration: 0.07, yoyo: true, repeat: 1, ease: 'power1.inOut', overwrite: true }));
+      }
+    }
+    if (eri.bulbMat) eri.bulbMat.emissiveIntensity = 0.8 + Math.sin(t * 6) * 0.3;
+  }
+  function loop(){
+    raf = requestAnimationFrame(loop);
+    const dt = Math.min(clock.getDelta(), 0.05), t = clock.elapsedTime;
+    updateCharacters(t, dt);
+    sparkPool.update(dt, t); confettiPool.update(dt, t);
+    if (leafFall.rate > 0){ leafFall.acc += dt * leafFall.rate; while (leafFall.acc > 1){ leafFall.acc -= 1; spawnLeaf(); } }
+    leafPool.update(dt, t);
+    updateRain(dt);
+    SND.update(dt, rain.amount);
+    clouds.forEach(c => { c.position.x += dt * c.userData.speed * (RM ? 0.3 : 1); if (c.position.x > 24) c.position.x = -24; });
+    rainCloud.position.x = 0.3 + Math.sin(t * 0.4) * 0.4;
+    sun.quaternion.copy(camera.quaternion);
+    sun.userData.rays.rotation.z = RM ? 0 : t * 0.25;
+    // cámara: posición base (GSAP) + pequeño travelling ligado al scroll y al ratón
+    drift.lerp(driftTarget, 1 - Math.exp(-dt * 3));
+    camera.position.copy(camBase).add(drift);
+    if (!RM && !PROFILE.mobile){ camera.position.x += mouse.x * 0.25; camera.position.y += -mouse.y * 0.12; }
+    lookTmp.copy(camTarget);
+    camera.lookAt(lookTmp);
+    applyView();
+    renderer.render(scene, camera);
+    for (const ch of chars) if (ch.bubbleShown) positionBubble(ch);
+    if (firstFrame){
+      firstFrame = false;
+      document.documentElement.classList.add('ready');
+      clearTimeout(window.__tigalmaTimer);
+      document.getElementById('loader').classList.add('hide');
+    }
+  }
+  function start(){ if (!raf){ clock.getDelta(); raf = requestAnimationFrame(loop); } }
+  function stop(){ if (raf){ cancelAnimationFrame(raf); raf = null; } }
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden){ stop(); gsap.globalTimeline.pause(); SND.pause(); }
+    else { gsap.globalTimeline.resume(); SND.resume(); start(); }
+  });
+
+  /* =========================================================
+     15. REDIMENSIONAR
+     ========================================================= */
+  let lastW = window.innerWidth, lastH = window.innerHeight, rTimer = null;
+  function onResize(){
+    const w = window.innerWidth, h = window.innerHeight;
+    if (w === lastW && Math.abs(h - lastH) < 80 && PROFILE.mobile) return; // ignora la barra del navegador en móvil
+    lastW = w; lastH = h;
+    applyDeviceProfile();
+    renderer.setPixelRatio(PROFILE.pixelRatio);
+    renderer.setSize(w, h, false);
+    updateFov(); camera.updateProjectionMatrix();
+    if (currentAct >= 0) framing(currentAct, 0.4);
+  }
+  window.addEventListener('resize', () => { clearTimeout(rTimer); rTimer = setTimeout(onResize, 150); });
+
+  /* =========================================================
+     16. ARRANQUE
+     ========================================================= */
+  updateFov(); camera.updateProjectionMatrix();
+  drawSky();
+  setHouseStage(0);
+  renderer.compile(scene, camera);
+  ScrollTrigger.refresh();
+  if (currentAct < 0){
+    const mid = window.innerHeight * 0.6;
+    let act = 0;
+    sections.forEach(s => { const r = s.getBoundingClientRect(); if (r.top <= mid && r.bottom > mid) act = +s.dataset.act; });
+    enterAct(act);
+  }
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => ScrollTrigger.refresh());
+  if (!document.hidden) start();
+}
+</script>
+</body>
+</html>
